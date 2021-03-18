@@ -1,0 +1,33 @@
+.drawing {
+  width: 20%;
+  height: 100rem;
+  border: 1px;
+  background-image: url("pensil2.png"), url("thank.png");
+
+  .draw {
+    background-size: 10% 100rem, 20% 100 rem;
+    background-position: 0px 45%, 50rem 50rem;
+    backgraound-repeat: repeat-y, repeat-y;
+
+    /* width: 200;
+    height: 100;
+    background-position: left top;
+
+    backgraound-repeat: repeat-y; */
+  }
+}
+.word {
+  width: 20%;
+  height: 100rem;
+  border: 1px;
+  background-image: url("thank.png");
+
+  .handwriting {
+    background-position: center center;
+
+    width: 200;
+    height: 400;
+
+    backgraound-repeat: repeat-y;
+  }
+}

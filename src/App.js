@@ -1,24 +1,23 @@
 import logo from './logo.svg';
-import './App.css';
+// import back from '../src/img/pensil2.png';
+import '../src/stylesheet/detail_view.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <div>
+      <div className="drawing">
+        <div className="draw">
+  
+        {/* <img src={back}className="background-img" />
+        <img src={logo} className="App-logo" alt="logo" /> */}
+        
+        </div> 
+        </div>
+        <div className="word" >
+          <div className="handwriting"/>
+        </div>
+ 
+  </div>
   );
 }
 
