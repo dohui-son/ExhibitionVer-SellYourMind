@@ -1,5 +1,6 @@
-import Reat from "react";
+import React from "react";
 import Menu from "./Menu";
+import { Route, Link } from "react-router-dom";
 
 const Format = () => {
   return (
@@ -8,5 +9,5 @@ const Format = () => {
     </div>
   );
 };
-
+//structure
 export default Format;
