@@ -1,10 +1,11 @@
-import React from 'react';
+import React from "react";
 
-const Auth = ()=> {
-    return(
-        <div>로그인페이지</div>
-
-    );
+const Auth = () => {
+  return (
+    <div>
+      <span>로그인페이지</span>
+    </div>
+  );
 };
 
 export default Auth;
