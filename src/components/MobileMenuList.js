@@ -8,7 +8,7 @@ const MobileMenuList = ({ isOpen, close }) => {
     <React.Fragment>
       {isOpen ? (
         <React.Fragment>
-          <div className="menuOverlay" onClick={close} />
+          {/* <div className="menuOverlay" onClick={close} /> */}
           <div className="menu">
             <div className="content">
               <Link to="/">Home</Link>
@@ -17,9 +17,11 @@ const MobileMenuList = ({ isOpen, close }) => {
               <Link to="/market">Market</Link>
               <Link to="/sell">Sell Your Mind</Link>
             </div>
+            
             <div className="buttonWrap">
               <button onClick={close}>close</button>
             </div>
+            <div className="menuOverlay" onClick={close} />
           </div>
         </React.Fragment>
       ) : null}
