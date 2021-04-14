@@ -3,9 +3,10 @@
     display: none;
     @media screen and (min-width: 1025px) {
       position: fixed;
+
       width: 20%;
-      top: 50%;
-      left: 0%;
+      top: 10px !important;
+      left: 1rem !important;
       display: flex;
       flex-direction: column;
       background-color: black;
@@ -22,6 +23,7 @@
     @media screen and (max-width: 1024px) {
       margin-left: 7px;
       margin-top: 7px;
+      top: 0% !important;
       height: 40px;
       width: 60px;
       display: flex;
@@ -29,14 +31,16 @@
       justify-content: space-around;
       align-items: left;
       cursor: pointer;
-      color: #fdd577;
+      color: rgb(105, 105, 105);
 
       .line {
-        background-color: #fdd577;
+        left: 10px;
+        background-color: #aaaaaa;
         transition: box-shadow 0.1s ease-out;
         height: 17%;
         width: 90%;
         border-radius: 100px;
+        opacity: 70%;
       }
 
       .line:active {
@@ -92,10 +96,10 @@
         font-weight: 650;
         padding: 8px;
         font-size: 16pt;
-        color: #ffb300;
+        color: #a5a5a5;
 
         &:hover {
-          color: #a37200;
+          color: #000000;
           border-radius: 10px;
         }
         &:active {
@@ -113,17 +117,18 @@
         width: 100%;
         padding: 12px 0;
         border-radius: 0 0 10px 10px;
-        background-color: #ffc53e;
+        background-color: #a3a3a3;
         font-size: 13pt;
         color: white;
         border: 0;
         cursor: pointer;
 
         &:hover {
-          background-color: #289be75b;
+          background-color: #2c2c2c5b;
         }
         &:active {
-          background-color: #289be75b;
+          color: rgb(63, 63, 63);
+          background-color: #ffffff5b;
         }
       }
     }

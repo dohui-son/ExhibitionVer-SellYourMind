@@ -11,13 +11,23 @@ const MobileMenuList = ({ isOpen, close }) => {
           {/* <div className="menuOverlay" onClick={close} /> */}
           <div className="menu">
             <div className="content">
-              <Link to="/">Home</Link>
-              <Link to="/auth">LogIn</Link>
-              <Link to="/mypage">MyPage</Link>
-              <Link to="/market">Market</Link>
-              <Link to="/sell">Sell Your Mind</Link>
+              <Link to="/" onClick={close}>
+                Home
+              </Link>
+              <Link to="/auth" onClick={close}>
+                LogIn
+              </Link>
+              <Link to="/mypage" onClick={close}>
+                MyPage
+              </Link>
+              <Link to="/market" onClick={close}>
+                Market
+              </Link>
+              <Link to="/sell" onClick={close}>
+                Sell Your Mind
+              </Link>
             </div>
-            
+
             <div className="buttonWrap">
               <button onClick={close}>close</button>
             </div>

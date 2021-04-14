@@ -12,8 +12,17 @@
 }
 
 .global {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
   font-family: NanumM_R;
   background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   a {
     text-decoration: none;
   }
