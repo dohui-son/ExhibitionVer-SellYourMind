@@ -1,4 +1,5 @@
 import React from "react";
+
 import "./stylesheet/global.scss";
 import { Route } from "react-router-dom";
 import Home from "./page/Home";
@@ -7,11 +8,13 @@ import MyPage from "./page/MyPage";
 import Market from "./page/Market";
 import Sell from "./page/Sell";
 import Layout from "./components/Layout";
+import Square from "./components/Square";
 
 const App = () => {
   return (
     <div className="global">
       <Layout>
+        <Square />
         <Route path="/" component={Home} exact={true} />
         <Route path="/auth" component={Auth} />
         <Route path="/mypage" component={MyPage} />
@@ -21,5 +24,6 @@ const App = () => {
     </div>
   );
 };
+
 
 export default App;
