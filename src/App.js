@@ -9,11 +9,14 @@ import Market from "./page/Market";
 import Sell from "./page/Sell";
 import Layout from "./components/Layout";
 import Square from "./components/Square";
-
+import DetailThree from "./components/DetailThree";
+import DetailQuote from "./components/DetailQuote";
 const App = () => {
   return (
     <div className="global">
       <Layout>
+        <DetailQuote />
+        <DetailThree />
         <Square />
         <Route path="/" component={Home} exact={true} />
         <Route path="/auth" component={Auth} />
@@ -24,6 +27,5 @@ const App = () => {
     </div>
   );
 };
-
 
 export default App;
