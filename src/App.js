@@ -11,19 +11,20 @@ import Layout from "./components/Layout";
 import Square from "./components/Square";
 import DetailThree from "./components/DetailThree";
 import DetailQuote from "./components/DetailQuote";
+import Detail1 from "./components/Detail1";
 const App = () => {
   return (
     <div className="global">
-      <Layout>
-        <DetailQuote />
-        <DetailThree />
-        <Square />
-        <Route path="/" component={Home} exact={true} />
+      {/* <Layout> */}
+      <DetailQuote />
+      {/* <DetailThree />
+        <Square /> */}
+      {/* <Route path="/" component={Home} exact={true} />
         <Route path="/auth" component={Auth} />
         <Route path="/mypage" component={MyPage} />
         <Route path="/market" component={Market} />
-        <Route path="/sell" component={Sell} />
-      </Layout>
+        <Route path="/sell" component={Sell} /> */}
+      {/* </Layout> */}
     </div>
   );
 };

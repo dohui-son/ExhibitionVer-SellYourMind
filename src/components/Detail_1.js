@@ -2,7 +2,7 @@ import React, { Component, useEffect } from "react";
 import ReactDOM from "react-dom";
 import * as THREE from "three";
 import { Scene } from "three";
-import img from "../material/texture/test.jpg";
+import img from "../material/texture/quotes.jpg";
 const DetailQuote = () => {
   useEffect(() => {
     let camera, scene, renderer;
@@ -20,8 +20,8 @@ const DetailQuote = () => {
     animate();
     function init() {
       const container = document.getElementById("container");
-      console.log(container);
-      console.log(window.innerWidth);
+      //console.log(container);
+      //console.log(window.innerWidth);
       camera = new THREE.PerspectiveCamera(
         75,
         window.innerWidth / window.innerHeight,
