@@ -2,7 +2,8 @@ import React, { Component, useEffect } from "react";
 import ReactDOM from "react-dom";
 import * as THREE from "three";
 import { Scene } from "three";
-import img from "../material/texture/test.jpg";
+import img from "../material/texture/quotes.jpg";
+import "../stylesheet/detail.scss"
 const DetailQuote = () => {
   useEffect(() => {
     let camera, scene, renderer;
@@ -20,8 +21,8 @@ const DetailQuote = () => {
     animate();
     function init() {
       const container = document.getElementById("container");
-      console.log(container);
-      console.log(window.innerWidth);
+      //console.log(container);
+      //console.log(window.innerWidth);
       camera = new THREE.PerspectiveCamera(
         75,
         window.innerWidth / window.innerHeight,
@@ -41,6 +42,8 @@ const DetailQuote = () => {
       const mesh = new THREE.Mesh(geometry, material);
 
       scene.add(mesh);
+
+     
 
       renderer = new THREE.WebGLRenderer();
       renderer.setPixelRatio(window.devicePixelRatio);
@@ -87,7 +90,7 @@ const DetailQuote = () => {
 
     function onWindowResize() {
       camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
+      camera.updateProjectionMatrix(); //canvas화면 크기에 카메라 비율속성맞추기
 
       renderer.setSize(window.innerWidth, window.innerHeight);
     }
@@ -152,6 +155,6 @@ const DetailQuote = () => {
       renderer.render(scene, camera);
     }
   }, []);
-  return <div id="container"></div>;
+  return <div className="detail-body" id="container"></div>;
 };
 export default DetailQuote;

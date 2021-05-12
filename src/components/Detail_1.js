@@ -3,7 +3,10 @@ import ReactDOM from "react-dom";
 import * as THREE from "three";
 import { Scene } from "three";
 import img from "../material/texture/quotes.jpg";
-const DetailQuote = () => {
+//import wall from "../material/texture/wall.png"
+import wall from "../material/texture/wall.jpg"
+import "../stylesheet/detail.scss"
+const Detail_1 = () => {
   useEffect(() => {
     let camera, scene, renderer;
 
@@ -26,21 +29,53 @@ const DetailQuote = () => {
         75,
         window.innerWidth / window.innerHeight,
         1,
-        1100
+        2100
       );
 
-      scene = new THREE.Scene();
+      scene = new THREE.Scene();{
+        //scene.fog = new THREE.Fog(0xFFFFFF,100,400);
+      }
+      //scene.background = new THREE.Color( 0x101010 );
 
-      const geometry = new THREE.SphereGeometry(500, 60, 40);
+      const geometry = new THREE.SphereGeometry(500, 70, 40);
       // invert the geometry on the x-axis so that all of the faces point inward
-      geometry.scale(-1, 1, 1);
+      geometry.scale(-1.4, 1, 1);
+
+
+
+
+      
+      const p_geometry = new THREE.PlaneGeometry(5,20,32);
+      const p_texture = new THREE.TextureLoader().load(wall);
+      const p_material = new THREE.MeshBasicMaterial({map:p_texture, side:THREE.DoubleSide});
+      const plane = new THREE.Mesh(p_geometry,p_material);
+      p_geometry.scale(1,1,1);
+
 
       const texture = new THREE.TextureLoader().load(img);
-      const material = new THREE.MeshBasicMaterial({ map: texture });
-
+      const material = new THREE.MeshPhongMaterial({ map: texture }); //빛반사MeshPhongMaterial
       const mesh = new THREE.Mesh(geometry, material);
 
-      scene.add(mesh);
+
+
+      const sphereThextureLoader = new THREE.CubeTextureLoader();
+
+
+      //plane.postion.set(-1,2,4);
+      const solarSystem = new THREE.Object3D();
+      scene.add(solarSystem);
+
+      //scene.background = mesh;
+      solarSystem.add(plane);
+      solarSystem.add(mesh);
+      
+      
+
+
+      
+      const light = new THREE.DirectionalLight(0xffffff, 1);
+      light.position.set(-1,1,4);
+      scene.add(light);
 
       renderer = new THREE.WebGLRenderer();
       renderer.setPixelRatio(window.devicePixelRatio);
@@ -87,7 +122,7 @@ const DetailQuote = () => {
 
     function onWindowResize() {
       camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
+      camera.updateProjectionMatrix(); //canvas화면 크기에 카메라 비율속성맞추기
 
       renderer.setSize(window.innerWidth, window.innerHeight);
     }
@@ -152,6 +187,6 @@ const DetailQuote = () => {
       renderer.render(scene, camera);
     }
   }, []);
-  return <div id="container"></div>;
+  return <div className="detail-body" id="container"></div>;
 };
-export default DetailQuote;
+export default Detail_1;
