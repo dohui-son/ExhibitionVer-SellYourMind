@@ -4,9 +4,13 @@ import * as THREE from "three";
 import { Scene } from "three";
 import img from "../material/texture/quotes.jpg";
 //import wall from "../material/texture/wall.png"
-import wall from "../material/texture/wall.jpg"
-import "../stylesheet/detail.scss"
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import wall from "../material/texture/wall.jpg";
+import b_watercolor from "../material/texture/b_watercolor.jpg";
+import hansi from "../material/texture/hansi_negative.png";
+import road_not_taken from "../material/texture/road_not_taken.jpg";
+
+import "../stylesheet/detail.scss";
+//import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 const Detail_1 = () => {
   useEffect(() => {
     let camera, scene, renderer;
@@ -33,7 +37,8 @@ const Detail_1 = () => {
         2100
       );
 
-      scene = new THREE.Scene();{
+      scene = new THREE.Scene();
+      {
         //scene.fog = new THREE.Fog(0xFFFFFF,100,400);
       }
       //scene.background = new THREE.Color( 0x101010 );
@@ -42,53 +47,44 @@ const Detail_1 = () => {
       // invert the geometry on the x-axis so that all of the faces point inward
       geometry.scale(-1.4, 1, 1);
 
-
-
-
-      
-      const p_geometry = new THREE.PlaneGeometry(5,20,80);
+      const p_geometry = new THREE.PlaneGeometry(5, 20, 80);
       const p_texture = new THREE.TextureLoader().load(wall);
-      const p_material = new THREE.MeshBasicMaterial({map:p_texture, side:THREE.DoubleSide});
-      const plane = new THREE.Mesh(p_geometry,p_material);
-      p_geometry.scale(1,1,1);
-
+      const p_material = new THREE.MeshBasicMaterial({
+        map: p_texture,
+        side: THREE.DoubleSide,
+      });
+      const plane = new THREE.Mesh(p_geometry, p_material);
+      p_geometry.scale(1, 1, 1);
 
       const texture = new THREE.TextureLoader().load(img);
       const material = new THREE.MeshPhongMaterial({ map: texture }); //빛반사MeshPhongMaterial
       const mesh = new THREE.Mesh(geometry, material);
 
-
-
       const sphereThextureLoader = new THREE.CubeTextureLoader();
-
 
       //plane.postion.set(-1,2,4);
       const solarSystem = new THREE.Object3D();
       scene.add(solarSystem);
 
-      
-      
-      const boxWidth = 50;
-      const boxHeight = 90;
-      const boxDepth = 50;
+      const boxWidth = 550;
+      const boxHeight = 470;
+      const boxDepth = 1;
       const geom = new THREE.PlaneGeometry(boxWidth, boxHeight, boxDepth);
       const draws = []; // just an array we can use to rotate the cubes
       const loader = new THREE.TextureLoader();
-      loader.load(wall, (texture) => {
+      loader.load(b_watercolor, (texture) => {
         const material = new THREE.MeshBasicMaterial({
           map: texture,
-		  opacity:0.9,
-		  transparent:true,
+          opacity: 0.9,
+          transparent: true,
         });
         const draw = new THREE.Mesh(geom, material);
-		draw.position.set(-1,10,-400);
-		
-    solarSystem.add(draw);
-        scene.add(draw);
-        draws.push(draw); // add to our list of cubes to rotate
-      });
+        draw.position.set(-1, 10, -450);
 
-      
+        scene.add(draw);
+        //scene.add(draws);
+        //draws.push(draw); // add to our list of cubes to rotate
+      });
 
       function resizeRendererToDisplaySize(renderer) {
         const canvas = renderer.domElement;
@@ -105,21 +101,16 @@ const Detail_1 = () => {
       solarSystem.add(plane);
       solarSystem.add(mesh);
 
-
-      
       const light = new THREE.DirectionalLight(0xffffff, 1);
       //const light = new THREE.AmbientLight(0xffffff, 1);
       //const light = new THREE.HemisphereLight(0xB1E1FF, 0xffffff, 1);
       //const light = new THREE.PointLight(0xffffff, 1);
-      light.position.set(-1,1,4);
+      light.position.set(-1, 1, 4);
       //light.position.set(0, 10, 0);
       scene.add(light);
       // const controls = new OrbitControls(camera, light);
       // controls.target(0,0,0);
       // controls.update();
-
-
-
 
       renderer = new THREE.WebGLRenderer();
       renderer.setPixelRatio(window.devicePixelRatio);

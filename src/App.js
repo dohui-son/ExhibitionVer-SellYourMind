@@ -13,11 +13,13 @@ import DetailThree from "./components/DetailThree";
 import DetailQuote from "./components/DetailQuote";
 import Detail_1 from "./components/Detail_1";
 import Detail_2 from "./components/Detail_2";
+import Detail_3 from "./components/Detail_3";
 const App = () => {
   return (
     <div>
+    <Detail_3/>
     {/* <Detail_2/> */}
-    <Detail_1/>
+    {/* <Detail_1/> */}
     {/* <DetailQuote/> */}
      <div className="global">
       {/* <Layout> */}
