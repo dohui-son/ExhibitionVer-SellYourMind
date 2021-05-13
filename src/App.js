@@ -17,8 +17,8 @@ const App = () => {
   return (
     <div>
     {/* <Detail_2/> */}
-    {/* <Detail_1/> */}
-    <DetailQuote/>
+    <Detail_1/>
+    {/* <DetailQuote/> */}
      <div className="global">
       {/* <Layout> */}
       {/* <DetailThree />

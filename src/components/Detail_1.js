@@ -6,6 +6,7 @@ import img from "../material/texture/quotes.jpg";
 //import wall from "../material/texture/wall.png"
 import wall from "../material/texture/wall.jpg"
 import "../stylesheet/detail.scss"
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 const Detail_1 = () => {
   useEffect(() => {
     let camera, scene, renderer;
@@ -37,7 +38,7 @@ const Detail_1 = () => {
       }
       //scene.background = new THREE.Color( 0x101010 );
 
-      const geometry = new THREE.SphereGeometry(500, 70, 40);
+      const geometry = new THREE.SphereGeometry(500, 70, 4000);
       // invert the geometry on the x-axis so that all of the faces point inward
       geometry.scale(-1.4, 1, 1);
 
@@ -45,7 +46,7 @@ const Detail_1 = () => {
 
 
       
-      const p_geometry = new THREE.PlaneGeometry(5,20,32);
+      const p_geometry = new THREE.PlaneGeometry(5,20,80);
       const p_texture = new THREE.TextureLoader().load(wall);
       const p_material = new THREE.MeshBasicMaterial({map:p_texture, side:THREE.DoubleSide});
       const plane = new THREE.Mesh(p_geometry,p_material);
@@ -65,17 +66,60 @@ const Detail_1 = () => {
       const solarSystem = new THREE.Object3D();
       scene.add(solarSystem);
 
+      
+      
+      const boxWidth = 50;
+      const boxHeight = 90;
+      const boxDepth = 50;
+      const geom = new THREE.PlaneGeometry(boxWidth, boxHeight, boxDepth);
+      const draws = []; // just an array we can use to rotate the cubes
+      const loader = new THREE.TextureLoader();
+      loader.load(wall, (texture) => {
+        const material = new THREE.MeshBasicMaterial({
+          map: texture,
+		  opacity:0.9,
+		  transparent:true,
+        });
+        const draw = new THREE.Mesh(geom, material);
+		draw.position.set(-1,10,-400);
+		
+    solarSystem.add(draw);
+        scene.add(draw);
+        draws.push(draw); // add to our list of cubes to rotate
+      });
+
+      
+
+      function resizeRendererToDisplaySize(renderer) {
+        const canvas = renderer.domElement;
+        const width = canvas.clientWidth;
+        const height = canvas.clientHeight;
+        const needResize = canvas.width !== width || canvas.height !== height;
+        if (needResize) {
+          renderer.setSize(width, height, false);
+        }
+        return needResize;
+      }
+
       //scene.background = mesh;
       solarSystem.add(plane);
       solarSystem.add(mesh);
-      
-      
 
 
       
       const light = new THREE.DirectionalLight(0xffffff, 1);
+      //const light = new THREE.AmbientLight(0xffffff, 1);
+      //const light = new THREE.HemisphereLight(0xB1E1FF, 0xffffff, 1);
+      //const light = new THREE.PointLight(0xffffff, 1);
       light.position.set(-1,1,4);
+      //light.position.set(0, 10, 0);
       scene.add(light);
+      // const controls = new OrbitControls(camera, light);
+      // controls.target(0,0,0);
+      // controls.update();
+
+
+
 
       renderer = new THREE.WebGLRenderer();
       renderer.setPixelRatio(window.devicePixelRatio);
