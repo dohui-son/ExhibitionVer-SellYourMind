@@ -2,7 +2,7 @@ import React, { Component, useEffect } from "react";
 import ReactDOM from "react-dom";
 import * as THREE from "three";
 import { Scene } from "three";
-import img from "../material/texture/quotes.jpg";
+import img from "../material/texture/1.jpg";
 import wall from "../material/texture/wall.jpg";
 import wall2 from "../material/texture/wall2.jpg";
 
@@ -56,10 +56,10 @@ const Detail_2 = () => {
       scene.background = texture;
 
       camera = new THREE.PerspectiveCamera(
-        60,
+        100,
         window.innerWidth / window.innerHeight,
-        1,
-        1000
+        -10000,
+        1000000000
       );
 
       //
@@ -88,33 +88,33 @@ const Detail_2 = () => {
         //reflectivity: 20,
       });
 
-    //   const s_texture = new THREE.TextureLoader().load(wall);
-    //   const s_material = new THREE.MeshPhongMaterial({
-    //     map: s_texture,
-    //     opacity: 0.3,
-    //     transparent: true,
-    //   });
-    //   let plane = new THREE.Mesh(new THREE.PlaneGeometry(50, 50, 50), material);
-    //   scene.add(plane);
+      //   const s_texture = new THREE.TextureLoader().load(wall);
+      //   const s_material = new THREE.MeshPhongMaterial({
+      //     map: s_texture,
+      //     opacity: 0.3,
+      //     transparent: true,
+      //   });
+      //   let plane = new THREE.Mesh(new THREE.PlaneGeometry(50, 50, 50), material);
+      //   scene.add(plane);
 
-	//   cube = new THREE.Mesh(new THREE.BoxGeometry(20, 20, 20), material);
-    //   scene.add(cube);
-	
+      //   cube = new THREE.Mesh(new THREE.BoxGeometry(20, 20, 20), material);
+      //   scene.add(cube);
 
-	material = new THREE.MeshBasicMaterial({
-		//map: texture,
-		color:0xffffff,
-		opacity: 0.1,
-		transparent: true,
-	  });
-	  cube = new THREE.Mesh(
-		new THREE.PlaneGeometry(70, 100, 60),
-		material
-	  );
 
-	  scene.add(cube);
+      material = new THREE.MeshBasicMaterial({
+        //map: texture,
+        color: 0xffffff,
+        opacity: 0.1,
+        transparent: true,
+      });
+      cube = new THREE.Mesh(
+        new THREE.PlaneGeometry(70, 100, 60),
+        material
+      );
 
-      
+      //scene.add(cube);
+
+
 
       //draw
       const boxWidth = 750;
@@ -136,7 +136,7 @@ const Detail_2 = () => {
         draws.push(draw); // add to our list of cubes to rotate
       });
 
-	
+
 
       function resizeRendererToDisplaySize(renderer) {
         const canvas = renderer.domElement;
@@ -220,7 +220,7 @@ const Detail_2 = () => {
     function render() {
       const time = Date.now();
 
-      lon += 0.15;
+      lon += 0.055;
 
       lat = Math.max(-85, Math.min(85, lat));
       phi = THREE.MathUtils.degToRad(90 - lat);

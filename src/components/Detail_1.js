@@ -2,7 +2,7 @@ import React, { Component, useEffect } from "react";
 import ReactDOM from "react-dom";
 import * as THREE from "three";
 import { Scene } from "three";
-import img from "../material/texture/quotes.jpg";
+import img from "../material/texture/8.jpg";
 //import wall from "../material/texture/wall.png"
 import wall from "../material/texture/wall.jpg";
 import b_watercolor from "../material/texture/b_watercolor.jpg";
@@ -34,7 +34,7 @@ const Detail_1 = () => {
         75,
         window.innerWidth / window.innerHeight,
         1,
-        2100
+        21000
       );
 
       scene = new THREE.Scene();
@@ -206,7 +206,7 @@ const Detail_1 = () => {
 
     function update() {
       if (isUserInteracting === false) {
-        lon += 0.1;
+        lon += 0.2;
       }
 
       lat = Math.max(-85, Math.min(85, lat));
