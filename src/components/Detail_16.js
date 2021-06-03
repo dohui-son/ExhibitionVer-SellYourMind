@@ -2,10 +2,10 @@ import React, { Component, useEffect } from "react";
 import ReactDOM from "react-dom";
 import * as THREE from "three";
 import { Scene } from "three";
-import img from "../material/texture/wall2.jpg";
+import img from "../material/texture/2.jpg";
 //import wall from "../material/texture/wall.png"
-import wall from "../material/texture/wall2.jpg";
-import b_watercolor from "../material/texture/wall_b.png";
+import wall from "../material/texture/2.jpg";
+import b_watercolor from "../material/texture/2.jpg";
 import hansi from "../material/texture/hansi_negative.png";
 import road_not_taken from "../material/texture/road_not_taken.jpg";
 

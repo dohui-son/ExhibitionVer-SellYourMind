@@ -4,7 +4,7 @@ import * as THREE from "three";
 import { Scene } from "three";
 import img from "../material/texture/1.jpg";
 import wall from "../material/texture/b_watercolor.jpg";
-import wall2 from "../material/texture/b_watercolor.jpg";
+import wall2 from "../material/texture/1.jpg";
 
 //import wall from "../material/texture/wall_b.png"
 

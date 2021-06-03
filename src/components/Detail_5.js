@@ -126,8 +126,8 @@ const Detail_2 = () => {
         const draw = new THREE.Mesh(geometry, material);
         draw.position.set(10, 3, -900);
 
-        scene.add(draw);
-        draws.push(draw); // add to our list of cubes to rotate
+        //scene.add(draw);
+        //draws.push(draw); // add to our list of cubes to rotate
       });
 
       function resizeRendererToDisplaySize(renderer) {

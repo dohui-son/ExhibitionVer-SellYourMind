@@ -26,10 +26,17 @@ import Detail_12 from "./components/Detail_12";
 import Detail_13 from "./components/Detail_13";
 import Detail_14 from "./components/Detail_14";
 import Detail_15 from "./components/Detail_15";
+import Detail_16 from "./components/Detail_16";
+import Detail_17 from "./components/Detail_17";
+
+//마우스 인터랙티브 미리 다 짜두기 외부 어떤 신호를 받아와서 할 수 있는지
+//더 괜찮은 거 작업해오기
 const App = () => {
   return (
     <div>
-      <Detail_15 />
+      <Detail_17 />
+      {/* <Detail_16 /> */}
+      {/* <Detail_15 /> */}
       {/* <Detail_14 /> */}
       {/* <Detail_13 /> */}
       {/* <Detail_12 /> */}
@@ -38,11 +45,15 @@ const App = () => {
       {/* <Detail_9 /> */}
       {/* <Detail_8 /> */}
       {/* <Detail_7 /> */}
+
       {/* <Detail_6 /> */}
-      {/* <Detail_5 /> */}
+
+
+
 
 
       {/* <Detail_4 /> */}
+      {/* <Detail_5 /> */}
       {/* <Detail_3 /> */}
       {/* <Detail_2 /> */}
       {/* <Detail_1 /> */}

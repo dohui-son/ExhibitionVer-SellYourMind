@@ -2,7 +2,7 @@ import React, { Component, useEffect } from "react";
 import ReactDOM from "react-dom";
 import * as THREE from "three";
 import { Scene } from "three";
-import img from "../material/texture/3.jpg";
+import img from "../material/texture/4.jpg";
 import wall from "../material/texture/b_watercolor.jpg";
 
 import Stats from 'three/examples/jsm/libs/stats.module.js';
@@ -23,14 +23,19 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 //import { ImprovedNoise } from './jsm/math/ImprovedNoise.js';
 const Detail_4 = () => {
   useEffect(() => {
-
-    //scene.background = new THREE.TextureLoader().load(img);
     let container, stats;
+
     let camera, controls, scene, renderer;
+
     let mesh, texture;
 
-    const worldWidth = 256, worldDepth = 256;
-    const clock = new THREE.Clock();
+    const worldWidth = 256, worldDepth = 256,
+      worldHalfWidth = worldWidth / 2, worldHalfDepth = worldDepth / 2;
+
+    let helper;
+
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2();
 
     init();
     animate();
@@ -38,17 +43,31 @@ const Detail_4 = () => {
     function init() {
 
       container = document.getElementById('container');
+      container.innerHTML = '';
 
-      camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
+      renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      container.appendChild(renderer.domElement);
 
       scene = new THREE.Scene();
-      scene.background = new THREE.Color(0xefd1b5);
-      scene.fog = new THREE.FogExp2(0xefd1b5, 0.0025);
+      //scene.background = new THREE.Color(img);
+      scene.background = new THREE.TextureLoader().load(img);
+      camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 10, 20000);
+
+      controls = new OrbitControls(camera, renderer.domElement);
+      controls.minDistance = 1000;
+      controls.maxDistance = 10000;
+      controls.maxPolarAngle = Math.PI / 2;
+
+      //
 
       const data = generateHeight(worldWidth, worldDepth);
 
-      camera.position.set(100, 800, - 800);
-      camera.lookAt(- 100, 810, - 800);
+      controls.target.y = data[worldHalfWidth + worldHalfDepth * worldWidth] + 500;
+      camera.position.y = controls.target.y + 2000;
+      camera.position.x = 2000;
+      controls.update();
 
       const geometry = new THREE.PlaneGeometry(7500, 7500, worldWidth - 1, worldDepth - 1);
       geometry.rotateX(- Math.PI / 2);
@@ -60,6 +79,10 @@ const Detail_4 = () => {
         vertices[j + 1] = data[i] * 10;
 
       }
+
+      geometry.computeFaceNormals(); // needed for helper
+
+      //
       texture = new THREE.TextureLoader().load(img);
       //texture = new THREE.CanvasTexture(generateTexture(data, worldWidth, worldDepth));
       texture.wrapS = THREE.ClampToEdgeWrapping;
@@ -68,18 +91,16 @@ const Detail_4 = () => {
       mesh = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({ map: texture }));
       scene.add(mesh);
 
-      renderer = new THREE.WebGLRenderer();
-      renderer.setPixelRatio(window.devicePixelRatio);
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      container.appendChild(renderer.domElement);
+      const geometryHelper = new THREE.ConeGeometry(20, 190, 3);
+      geometryHelper.translate(0, 50, 0);
+      geometryHelper.rotateX(Math.PI / 2);
+      helper = new THREE.Mesh(geometryHelper, new THREE.MeshNormalMaterial());
+      //scene.add(helper);
 
-      controls = new FirstPersonControls(camera, renderer.domElement);
-      controls.movementSpeed = 150;
-      controls.lookSpeed = 0.1;
+      container.addEventListener('pointermove', onPointerMove);
 
       stats = new Stats();
       container.appendChild(stats.dom);
-
 
       //
 
@@ -94,22 +115,12 @@ const Detail_4 = () => {
 
       renderer.setSize(window.innerWidth, window.innerHeight);
 
-      controls.handleResize();
-
     }
 
     function generateHeight(width, height) {
 
-      let seed = Math.PI / 4;
-      window.Math.random = function () {
-
-        const x = Math.sin(seed++) * 10000;
-        return x - Math.floor(x);
-
-      };
-
-      const size = width * height, data = new Uint8Array(size);
-      const perlin = new ImprovedNoise(), z = Math.random() * 100;
+      const size = width * height, data = new Uint8Array(size),
+        perlin = new ImprovedNoise(), z = Math.random() * 100;
 
       let quality = 1;
 
@@ -132,6 +143,8 @@ const Detail_4 = () => {
 
     function generateTexture(data, width, height) {
 
+      // bake lighting into texture
+
       let context, image, imageData, shade;
 
       const vector3 = new THREE.Vector3(0, 0, 0);
@@ -144,7 +157,8 @@ const Detail_4 = () => {
       canvas.height = height;
 
       context = canvas.getContext('2d');
-      context.fillStyle = '#000';
+      //context.fillStyle = '#000';
+      context.fillStyle = 'img';
       context.fillRect(0, 0, width, height);
 
       image = context.getImageData(0, 0, canvas.width, canvas.height);
@@ -207,11 +221,30 @@ const Detail_4 = () => {
 
     }
 
-
     function render() {
 
-      controls.update(clock.getDelta());
       renderer.render(scene, camera);
+
+    }
+
+    function onPointerMove(event) {
+
+      pointer.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
+      pointer.y = - (event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+      raycaster.setFromCamera(pointer, camera);
+
+      // See if the ray from the camera into the world hits one of our meshes
+      const intersects = raycaster.intersectObject(mesh);
+
+      // Toggle rotation bool for meshes that we clicked
+      if (intersects.length > 0) {
+
+        helper.position.set(0, 0, 0);
+        helper.lookAt(intersects[0].face.normal);
+
+        helper.position.copy(intersects[0].point);
+
+      }
 
     }
   }, []);
