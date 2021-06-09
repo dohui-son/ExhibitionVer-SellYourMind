@@ -52,6 +52,8 @@ const Detail_4 = () => {
 
       scene = new THREE.Scene();
       //scene.background = new THREE.Color(img);
+
+      texture = new THREE.TextureLoader().load(img);
       scene.background = new THREE.TextureLoader().load(img);
       camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 10, 20000);
 

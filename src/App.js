@@ -28,13 +28,36 @@ import Detail_14 from "./components/Detail_14";
 import Detail_15 from "./components/Detail_15";
 import Detail_16 from "./components/Detail_16";
 import Detail_17 from "./components/Detail_17";
+import Detail__18 from "./components/Detail__18";
+import Detail__19 from "./components/Detail__19";
+import Detail__20 from "./components/Detail__20";
+import Detail__21 from "./components/Detail__21";
+import Detail__22 from "./components/Detail__22";
+import Detail__23 from "./components/Detail__23";
+import Detail__24 from "./components/Detail__24";
+import Detail__25 from "./components/Detail__25";
+import Detail__26 from "./components/Detail__26";
+import Detail__27 from "./components/Detail__27";
+import Detail__28 from "./components/Detail__28";
 
-//마우스 인터랙티브 미리 다 짜두기 외부 어떤 신호를 받아와서 할 수 있는지
-//더 괜찮은 거 작업해오기
 const App = () => {
   return (
     <div>
-      <Detail_17 />
+      {/* <Detail__28 /> */}
+      <Detail__27 />
+      {/* <Detail__26 />
+      <Detail__25 /> */}
+      {/* <Detail__24 /> */}
+      {/* <Detail__23 /> */}
+      {/* <Detail__22 /> */}
+      {/* <Detail__21 /> */}
+      {/* <Detail__20 /> */}
+      {/* <Detail__19 /> */}
+      {/* <Detail__18 />
+
+
+
+      {/* <Detail_17 /> */}
       {/* <Detail_16 /> */}
       {/* <Detail_15 /> */}
       {/* <Detail_14 /> */}
