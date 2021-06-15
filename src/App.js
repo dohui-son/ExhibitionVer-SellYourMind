@@ -39,14 +39,41 @@ import Detail__25 from "./components/Detail__25";
 import Detail__26 from "./components/Detail__26";
 import Detail__27 from "./components/Detail__27";
 import Detail__28 from "./components/Detail__28";
+import Detail__29 from "./components/Detail__29";
+import Detail__30 from "./components/Detail__30";
+import Detail__31 from "./components/Detail__31";
+import Detail__32 from "./components/Detail__32";
+import Detail__33 from "./components/Detail__33";
+import Detail__34 from "./components/Detail__34";
+import Detail__35 from "./components/Detail__35";
+import Detail__36 from "./components/Detail__36";
+import Detail__37 from "./components/Detail__37";
+import Detail__38 from "./components/Detail__38";
+import Detail__40 from "./components/Detail__40";
+import Detail__41 from "./components/Detail__41";
+import Detail__42 from "./components/Detail__42";
+
 
 const App = () => {
   return (
     <div>
+         {/* <Detail__42 /> */}
+      <Detail__41 />
+      {/* <Detail__40 /> */}
+      {/* <Detail__38 /> */}
+      {/* <Detail__37 /> */}
+      {/* <Detail__36 /> */}
+      {/* <Detail__35 /> */}
+      {/* <Detail__34 /> */}
+      {/* <Detail__33 /> */}
+      {/* <Detail__32 /> */}
+      {/* <Detail__31 /> */}
+      {/* <Detail__30 /> */}
+      {/* <Detail__29 /> */}
       {/* <Detail__28 /> */}
-      <Detail__27 />
-      {/* <Detail__26 />
-      <Detail__25 /> */}
+      {/* <Detail__27 /> */}
+      {/* <Detail__26 /> */}
+      {/* <Detail__25 /> */}
       {/* <Detail__24 /> */}
       {/* <Detail__23 /> */}
       {/* <Detail__22 /> */}
