@@ -2,7 +2,7 @@ import React, { Component, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import * as THREE from 'three';
 import { Scene } from 'three';
-import img from '../material/texture/bp.jpg';
+import img from '../material/texture/27.jpeg';
 import wall from '../material/texture/b_watercolor.jpg';
 import wall2 from '../material/texture/b_watercolor.jpg';
 
@@ -250,9 +250,9 @@ const Detail_5 = () => {
 
       renderer.render(scene, camera);
     }
-    return () => {
-      document.body.removeChild(renderer.domElement);
-    };
+    // return () => {
+    //   document.body.removeChild(renderer.domElement);
+    // };
   }, []);
   return <div className="detail-body" id="container"></div>;
 };

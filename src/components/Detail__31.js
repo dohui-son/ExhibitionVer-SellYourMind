@@ -53,6 +53,7 @@ const Detail__31 = () => {
 
     function init() {
       container = document.createElement('div');
+      container.id = 'div';
       document.body.appendChild(container);
 
       camera = new THREE.PerspectiveCamera(
@@ -195,7 +196,8 @@ const Detail__31 = () => {
       renderer.render(scene, camera);
     }
     return () => {
-      document.body.removeChild(renderer.domElement);
+      var toerase = document.getElementById('div');
+      toerase.remove();
     };
   }, []);
   return <div className="detail-body"></div>;

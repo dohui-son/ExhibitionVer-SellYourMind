@@ -2,7 +2,7 @@ import React, { Component, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import * as THREE from 'three';
 import { Scene } from 'three';
-import img from '../material/texture/6.jpg';
+import img from '../material/texture/26.jpeg';
 import wall from '../material/texture/b_watercolor.jpg';
 
 import Stats from 'three/examples/jsm/libs/stats.module.js';
@@ -205,9 +205,9 @@ const Detail_4 = () => {
       controls.update(clock.getDelta());
       renderer.render(scene, camera);
     }
-    return () => {
-      document.body.removeChild(renderer.domElement);
-    };
+    // return () => {
+    //   document.body.removeChild(renderer.domElement);
+    // };
   }, []);
   return <div className="detail-body" id="container"></div>;
 };

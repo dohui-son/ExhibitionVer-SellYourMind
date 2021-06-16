@@ -2,7 +2,7 @@ import React, { Component, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import * as THREE from 'three';
 import { Scene } from 'three';
-import img from '../material/texture/1.jpg';
+import img from '../material/texture/33.png';
 import wall from '../material/texture/wall.jpg';
 import wall2 from '../material/texture/wall2.jpg';
 

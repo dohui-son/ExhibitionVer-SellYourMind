@@ -2,10 +2,10 @@ import React, { Component, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import * as THREE from 'three';
 import { Scene } from 'three';
-import img from '../material/texture/wall2.jpg';
+import img from '../material/texture/32.jpeg';
 //import wall from "../material/texture/wall.png"
-import wall from '../material/texture/wall2.jpg';
-import b_watercolor from '../material/texture/wall_b.png';
+import wall from '../material/texture/32.jpeg';
+import b_watercolor from '../material/texture/32.jpeg';
 import hansi from '../material/texture/hansi_negative.png';
 import road_not_taken from '../material/texture/road_not_taken.jpg';
 
@@ -221,9 +221,9 @@ const Detail_9 = () => {
 
       renderer.render(scene, camera);
     }
-    return () => {
-      document.body.removeChild(renderer.domElement);
-    };
+    // return () => {
+    //   document.body.removeChild(renderer.domElement);
+    // };
   }, []);
   return <div className="detail-body" id="container"></div>;
 };
