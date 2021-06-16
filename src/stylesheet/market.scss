@@ -9,9 +9,14 @@
   align-items: center;
   border-bottom: 1px solid #dddddd;
   background-color: #ffff;
+
   img {
     width: 25rem;
     height: 10rem;
+    @media screen and (max-width: 900px) {
+      width: 10rem;
+      height: 3rem;
+    }
   }
 }
 .market-layout {
@@ -21,4 +26,96 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-decoration: none !important;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  a {
+    text-decoration: none;
+    color: #8a9292b6;
+  }
+  h4 {
+    color: #8a9292cb;
+  }
+
+  .title {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    color: rgba(5, 21, 21, 0.62);
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.33;
+    margin: 16px 0 24px;
+    @media screen and (max-width: 900px) {
+      font-size: 14px;
+    }
+
+    .gray {
+      margin-left: 10px;
+      color: #8a9292cb;
+      font-weight: 300;
+    }
+  }
+
+  .table {
+    border: 1px solid #e4e6e6;
+    padding: 8px 30px;
+    margin-bottom: 10px;
+
+    border-radius: 4px;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .contents {
+      padding: 10px 0px 10px 0px;
+      display: flex;
+      flex-direction: row;
+
+      align-items: center;
+      justify-content: space-evenly;
+      font-size: 16px;
+      font-weight: 100;
+      color: rgba(5, 21, 21, 0.575);
+
+      .bolded {
+        color: rgba(5, 21, 21, 0.62);
+        //margin-left: 25px;
+        padding-left: 25px;
+        display: block;
+        //justify-content: flex-end;
+
+        font-weight: 400;
+      }
+    }
+    .line {
+      border-bottom: 1px solid #e4e6e6;
+      width: 100%;
+    }
+  }
+}
+
+.footer {
+  bottom: 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1rem 0px 1rem 0px;
+  width: 100%;
+  height: 7rem;
+  background-color: #f5f7f7;
+  letter-spacing: 0.02rem;
+  color: #646f6f;
+  text-align: center;
+
+  @media only screen and (max-width: 600px) {
+    font-size: 8px;
+  }
 }

@@ -18,8 +18,156 @@ const Market = ({ isVisible, noheader, onheader }) => {
       </div>
 
       <div className="market-layout">
-        <h4>판매 중인 관념입니다.</h4>
-        <Link to="/d32">009</Link>
+        <h4>사고思考, 사고.</h4>
+
+        <div className="title">
+          살 수 있다면,{' '}
+          <div className="gray">누군가의 관념·감정·한숨·비밀·꿈도...</div>
+        </div>
+        <div className="table">
+          <div className="contents">
+            Written<div className="bolded">Painted</div>
+          </div>
+          <div className="line" />
+
+          <div className="line" />
+          <div className="contents">
+            나의 포인트
+            <div className="bolded">
+              <Link to="/d32">009</Link>
+            </div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트
+            <div className="bolded">
+              {' '}
+              <Link to="/d19">023</Link>
+            </div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            누적수령 마스크<div className="bolded">5 개</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            재활용한 마스크<div className="bolded">총29개</div>
+          </div>
+          <div className="line" />
+
+          <div className="contents">
+            재활용level<div className="bolded">새싹단계</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트<div className="bolded">2 point</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트<div className="bolded">2 point</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트<div className="bolded">2 point</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트<div className="bolded">2 point</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트<div className="bolded">2 point</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트<div className="bolded">2 point</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트<div className="bolded">2 point</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트<div className="bolded">2 point</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트<div className="bolded">2 point</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트<div className="bolded">2 point</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트<div className="bolded">2 point</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트<div className="bolded">2 point</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트<div className="bolded">2 point</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트<div className="bolded">2 point</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트<div className="bolded">2 point</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트<div className="bolded">2 point</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트<div className="bolded">2 point</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트<div className="bolded">2 point</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트<div className="bolded">2 point</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트<div className="bolded">2 point</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트<div className="bolded">2 point</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트<div className="bolded">2 point</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트<div className="bolded">2 point</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트<div className="bolded">2 point</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트<div className="bolded">2 point</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트<div className="bolded">2 point</div>
+          </div>
+          <div className="line" />
+          <div className="contents">
+            부족 포인트<div className="bolded">2 point</div>
+          </div>
+        </div>
+
         <Link to="/d19">023</Link>
         <Link to="/d7">035</Link>
         <Link to="/d42">222</Link>
@@ -63,6 +211,11 @@ const Market = ({ isVisible, noheader, onheader }) => {
         <Link to="/d3">어린왕자</Link>
         <Link to="/d2">가장 슬펐던 날</Link>
         <Link to="/d1">지구의 질감</Link>
+
+        <div className="footer">
+          <p>whole project by ARTIST DOHUI SON .</p>
+          <h4>Copyright &copy; 2021 손도희 DOHUI SON All rights reserved . </h4>
+        </div>
       </div>
     </div>
   );
