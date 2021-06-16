@@ -21,7 +21,6 @@ const Market = ({ isVisible, noheader, onheader }) => {
         <h4>판매 중인 관념입니다.</h4>
         <Link to="/d32">009</Link>
         <Link to="/d19">023</Link>
-
         <Link to="/d7">035</Link>
         <Link to="/d42">222</Link>
         <Link to="/d36">005</Link>
@@ -29,16 +28,13 @@ const Market = ({ isVisible, noheader, onheader }) => {
 
         <Link to="/d21">021</Link>
 
-        {/* <Link to="/sell/d39">000</Link> */}
+        <Link to="/sell/d39">000</Link>
         <Link to="/d38">003</Link>
         <Link to="/d31">010</Link>
         <Link to="/d37">004</Link>
-
         <Link to="/d4">038</Link>
-
         <Link to="/d34">007</Link>
         <Link to="/d20">022</Link>
-
         <Link to="/d30">011</Link>
         <Link to="/d29">012</Link>
         <Link to="/d28">013</Link>
@@ -49,7 +45,6 @@ const Market = ({ isVisible, noheader, onheader }) => {
         <Link to="/d24">017</Link>
         <Link to="/d23">018</Link>
         <Link to="/d22">020</Link>
-
         <Link to="/d18">024</Link>
         <Link to="/d17">025</Link>
         <Link to="/d9">033</Link>
@@ -62,12 +57,9 @@ const Market = ({ isVisible, noheader, onheader }) => {
         <Link to="/d11">031</Link>
         <Link to="/d40">002</Link>
         <Link to="/d10">032</Link>
-
         <Link to="/d8">034</Link>
-
         <Link to="/d6">036</Link>
         <Link to="/d5">037</Link>
-
         <Link to="/d3">어린왕자</Link>
         <Link to="/d2">가장 슬펐던 날</Link>
         <Link to="/d1">지구의 질감</Link>
