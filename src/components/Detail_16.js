@@ -1,17 +1,17 @@
-import React, { Component, useEffect } from "react";
-import ReactDOM from "react-dom";
-import * as THREE from "three";
-import { Scene } from "three";
-import img from "../material/texture/2.jpg";
+import React, { Component, useEffect } from 'react';
+import ReactDOM from 'react-dom';
+import * as THREE from 'three';
+import { Scene } from 'three';
+import img from '../material/texture/2.jpg';
 //import wall from "../material/texture/wall.png"
-import wall from "../material/texture/2.jpg";
-import b_watercolor from "../material/texture/2.jpg";
-import hansi from "../material/texture/hansi_negative.png";
-import road_not_taken from "../material/texture/road_not_taken.jpg";
+import wall from '../material/texture/2.jpg';
+import b_watercolor from '../material/texture/2.jpg';
+import hansi from '../material/texture/hansi_negative.png';
+import road_not_taken from '../material/texture/road_not_taken.jpg';
 
-import "../stylesheet/detail.scss";
+import '../stylesheet/detail.scss';
 //import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-const Detail_1 = () => {
+const Detail_16 = () => {
   useEffect(() => {
     let camera, scene, renderer;
 
@@ -27,7 +27,7 @@ const Detail_1 = () => {
     init();
     animate();
     function init() {
-      const container = document.getElementById("container");
+      const container = document.getElementById('container');
       //console.log(container);
       //console.log(window.innerWidth);
       camera = new THREE.PerspectiveCamera(
@@ -103,7 +103,7 @@ const Detail_1 = () => {
 
       //const light = new THREE.DirectionalLight(0xffffff, 1);
       //const light = new THREE.AmbientLight(0xffffff, 1);
-      const light = new THREE.HemisphereLight(0xB1E1FF, 0xffffff, 1);
+      const light = new THREE.HemisphereLight(0xb1e1ff, 0xffffff, 1);
       //const light = new THREE.PointLight(0xffffff, 1);
       light.position.set(-1, 1, 4);
       //light.position.set(0, 10, 0);
@@ -117,31 +117,31 @@ const Detail_1 = () => {
       renderer.setSize(window.innerWidth, window.innerHeight);
       container.appendChild(renderer.domElement);
 
-      container.style.touchAction = "none";
-      container.addEventListener("pointerdown", onPointerDown);
+      container.style.touchAction = 'none';
+      container.addEventListener('pointerdown', onPointerDown);
 
-      document.addEventListener("wheel", onDocumentMouseWheel);
+      document.addEventListener('wheel', onDocumentMouseWheel);
 
       //
 
-      document.addEventListener("dragover", function (event) {
+      document.addEventListener('dragover', function (event) {
         event.preventDefault();
-        event.dataTransfer.dropEffect = "copy";
+        event.dataTransfer.dropEffect = 'copy';
       });
 
-      document.addEventListener("dragenter", function () {
+      document.addEventListener('dragenter', function () {
         document.body.style.opacity = 0.5;
       });
 
-      document.addEventListener("dragleave", function () {
+      document.addEventListener('dragleave', function () {
         document.body.style.opacity = 1;
       });
 
-      document.addEventListener("drop", function (event) {
+      document.addEventListener('drop', function (event) {
         event.preventDefault();
 
         const reader = new FileReader();
-        reader.addEventListener("load", function (event) {
+        reader.addEventListener('load', function (event) {
           material.map.image.src = event.target.result;
           material.map.needsUpdate = true;
         });
@@ -152,7 +152,7 @@ const Detail_1 = () => {
 
       //
 
-      window.addEventListener("resize", onWindowResize);
+      window.addEventListener('resize', onWindowResize);
     }
 
     function onWindowResize() {
@@ -173,8 +173,8 @@ const Detail_1 = () => {
       onPointerDownLon = lon;
       onPointerDownLat = lat;
 
-      document.addEventListener("pointermove", onPointerMove);
-      document.addEventListener("pointerup", onPointerUp);
+      document.addEventListener('pointermove', onPointerMove);
+      document.addEventListener('pointerup', onPointerUp);
     }
 
     function onPointerMove(event) {
@@ -187,8 +187,8 @@ const Detail_1 = () => {
     function onPointerUp() {
       isUserInteracting = false;
 
-      document.removeEventListener("pointermove", onPointerMove);
-      document.removeEventListener("pointerup", onPointerUp);
+      document.removeEventListener('pointermove', onPointerMove);
+      document.removeEventListener('pointerup', onPointerUp);
     }
 
     function onDocumentMouseWheel(event) {
@@ -224,4 +224,4 @@ const Detail_1 = () => {
   }, []);
   return <div className="detail-body" id="container"></div>;
 };
-export default Detail_1;
+export default Detail_16;

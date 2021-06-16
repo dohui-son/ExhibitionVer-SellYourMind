@@ -1,9 +1,9 @@
-import React, { Component, useEffect } from "react";
-import ReactDOM from "react-dom";
-import * as THREE from "three";
-import { Scene } from "three";
-import img from "../material/texture/11_3.jpg";
-import wall from "../material/texture/b_watercolor.jpg";
+import React, { Component, useEffect } from 'react';
+import ReactDOM from 'react-dom';
+import * as THREE from 'three';
+import { Scene } from 'three';
+import img from '../material/texture/11_3.jpg';
+import wall from '../material/texture/b_watercolor.jpg';
 
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 
@@ -11,9 +11,8 @@ import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonCont
 import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
 import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 
-import "../stylesheet/detail.scss";
+import '../stylesheet/detail.scss';
 //import { VRButton } from './jsm/webxr/VRButton.js';
-
 
 //import * as THREE from '../build/three.module.js';
 
@@ -21,27 +20,20 @@ import "../stylesheet/detail.scss";
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
-import { VOXLoader, VOXDataTexture3D } from 'three/examples/jsm/loaders/VOXLoader.js';
+import {
+  VOXLoader,
+  VOXDataTexture3D,
+} from 'three/examples/jsm/loaders/VOXLoader.js';
 
 import { WEBGL } from 'three/examples/jsm/WebGL.js';
 
 import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
 
-
-
-
-
-
-
-
-
 //import { ImprovedNoise } from './jsm/math/ImprovedNoise.js';
-const Detail_4 = () => {
+const Detail__25 = () => {
   useEffect(() => {
     if (WEBGL.isWebGL2Available() === false) {
-
       document.body.appendChild(WEBGL.getWebGL2ErrorMessage());
-
     }
 
     const INITIAL_CLOUD_SIZE = 128;
@@ -59,38 +51,41 @@ const Detail_4 = () => {
     animate();
 
     function generateCloudTexture(size, scaleFactor = 1.0) {
-
       const data = new Uint8Array(size * size * size);
-      const scale = scaleFactor * 10.0 / size;
+      const scale = (scaleFactor * 10.0) / size;
 
       let i = 0;
       const perlin = new ImprovedNoise();
       const vector = new THREE.Vector3();
 
       for (let z = 0; z < size; z++) {
-
         for (let y = 0; y < size; y++) {
-
           for (let x = 0; x < size; x++) {
-
-            const dist = vector.set(x, y, z).subScalar(size / 2).divideScalar(size).length();
+            const dist = vector
+              .set(x, y, z)
+              .subScalar(size / 2)
+              .divideScalar(size)
+              .length();
             const fadingFactor = (1.0 - dist) * (1.0 - dist);
-            data[i] = (128 + 128 * perlin.noise(x * scale / 1.5, y * scale, z * scale / 1.5)) * fadingFactor;
+            data[i] =
+              (128 +
+                128 *
+                  perlin.noise(
+                    (x * scale) / 1.5,
+                    y * scale,
+                    (z * scale) / 1.5
+                  )) *
+              fadingFactor;
 
             i++;
-
           }
-
         }
-
       }
 
       return new THREE.DataTexture3D(data, size, size, size);
-
     }
 
     function init() {
-
       renderer = new THREE.WebGLRenderer();
       renderer.setPixelRatio(window.devicePixelRatio);
       renderer.setSize(window.innerWidth, window.innerHeight);
@@ -98,7 +93,12 @@ const Detail_4 = () => {
 
       scene = new THREE.Scene();
 
-      camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.9, 100);
+      camera = new THREE.PerspectiveCamera(
+        60,
+        window.innerWidth / window.innerHeight,
+        0.9,
+        100
+      );
       camera.position.set(0, 0, 1.5);
 
       new OrbitControls(camera, renderer.domElement);
@@ -118,24 +118,19 @@ const Detail_4 = () => {
       context.fillStyle = gradient;
       context.fillRect(0, 0, 1, 32);
 
-
-
-
-
-
       //background
       const container = document.getElementById('container');
       clock = new THREE.Clock();
       scene.background = new THREE.Color(0x101010);
       const light = new THREE.AmbientLight(0xffffff, 1);
-      scene.add(light)
+      scene.add(light);
       // Create the panoramic sphere geometery
       const panoSphereGeo = new THREE.SphereGeometry(6, 256, 256);
 
       // Create the panoramic sphere material
       const panoSphereMat = new THREE.MeshStandardMaterial({
         side: THREE.BackSide,
-        displacementScale: - 4.0
+        displacementScale: -4.0,
       });
 
       // Create the panoramic sphere mesh
@@ -146,38 +141,22 @@ const Detail_4 = () => {
       const loader = new THREE.TextureLoader(manager);
 
       loader.load(img, function (texture) {
-
         texture.minFilter = THREE.NearestFilter;
         texture.generateMipmaps = false;
         sphere.material.map = texture;
-
       });
 
       loader.load(img, function (depth) {
-
         depth.minFilter = THREE.NearestFilter;
         depth.generateMipmaps = false;
         sphere.material.displacementMap = depth;
-
       });
 
       // On load complete add the panoramic sphere to the scene
       manager.onLoad = function () {
-
         scene.add(sphere);
-
       };
       ///////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
 
       const sky = new THREE.Mesh(
         new THREE.SphereGeometry(10),
@@ -190,7 +169,9 @@ const Detail_4 = () => {
       // Texture
 
       const texture = new THREE.DataTexture3D(
-        new Uint8Array(INITIAL_CLOUD_SIZE * INITIAL_CLOUD_SIZE * INITIAL_CLOUD_SIZE).fill(0),
+        new Uint8Array(
+          INITIAL_CLOUD_SIZE * INITIAL_CLOUD_SIZE * INITIAL_CLOUD_SIZE
+        ).fill(0),
         INITIAL_CLOUD_SIZE,
         INITIAL_CLOUD_SIZE,
         INITIAL_CLOUD_SIZE
@@ -204,7 +185,7 @@ const Detail_4 = () => {
 
       // Material
 
-      const vertexShader = /* glsl */`
+      const vertexShader = /* glsl */ `
         in vec3 position;
         uniform mat4 modelMatrix;
         uniform mat4 modelViewMatrix;
@@ -220,7 +201,7 @@ const Detail_4 = () => {
         }
       `;
 
-      const fragmentShader = /* glsl */`
+      const fragmentShader = /* glsl */ `
         precision highp float;
         precision highp sampler3D;
         uniform mat4 modelViewMatrix;
@@ -310,12 +291,12 @@ const Detail_4 = () => {
           opacity: { value: 0.25 },
           range: { value: 0.1 },
           steps: { value: 100 },
-          frame: { value: 0 }
+          frame: { value: 0 },
         },
         vertexShader,
         fragmentShader,
         side: THREE.BackSide,
-        transparent: true
+        transparent: true,
       });
 
       mesh = new THREE.Mesh(geometry, material);
@@ -327,16 +308,14 @@ const Detail_4 = () => {
         threshold: 0.25,
         opacity: 0.25,
         range: 0.1,
-        steps: 100
+        steps: 100,
       };
 
       function update() {
-
         material.uniforms.threshold.value = parameters.threshold;
         material.uniforms.opacity.value = parameters.opacity;
         material.uniforms.range.value = parameters.range;
         material.uniforms.steps.value = parameters.steps;
-
       }
 
       const gui = new GUI();
@@ -346,16 +325,13 @@ const Detail_4 = () => {
       gui.add(parameters, 'steps', 0, 200, 1).onChange(update);
 
       window.addEventListener('resize', onWindowResize);
-
     }
 
     function onWindowResize() {
-
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
 
       renderer.setSize(window.innerWidth, window.innerHeight);
-
     }
 
     let curr = 0;
@@ -369,20 +345,22 @@ const Detail_4 = () => {
     const perElementSize = Math.floor((INITIAL_CLOUD_SIZE - 1) / countPerRow);
 
     function animate() {
-
       requestAnimationFrame(animate);
 
       const time = performance.now();
       if (time - prevTime > 1500.0 && curr < totalCount) {
-
         const position = new THREE.Vector3(
           Math.floor(curr % countPerRow) * perElementSize + margins * 0.5,
-          (Math.floor(((curr % countPerSlice) / countPerRow))) * perElementSize + margins * 0.5,
+          Math.floor((curr % countPerSlice) / countPerRow) * perElementSize +
+            margins * 0.5,
           Math.floor(curr / countPerSlice) * perElementSize + margins * 0.5
         ).floor();
 
         const maxDimension = perElementPaddedSize - 1;
-        const box = new THREE.Box3(new THREE.Vector3(0, 0, 0), new THREE.Vector3(maxDimension, maxDimension, maxDimension));
+        const box = new THREE.Box3(
+          new THREE.Vector3(0, 0, 0),
+          new THREE.Vector3(maxDimension, maxDimension, maxDimension)
+        );
         const scaleFactor = (Math.random() + 0.5) * 0.5;
         const source = generateCloudTexture(perElementPaddedSize, scaleFactor);
 
@@ -391,7 +369,6 @@ const Detail_4 = () => {
         prevTime = time;
 
         curr++;
-
       }
 
       mesh.material.uniforms.cameraPos.value.copy(camera.position);
@@ -400,9 +377,8 @@ const Detail_4 = () => {
       mesh.material.uniforms.frame.value++;
 
       renderer.render(scene, camera);
-
     }
   }, []);
   return <div className="detail-body" id="container"></div>;
 };
-export default Detail_4;
+export default Detail__25;

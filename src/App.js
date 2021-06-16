@@ -99,65 +99,61 @@ const App = () => {
       {/* <Detail_5 /> */}
       {/* <Detail_3 /> */}
       {/* <Detail_2 /> */}
-      <div className="global">
-        {/* <Layout> */}
-        {/* <Route path="/" component={Home} exact={true} />
+      {/* <div className="global"> */}
+      {/* <Layout> */}
+      {/* <Route path="/" component={Home} exact={true} />
         <Route path="/auth" component={Auth} /> 
         <Route path="/mypage" component={MyPage} /> */}
-        <Route path="/" component={Market} exact={true} />
-        <Route
-          path="/sell_your_mind_research"
-          component={Market}
-          exact={true}
-        />
-        {/* <Route path="/sell" component={Sell} /> */}
-        {/* </Layout> */}
-      </div>
+      <Route exact path="/sell_your_mind_research" component={Market} />
+      <Route exact path="/" component={Market} />
+      {/* <Route path="/sell" component={Sell} /> */}
+      {/* </Layout> */}
+      {/* </div> */}
 
-      <Route path="/sell/d42" component={Detail__42} exact={true} />
-      <Route path="/sell/d41" component={Detail__41} exact={true} />
-      <Route path="/sell/d40" component={Detail__40} exact={true} />
+      <Route path="/d42" component={Detail__42} exact={true} />
+      <Route path="/d41" component={Detail__41} exact={true} />
+      <Route path="/d40" component={Detail__40} exact={true} />
       {/* <Route path="/sell/d39" component={Detail__39} /> */}
-      <Route path="/sell/d38" component={Detail__38} exact={true} />
-      <Route path="/sell/d37" component={Detail__37} exact={true} />
-      <Route path="/sell/d36" component={Detail__36} exact={true} />
-      <Route path="/sell/d35" component={Detail__35} exact={true} />
-      <Route path="/sell/d34" component={Detail__34} exact={true} />
-      <Route path="/sell/d33" component={Detail__33} exact={true} />
-      <Route path="/sell/d32" component={Detail__32} exact={true} />
-      <Route path="/sell/d31" component={Detail__31} exact={true} />
-      <Route path="/sell/d30" component={Detail__30} exact={true} />
-      <Route path="/sell/d29" component={Detail__29} exact={true} />
-      <Route path="/sell/d28" component={Detail__28} exact={true} />
-      <Route path="/sell/d27" component={Detail__27} exact={true} />
-      <Route path="/sell/d26" component={Detail__26} exact={true} />
-      <Route path="/sell/d25" component={Detail__25} exact={true} />
-      <Route path="/sell/d24" component={Detail__24} exact={true} />
-      <Route path="/sell/d23" component={Detail__23} exact={true} />
-      <Route path="/sell/d22" component={Detail__22} exact={true} />
-      <Route path="/sell/d21" component={Detail__21} exact={true} />
-      <Route path="/sell/d20" component={Detail__20} exact={true} />
-      <Route path="/sell/d19" component={Detail__19} exact={true} />
-      <Route path="/sell/d18" component={Detail__18} exact={true} />
+      <Route path="/d38" component={Detail__38} exact={true} />
+      <Route path="/d37" component={Detail__37} exact={true} />
+      <Route path="/d36" component={Detail__36} exact={true} />
+      <Route path="/d35" component={Detail__35} exact={true} />
+      <Route path="/d34" component={Detail__34} exact={true} />
+      <Route path="/d33" component={Detail__33} exact={true} />
+      <Route path="/d32" component={Detail__32} exact={true} />
+      <Route path="/d31" component={Detail__31} exact={true} />
+      <Route path="/d30" component={Detail__30} exact={true} />
+      <Route path="/d29" component={Detail__29} exact={true} />
+      <Route path="/d28" component={Detail__28} exact={true} />
+      <Route path="/d27" component={Detail__27} exact={true} />
+      <Route path="/d26" component={Detail__26} exact={true} />
+      <Route path="/d25" component={Detail__25} exact={true} />
+      <Route path="/d24" component={Detail__24} exact={true} />
+      <Route path="/d23" component={Detail__23} exact={true} />
+      <Route path="/d22" component={Detail__22} exact={true} />
+      <Route path="/d21" component={Detail__21} exact={true} />
+      <Route path="/d20" component={Detail__20} exact={true} />
+      <Route path="/d19" component={Detail__19} exact={true} />
+      <Route path="/d18" component={Detail__18} exact={true} />
 
-      <Route path="/sell/d17" component={Detail_17} exact={true} />
-      <Route path="/sell/d16" component={Detail_16} exact={true} />
-      <Route path="/sell/d15" component={Detail_15} exact={true} />
-      <Route path="/sell/d14" component={Detail_14} exact={true} />
-      <Route path="/sell/d13" component={Detail_13} exact={true} />
-      <Route path="/sell/d12" component={Detail_12} exact={true} />
-      <Route path="/sell/d11" component={Detail_11} exact={true} />
-      <Route path="/sell/d10" component={Detail_10} exact={true} />
-      <Route path="/sell/d9" component={Detail_9} exact={true} />
-      <Route path="/sell/d8" component={Detail_8} exact={true} />
-      <Route path="/sell/d7" component={Detail_7} exact={true} />
-      <Route path="/sell/d6" component={Detail_6} exact={true} />
-      <Route path="/sell/d5" component={Detail_5} exact={true} />
-      <Route path="/sell/d4" component={Detail_4} exact={true} />
-      <Route path="/sell/d3" component={Detail_3} exact={true} />
-      <Route path="/sell/d2" component={Detail_2} exact={true} />
-      <Route path="/sell/d1" component={Detail_1} exact={true} />
-      <Route path="/sell/detailquote" component={DetailQuote} exact={true} />
+      <Route path="/d17" component={Detail_17} exact={true} />
+      <Route path="/d16" component={Detail_16} exact={true} />
+      <Route path="/d15" component={Detail_15} exact={true} />
+      <Route path="/d14" component={Detail_14} exact={true} />
+      <Route path="/d13" component={Detail_13} exact={true} />
+      <Route path="/d12" component={Detail_12} exact={true} />
+      <Route path="/d11" component={Detail_11} exact={true} />
+      <Route path="/d10" component={Detail_10} exact={true} />
+      <Route path="/d9" component={Detail_9} exact={true} />
+      <Route path="/d8" component={Detail_8} exact={true} />
+      <Route path="/d7" component={Detail_7} exact={true} />
+      <Route path="/d6" component={Detail_6} exact={true} />
+      <Route path="/d5" component={Detail_5} exact={true} />
+      <Route path="/d4" component={Detail_4} exact={true} />
+      <Route path="/d3" component={Detail_3} exact={true} />
+      <Route path="/d2" component={Detail_2} exact={true} />
+      <Route path="/d1" component={Detail_1} exact={true} />
+      <Route path="/detailquote" component={DetailQuote} exact={true} />
     </div>
   );
 };

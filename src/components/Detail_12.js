@@ -1,9 +1,9 @@
-import React, { Component, useEffect } from "react";
-import ReactDOM from "react-dom";
-import * as THREE from "three";
-import { Scene } from "three";
-import img from "../material/texture/3.jpg";
-import wall from "../material/texture/b_watercolor.jpg";
+import React, { Component, useEffect } from 'react';
+import ReactDOM from 'react-dom';
+import * as THREE from 'three';
+import { Scene } from 'three';
+import img from '../material/texture/3.jpg';
+import wall from '../material/texture/b_watercolor.jpg';
 
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 
@@ -11,9 +11,8 @@ import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonCont
 import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
 import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 
-import "../stylesheet/detail.scss";
+import '../stylesheet/detail.scss';
 //import { VRButton } from './jsm/webxr/VRButton.js';
-
 
 //import * as THREE from '../build/three.module.js';
 
@@ -21,25 +20,29 @@ import "../stylesheet/detail.scss";
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 //import { ImprovedNoise } from './jsm/math/ImprovedNoise.js';
-const Detail_4 = () => {
+const Detail_12 = () => {
   useEffect(() => {
-
     //scene.background = new THREE.TextureLoader().load(img);
     let container, stats;
     let camera, controls, scene, renderer;
     let mesh, texture;
 
-    const worldWidth = 256, worldDepth = 256;
+    const worldWidth = 256,
+      worldDepth = 256;
     const clock = new THREE.Clock();
 
     init();
     animate();
 
     function init() {
-
       container = document.getElementById('container');
 
-      camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
+      camera = new THREE.PerspectiveCamera(
+        60,
+        window.innerWidth / window.innerHeight,
+        1,
+        10000
+      );
 
       scene = new THREE.Scene();
       scene.background = new THREE.Color(0xefd1b5);
@@ -47,25 +50,31 @@ const Detail_4 = () => {
 
       const data = generateHeight(worldWidth, worldDepth);
 
-      camera.position.set(100, 800, - 800);
-      camera.lookAt(- 100, 810, - 800);
+      camera.position.set(100, 800, -800);
+      camera.lookAt(-100, 810, -800);
 
-      const geometry = new THREE.PlaneGeometry(7500, 7500, worldWidth - 1, worldDepth - 1);
-      geometry.rotateX(- Math.PI / 2);
+      const geometry = new THREE.PlaneGeometry(
+        7500,
+        7500,
+        worldWidth - 1,
+        worldDepth - 1
+      );
+      geometry.rotateX(-Math.PI / 2);
 
       const vertices = geometry.attributes.position.array;
 
       for (let i = 0, j = 0, l = vertices.length; i < l; i++, j += 3) {
-
         vertices[j + 1] = data[i] * 10;
-
       }
       texture = new THREE.TextureLoader().load(img);
       //texture = new THREE.CanvasTexture(generateTexture(data, worldWidth, worldDepth));
       texture.wrapS = THREE.ClampToEdgeWrapping;
       texture.wrapT = THREE.ClampToEdgeWrapping;
 
-      mesh = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({ map: texture }));
+      mesh = new THREE.Mesh(
+        geometry,
+        new THREE.MeshBasicMaterial({ map: texture })
+      );
       scene.add(mesh);
 
       renderer = new THREE.WebGLRenderer();
@@ -80,58 +89,50 @@ const Detail_4 = () => {
       stats = new Stats();
       container.appendChild(stats.dom);
 
-
       //
 
       window.addEventListener('resize', onWindowResize);
-
     }
 
     function onWindowResize() {
-
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
 
       renderer.setSize(window.innerWidth, window.innerHeight);
 
       controls.handleResize();
-
     }
 
     function generateHeight(width, height) {
-
       let seed = Math.PI / 4;
       window.Math.random = function () {
-
         const x = Math.sin(seed++) * 10000;
         return x - Math.floor(x);
-
       };
 
-      const size = width * height, data = new Uint8Array(size);
-      const perlin = new ImprovedNoise(), z = Math.random() * 100;
+      const size = width * height,
+        data = new Uint8Array(size);
+      const perlin = new ImprovedNoise(),
+        z = Math.random() * 100;
 
       let quality = 1;
 
       for (let j = 0; j < 4; j++) {
-
         for (let i = 0; i < size; i++) {
-
-          const x = i % width, y = ~ ~(i / width);
-          data[i] += Math.abs(perlin.noise(x / quality, y / quality, z) * quality * 1.75);
-
+          const x = i % width,
+            y = ~~(i / width);
+          data[i] += Math.abs(
+            perlin.noise(x / quality, y / quality, z) * quality * 1.75
+          );
         }
 
         quality *= 5;
-
       }
 
       return data;
-
     }
 
     function generateTexture(data, width, height) {
-
       let context, image, imageData, shade;
 
       const vector3 = new THREE.Vector3(0, 0, 0);
@@ -151,7 +152,6 @@ const Detail_4 = () => {
       imageData = image.data;
 
       for (let i = 0, j = 0, l = imageData.length; i < l; i += 4, j++) {
-
         vector3.x = data[j - 2] - data[j + 2];
         vector3.y = 2;
         vector3.z = data[j - width * 2] - data[j + width * 2];
@@ -161,8 +161,7 @@ const Detail_4 = () => {
 
         imageData[i] = (96 + shade * 128) * (0.5 + data[j] * 0.007);
         imageData[i + 1] = (32 + shade * 96) * (0.5 + data[j] * 0.007);
-        imageData[i + 2] = (shade * 96) * (0.5 + data[j] * 0.007);
-
+        imageData[i + 2] = shade * 96 * (0.5 + data[j] * 0.007);
       }
 
       context.putImageData(image, 0, 0);
@@ -177,44 +176,41 @@ const Detail_4 = () => {
       context.scale(4, 4);
       context.drawImage(canvas, 0, 0);
 
-      image = context.getImageData(0, 0, canvasScaled.width, canvasScaled.height);
+      image = context.getImageData(
+        0,
+        0,
+        canvasScaled.width,
+        canvasScaled.height
+      );
       imageData = image.data;
 
       for (let i = 0, l = imageData.length; i < l; i += 4) {
-
-        const v = ~ ~(Math.random() * 5);
+        const v = ~~(Math.random() * 5);
 
         imageData[i] += v;
         imageData[i + 1] += v;
         imageData[i + 2] += v;
-
       }
 
       context.putImageData(image, 0, 0);
 
       return canvasScaled;
-
     }
 
     //
 
     function animate() {
-
       requestAnimationFrame(animate);
 
       render();
       stats.update();
-
     }
 
-
     function render() {
-
       controls.update(clock.getDelta());
       renderer.render(scene, camera);
-
     }
   }, []);
   return <div className="detail-body" id="container"></div>;
 };
-export default Detail_4;
+export default Detail_12;

@@ -30,7 +30,7 @@ import { WEBGL } from 'three/examples/jsm/WebGL.js';
 import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
 
 //import { ImprovedNoise } from './jsm/math/ImprovedNoise.js';
-const Detail_4 = () => {
+const Detail__38 = () => {
   useEffect(() => {
     if (WEBGL.isWebGL2Available() === false) {
       document.body.appendChild(WEBGL.getWebGL2ErrorMessage());
@@ -381,4 +381,4 @@ const Detail_4 = () => {
   }, []);
   return <div className="detail-body" id="container"></div>;
 };
-export default Detail_4;
+export default Detail__38;
