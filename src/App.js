@@ -105,6 +105,11 @@ const App = () => {
         <Route path="/auth" component={Auth} /> 
         <Route path="/mypage" component={MyPage} /> */}
         <Route path="/" component={Market} exact={true} />
+        <Route
+          path="/sell_your_mind_research"
+          component={Market}
+          exact={true}
+        />
         {/* <Route path="/sell" component={Sell} /> */}
         {/* </Layout> */}
       </div>
