@@ -248,6 +248,9 @@ const Detail_17 = () => {
         helper.position.copy(intersects[0].point);
       }
     }
+    return () => {
+      document.body.removeChild(renderer.domElement);
+    };
   }, []);
   return <div className="detail-body" id="container"></div>;
 };

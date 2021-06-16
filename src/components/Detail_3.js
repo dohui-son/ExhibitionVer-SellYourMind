@@ -1,13 +1,13 @@
-import React, { Component, useEffect } from "react";
-import ReactDOM from "react-dom";
-import * as THREE from "three";
-import { Scene } from "three";
-import img from "../material/texture/black.jpg";
-import wall from "../material/texture/b_watercolor.jpg";
+import React, { Component, useEffect } from 'react';
+import ReactDOM from 'react-dom';
+import * as THREE from 'three';
+import { Scene } from 'three';
+import img from '../material/texture/black.jpg';
+import wall from '../material/texture/b_watercolor.jpg';
 
 //import wall from "../material/texture/wall_b.png"
 
-import "../stylesheet/detail.scss";
+import '../stylesheet/detail.scss';
 //import { VRButton } from './jsm/webxr/VRButton.js';
 const Detail_3 = () => {
   useEffect(() => {
@@ -159,10 +159,10 @@ const Detail_3 = () => {
       //   light.position.set(-1, 2, 4);
       //   scene.add(light);
 
-      document.addEventListener("pointerdown", onPointerDown);
-      document.addEventListener("wheel", onDocumentMouseWheel);
+      document.addEventListener('pointerdown', onPointerDown);
+      document.addEventListener('wheel', onDocumentMouseWheel);
 
-      window.addEventListener("resize", onWindowResized);
+      window.addEventListener('resize', onWindowResized);
     }
 
     function onWindowResized() {
@@ -181,8 +181,8 @@ const Detail_3 = () => {
       onPointerDownLon = lon;
       onPointerDownLat = lat;
 
-      document.addEventListener("pointermove", onPointerMove);
-      document.addEventListener("pointerup", onPointerUp);
+      document.addEventListener('pointermove', onPointerMove);
+      document.addEventListener('pointerup', onPointerUp);
     }
 
     function onPointerMove(event) {
@@ -191,8 +191,8 @@ const Detail_3 = () => {
     }
 
     function onPointerUp() {
-      document.removeEventListener("pointermove", onPointerMove);
-      document.removeEventListener("pointerup", onPointerUp);
+      document.removeEventListener('pointermove', onPointerMove);
+      document.removeEventListener('pointerup', onPointerUp);
     }
 
     function onDocumentMouseWheel(event) {
@@ -249,6 +249,9 @@ const Detail_3 = () => {
 
       renderer.render(scene, camera);
     }
+    return () => {
+      document.body.removeChild(renderer.domElement);
+    };
   }, []);
   return <div className="detail-body" id="container"></div>;
 };

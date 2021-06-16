@@ -199,6 +199,9 @@ const Detail__33 = () => {
 
       stats.update();
     }
+    return () => {
+      document.body.removeChild(renderer.domElement);
+    };
   }, []);
   return <div className="detail-body"></div>;
 };

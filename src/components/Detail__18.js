@@ -304,7 +304,13 @@ const Detail__18 = () => {
 
       renderer.render(scene, camera);
     }
+    return () => {
+      document.body.removeChild(renderer.domElement);
+    };
   }, []);
+
+  if (window.location.pathname === '/sell_your_mind_research') return null;
+  if (window.location.pathname === '/') return null;
   return (
     // <div className="detail18-body" id="container">
     <div className="blocker" id="blocker">

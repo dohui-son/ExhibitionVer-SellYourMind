@@ -221,6 +221,9 @@ const Detail__24 = () => {
 
       renderer.render(scene, camera);
     }
+    return () => {
+      document.body.removeChild(renderer.domElement);
+    };
   }, []);
   return <div className="detail-body" id="container"></div>;
 };

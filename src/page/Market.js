@@ -19,13 +19,13 @@ const Market = ({ isVisible, noheader, onheader }) => {
 
       <div className="market-layout">
         <h4>판매 중인 관념입니다.</h4>
+        <Link to="/d41">000</Link>
         <Link to="/d41">001</Link>
         <Link to="/d40">002</Link>
         {/* <Link to="/sell/d39">000</Link> */}
         <Link to="/d38">003</Link>
         <Link to="/d37">004</Link>
         <Link to="/d36">005</Link>
-        <Link to="/d35">006</Link>
         <Link to="/d34">007</Link>
         <Link to="/d33">008</Link>
         <Link to="/d32">009</Link>
@@ -59,7 +59,7 @@ const Market = ({ isVisible, noheader, onheader }) => {
         <Link to="/d4">038</Link>
         <Link to="/d3">어린왕자</Link>
         <Link to="/d2">가장 슬펐던 날</Link>
-        <Link to="/d1">지구의 질감</Link>
+        <Link to="/d1">지구의 질감</Link>{' '}
       </div>
     </div>
   );

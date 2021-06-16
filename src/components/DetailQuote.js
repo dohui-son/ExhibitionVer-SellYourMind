@@ -1,9 +1,9 @@
-import React, { Component, useEffect } from "react";
-import ReactDOM from "react-dom";
-import * as THREE from "three";
-import { Scene } from "three";
-import img from "../material/texture/quotes.jpg";
-import "../stylesheet/detail.scss"
+import React, { Component, useEffect } from 'react';
+import ReactDOM from 'react-dom';
+import * as THREE from 'three';
+import { Scene } from 'three';
+import img from '../material/texture/quotes.jpg';
+import '../stylesheet/detail.scss';
 const DetailQuote = () => {
   useEffect(() => {
     let camera, scene, renderer;
@@ -20,7 +20,7 @@ const DetailQuote = () => {
     init();
     animate();
     function init() {
-      const container = document.getElementById("container");
+      const container = document.getElementById('container');
       //console.log(container);
       //console.log(window.innerWidth);
       camera = new THREE.PerspectiveCamera(
@@ -43,38 +43,36 @@ const DetailQuote = () => {
 
       scene.add(mesh);
 
-     
-
       renderer = new THREE.WebGLRenderer();
       renderer.setPixelRatio(window.devicePixelRatio);
       renderer.setSize(window.innerWidth, window.innerHeight);
       container.appendChild(renderer.domElement);
 
-      container.style.touchAction = "none";
-      container.addEventListener("pointerdown", onPointerDown);
+      container.style.touchAction = 'none';
+      container.addEventListener('pointerdown', onPointerDown);
 
-      document.addEventListener("wheel", onDocumentMouseWheel);
+      document.addEventListener('wheel', onDocumentMouseWheel);
 
       //
 
-      document.addEventListener("dragover", function (event) {
+      document.addEventListener('dragover', function (event) {
         event.preventDefault();
-        event.dataTransfer.dropEffect = "copy";
+        event.dataTransfer.dropEffect = 'copy';
       });
 
-      document.addEventListener("dragenter", function () {
+      document.addEventListener('dragenter', function () {
         document.body.style.opacity = 0.5;
       });
 
-      document.addEventListener("dragleave", function () {
+      document.addEventListener('dragleave', function () {
         document.body.style.opacity = 1;
       });
 
-      document.addEventListener("drop", function (event) {
+      document.addEventListener('drop', function (event) {
         event.preventDefault();
 
         const reader = new FileReader();
-        reader.addEventListener("load", function (event) {
+        reader.addEventListener('load', function (event) {
           material.map.image.src = event.target.result;
           material.map.needsUpdate = true;
         });
@@ -85,7 +83,7 @@ const DetailQuote = () => {
 
       //
 
-      window.addEventListener("resize", onWindowResize);
+      window.addEventListener('resize', onWindowResize);
     }
 
     function onWindowResize() {
@@ -106,8 +104,8 @@ const DetailQuote = () => {
       onPointerDownLon = lon;
       onPointerDownLat = lat;
 
-      document.addEventListener("pointermove", onPointerMove);
-      document.addEventListener("pointerup", onPointerUp);
+      document.addEventListener('pointermove', onPointerMove);
+      document.addEventListener('pointerup', onPointerUp);
     }
 
     function onPointerMove(event) {
@@ -120,8 +118,8 @@ const DetailQuote = () => {
     function onPointerUp() {
       isUserInteracting = false;
 
-      document.removeEventListener("pointermove", onPointerMove);
-      document.removeEventListener("pointerup", onPointerUp);
+      document.removeEventListener('pointermove', onPointerMove);
+      document.removeEventListener('pointerup', onPointerUp);
     }
 
     function onDocumentMouseWheel(event) {
@@ -154,6 +152,9 @@ const DetailQuote = () => {
 
       renderer.render(scene, camera);
     }
+    return () => {
+      document.body.removeChild(renderer.domElement);
+    };
   }, []);
   return <div className="detail-body" id="container"></div>;
 };

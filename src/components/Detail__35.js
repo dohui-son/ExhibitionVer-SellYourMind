@@ -126,8 +126,6 @@ const Detail__35 = () => {
 
     function animate() {
       requestAnimationFrame(animate);
-
-      render();
     }
 
     function render() {
@@ -140,7 +138,11 @@ const Detail__35 = () => {
       controls.update();
 
       effect.render(scene, camera);
+      render();
     }
+    return () => {
+      document.body.removeChild(renderer.domElement);
+    };
   }, []);
   return <div className="detail-body" id="container"></div>;
 };

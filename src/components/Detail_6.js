@@ -250,6 +250,9 @@ const Detail_6 = () => {
 
       renderer.render(scene, camera);
     }
+    return () => {
+      document.body.removeChild(renderer.domElement);
+    };
   }, []);
   return <div className="detail-body" id="container"></div>;
 };

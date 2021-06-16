@@ -205,6 +205,9 @@ const Detail_8 = () => {
       controls.update(clock.getDelta());
       renderer.render(scene, camera);
     }
+    return () => {
+      document.body.removeChild(renderer.domElement);
+    };
   }, []);
   return <div className="detail-body" id="container"></div>;
 };

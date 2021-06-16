@@ -194,6 +194,9 @@ const Detail__31 = () => {
     function render() {
       renderer.render(scene, camera);
     }
+    return () => {
+      document.body.removeChild(renderer.domElement);
+    };
   }, []);
   return <div className="detail-body"></div>;
 };

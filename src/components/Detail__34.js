@@ -189,6 +189,9 @@ const Detail__34 = () => {
         allSelected[i].material.emissive.set(0xffffff);
       }
     });
+    return () => {
+      document.body.removeChild(renderer.domElement);
+    };
   }, []);
   return <div className="detail-body"></div>;
 };
