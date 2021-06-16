@@ -2,7 +2,7 @@ import React, { Component, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import * as THREE from 'three';
 import { Scene } from 'three';
-import img from '../material/texture/28.jpeg';
+import img from '../material/texture/35.jpeg';
 import wall from '../material/texture/b_watercolor.jpg';
 
 import Stats from 'three/examples/jsm/libs/stats.module.js';

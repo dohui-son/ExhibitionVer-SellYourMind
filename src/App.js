@@ -52,6 +52,7 @@ import Detail__38 from './components/Detail__38';
 import Detail__40 from './components/Detail__40';
 import Detail__41 from './components/Detail__41';
 import Detail__42 from './components/Detail__42';
+import Detail__43 from './components/Detail__43';
 
 const App = () => {
   return (
@@ -111,6 +112,7 @@ const App = () => {
       {/* <Route path="/sell" component={Sell} /> */}
       {/* </Layout> */}
       {/* </div> */}
+      <Route path="/d43" component={Detail__43} exact={true} />
       <Route path="/d42" component={Detail__42} exact={true} />
       <Route path="/d41" component={Detail__41} exact={true} />
       <Route path="/d40" component={Detail__40} exact={true} />
