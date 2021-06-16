@@ -1,0 +1,39 @@
+.w-layout {
+  width: 100%;
+
+  margin-bottom: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none !important;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  a {
+    text-decoration: none;
+    color: #8a9292b6;
+  }
+  .text {
+    letter-spacing: 0.1em;
+    margin-top: 3rem;
+    width: 70%;
+    font-size: 22px;
+    color: #8a9292;
+    h4 {
+      color: #8a9292b6;
+    }
+    @media only screen and (max-width: 600px) {
+      font-size: 14px;
+    }
+  }
+  img {
+    width: 30rem;
+    height: 10rem;
+    @media only screen and (max-width: 600px) {
+      width: 20rem;
+      height: 5rem;
+    }
+  }
+}

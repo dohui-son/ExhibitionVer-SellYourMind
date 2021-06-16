@@ -309,8 +309,6 @@ const Detail__18 = () => {
     };
   }, []);
 
-  if (window.location.pathname === '/sell_your_mind_research') return null;
-  if (window.location.pathname === '/') return null;
   return (
     // <div className="detail18-body" id="container">
     <div className="blocker" id="blocker">

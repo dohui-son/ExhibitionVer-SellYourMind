@@ -2,7 +2,7 @@ import React, { Component, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import * as THREE from 'three';
 import { Scene } from 'three';
-import img from '../material/texture/6.jpg';
+import img from '../material/texture/5.jpg';
 import wall from '../material/texture/b_watercolor.jpg';
 
 import Stats from 'three/examples/jsm/libs/stats.module.js';
@@ -13,145 +13,316 @@ import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtil
 
 import '../stylesheet/detail.scss';
 //import { VRButton } from './jsm/webxr/VRButton.js';
-const Detail_8 = () => {
+
+//import * as THREE from '../build/three.module.js';
+
+//import Stats from './jsm/libs/stats.module.js';
+
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+
+import {
+  VOXLoader,
+  VOXDataTexture3D,
+} from 'three/examples/jsm/loaders/VOXLoader.js';
+
+import { WEBGL } from 'three/examples/jsm/WebGL.js';
+
+import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
+
+//import { ImprovedNoise } from './jsm/math/ImprovedNoise.js';
+const Detail__38 = () => {
   useEffect(() => {
-    let container, stats;
+    if (WEBGL.isWebGL2Available() === false) {
+      document.body.appendChild(WEBGL.getWebGL2ErrorMessage());
+    }
 
-    let camera, controls, scene, renderer;
+    const INITIAL_CLOUD_SIZE = 128;
 
-    const worldWidth = 128,
-      worldDepth = 128;
-    const worldHalfWidth = worldWidth / 2;
-    const worldHalfDepth = worldDepth / 2;
-    const data = generateHeight(worldWidth, worldDepth);
+    let renderer, scene, camera;
+    let mesh;
+    let prevTime = performance.now();
+    let cloudTexture = null;
+    const texture_img = new THREE.TextureLoader().load(img);
 
-    const clock = new THREE.Clock();
+    //background
+    let sphere, clock;
 
     init();
     animate();
 
-    function init() {
-      container = document.getElementById('container');
+    function generateCloudTexture(size, scaleFactor = 1.0) {
+      const data = new Uint8Array(size * size * size);
+      const scale = (scaleFactor * 10.0) / size;
 
-      camera = new THREE.PerspectiveCamera(
-        60,
-        window.innerWidth / window.innerHeight,
-        1,
-        20000
-      );
-      camera.position.y = getY(worldHalfWidth, worldHalfDepth) * 100 + 100;
+      let i = 0;
+      const perlin = new ImprovedNoise();
+      const vector = new THREE.Vector3();
 
-      scene = new THREE.Scene();
-      const texture = new THREE.TextureLoader().load(img);
+      for (let z = 0; z < size; z++) {
+        for (let y = 0; y < size; y++) {
+          for (let x = 0; x < size; x++) {
+            const dist = vector
+              .set(x, y, z)
+              .subScalar(size / 2)
+              .divideScalar(size)
+              .length();
+            const fadingFactor = (1.0 - dist) * (1.0 - dist);
+            data[i] =
+              (128 +
+                128 *
+                  perlin.noise(
+                    (x * scale) / 1.5,
+                    y * scale,
+                    (z * scale) / 1.5
+                  )) *
+              fadingFactor;
 
-      scene.background = new THREE.TextureLoader().load(img);
-
-      // sides
-
-      const matrix = new THREE.Matrix4();
-
-      const pxGeometry = new THREE.PlaneGeometry(100, 100);
-      pxGeometry.attributes.uv.array[1] = 0.5;
-      pxGeometry.attributes.uv.array[3] = 0.5;
-      pxGeometry.rotateY(Math.PI / 2);
-      pxGeometry.translate(50, 0, 0);
-
-      const nxGeometry = new THREE.PlaneGeometry(100, 100);
-      nxGeometry.attributes.uv.array[1] = 0.5;
-      nxGeometry.attributes.uv.array[3] = 0.5;
-      nxGeometry.rotateY(-Math.PI / 2);
-      nxGeometry.translate(-50, 0, 0);
-
-      const pyGeometry = new THREE.PlaneGeometry(100, 100);
-      pyGeometry.attributes.uv.array[5] = 0.5;
-      pyGeometry.attributes.uv.array[7] = 0.5;
-      pyGeometry.rotateX(-Math.PI / 2);
-      pyGeometry.translate(0, 50, 0);
-
-      const pzGeometry = new THREE.PlaneGeometry(100, 100);
-      pzGeometry.attributes.uv.array[1] = 0.5;
-      pzGeometry.attributes.uv.array[3] = 0.5;
-      pzGeometry.translate(0, 0, 50);
-
-      const nzGeometry = new THREE.PlaneGeometry(100, 100);
-      nzGeometry.attributes.uv.array[1] = 0.5;
-      nzGeometry.attributes.uv.array[3] = 0.5;
-      nzGeometry.rotateY(Math.PI);
-      nzGeometry.translate(0, 0, -50);
-
-      //
-
-      const geometries = [];
-
-      for (let z = 0; z < worldDepth; z++) {
-        for (let x = 0; x < worldWidth; x++) {
-          const h = getY(x, z);
-
-          matrix.makeTranslation(
-            x * 100 - worldHalfWidth * 100,
-            h * 100,
-            z * 100 - worldHalfDepth * 100
-          );
-
-          const px = getY(x + 1, z);
-          const nx = getY(x - 1, z);
-          const pz = getY(x, z + 1);
-          const nz = getY(x, z - 1);
-
-          geometries.push(pyGeometry.clone().applyMatrix4(matrix));
-
-          if ((px !== h && px !== h + 1) || x === 0) {
-            geometries.push(pxGeometry.clone().applyMatrix4(matrix));
-          }
-
-          if ((nx !== h && nx !== h + 1) || x === worldWidth - 1) {
-            geometries.push(nxGeometry.clone().applyMatrix4(matrix));
-          }
-
-          if ((pz !== h && pz !== h + 1) || z === worldDepth - 1) {
-            geometries.push(pzGeometry.clone().applyMatrix4(matrix));
-          }
-
-          if ((nz !== h && nz !== h + 1) || z === 0) {
-            geometries.push(nzGeometry.clone().applyMatrix4(matrix));
+            i++;
           }
         }
       }
 
-      const geometry = BufferGeometryUtils.mergeBufferGeometries(geometries);
-      geometry.computeBoundingSphere();
+      return new THREE.DataTexture3D(data, size, size, size);
+    }
 
-      //const texture = new THREE.TextureLoader().load(img);
-      //texture.magFilter = THREE.NearestFilter;
-
-      const mesh = new THREE.Mesh(
-        geometry,
-        new THREE.MeshLambertMaterial({ map: texture, side: THREE.DoubleSide })
-      );
-      scene.add(mesh);
-
-      const ambientLight = new THREE.AmbientLight(0xcccccc);
-      scene.add(ambientLight);
-
-      // const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
-      // directionalLight.position.set(1, 1, 0.5).normalize();
-      // scene.add(directionalLight);
-
-      renderer = new THREE.WebGLRenderer({ antialias: true });
+    function init() {
+      renderer = new THREE.WebGLRenderer();
       renderer.setPixelRatio(window.devicePixelRatio);
       renderer.setSize(window.innerWidth, window.innerHeight);
-      container.appendChild(renderer.domElement);
+      document.body.appendChild(renderer.domElement);
 
-      controls = new FirstPersonControls(camera, renderer.domElement);
+      scene = new THREE.Scene();
 
-      controls.movementSpeed = 1000;
-      controls.lookSpeed = 0.125;
-      controls.lookVertical = true;
+      camera = new THREE.PerspectiveCamera(
+        60,
+        window.innerWidth / window.innerHeight,
+        0.9,
+        100
+      );
+      camera.position.set(0, 0, 1.5);
 
-      stats = new Stats();
-      container.appendChild(stats.dom);
+      new OrbitControls(camera, renderer.domElement);
+
+      scene.fog = new THREE.Fog(0xffffff, 0, 750);
+      // Sky
+
+      const canvas = document.createElement('canvas');
+      canvas.width = 1;
+      canvas.height = 32;
+
+      const context = canvas.getContext('2d');
+      const gradient = context.createLinearGradient(0, 0, 0, 32);
+      gradient.addColorStop(0.0, '#014a84');
+      gradient.addColorStop(0.5, '#0561a0');
+      gradient.addColorStop(1.0, '#437ab6');
+      context.fillStyle = gradient;
+      context.fillRect(0, 0, 1, 32);
+
+      //background
+      const container = document.getElementById('container');
+      clock = new THREE.Clock();
+      scene.background = new THREE.Color(0x101010);
+      const light = new THREE.AmbientLight(0xffffff, 1);
+      scene.add(light);
+      // Create the panoramic sphere geometery
+      const panoSphereGeo = new THREE.SphereGeometry(6, 256, 256);
+
+      // Create the panoramic sphere material
+      const panoSphereMat = new THREE.MeshStandardMaterial({
+        side: THREE.BackSide,
+        displacementScale: -4.0,
+      });
+
+      // Create the panoramic sphere mesh
+      sphere = new THREE.Mesh(panoSphereGeo, panoSphereMat);
+
+      // Load and assign the texture and depth map
+      const manager = new THREE.LoadingManager();
+      const loader = new THREE.TextureLoader(manager);
+
+      loader.load(img, function (texture) {
+        texture.minFilter = THREE.NearestFilter;
+        texture.generateMipmaps = false;
+        sphere.material.map = texture;
+      });
+
+      loader.load(img, function (depth) {
+        depth.minFilter = THREE.NearestFilter;
+        depth.generateMipmaps = false;
+        sphere.material.displacementMap = depth;
+      });
+
+      // On load complete add the panoramic sphere to the scene
+      manager.onLoad = function () {
+        scene.add(sphere);
+      };
+      ///////////////////////////////////////////
+
+      const sky = new THREE.Mesh(
+        new THREE.SphereGeometry(10),
+        //new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(canvas), side: THREE.BackSide })
+        new THREE.MeshBasicMaterial({ map: texture_img, side: THREE.BackSide })
+      );
+      //scene.background = new THREE.TextureLoader().load(img);
+      //scene.add(sky);
+
+      // Texture
+
+      const texture = new THREE.DataTexture3D(
+        new Uint8Array(
+          INITIAL_CLOUD_SIZE * INITIAL_CLOUD_SIZE * INITIAL_CLOUD_SIZE
+        ).fill(0),
+        INITIAL_CLOUD_SIZE,
+        INITIAL_CLOUD_SIZE,
+        INITIAL_CLOUD_SIZE
+      );
+      texture.format = THREE.RedFormat;
+      texture.minFilter = THREE.LinearFilter;
+      texture.magFilter = THREE.LinearFilter;
+      texture.unpackAlignment = 1;
+
+      cloudTexture = texture_img;
+
+      // Material
+
+      const vertexShader = /* glsl */ `
+        in vec3 position;
+        uniform mat4 modelMatrix;
+        uniform mat4 modelViewMatrix;
+        uniform mat4 projectionMatrix;
+        uniform vec3 cameraPos;
+        out vec3 vOrigin;
+        out vec3 vDirection;
+        void main() {
+          vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+          vOrigin = vec3( inverse( modelMatrix ) * vec4( cameraPos, 1.0 ) ).xyz;
+          vDirection = position - vOrigin;
+          gl_Position = projectionMatrix * mvPosition;
+        }
+      `;
+
+      const fragmentShader = /* glsl */ `
+        precision highp float;
+        precision highp sampler3D;
+        uniform mat4 modelViewMatrix;
+        uniform mat4 projectionMatrix;
+        in vec3 vOrigin;
+        in vec3 vDirection;
+        out vec4 color;
+        uniform vec3 base;
+        uniform sampler3D map;
+        uniform float threshold;
+        uniform float range;
+        uniform float opacity;
+        uniform float steps;
+        uniform float frame;
+        uint wang_hash(uint seed)
+        {
+            seed = (seed ^ 61u) ^ (seed >> 16u);
+            seed *= 9u;
+            seed = seed ^ (seed >> 4u);
+            seed *= 0x27d4eb2du;
+            seed = seed ^ (seed >> 15u);
+            return seed;
+        }
+        float randomFloat(inout uint seed)
+        {
+            return float(wang_hash(seed)) / 4294967296.;
+        }
+        vec2 hitBox( vec3 orig, vec3 dir ) {
+          const vec3 box_min = vec3( - 0.5 );
+          const vec3 box_max = vec3( 0.5 );
+          vec3 inv_dir = 1.0 / dir;
+          vec3 tmin_tmp = ( box_min - orig ) * inv_dir;
+          vec3 tmax_tmp = ( box_max - orig ) * inv_dir;
+          vec3 tmin = min( tmin_tmp, tmax_tmp );
+          vec3 tmax = max( tmin_tmp, tmax_tmp );
+          float t0 = max( tmin.x, max( tmin.y, tmin.z ) );
+          float t1 = min( tmax.x, min( tmax.y, tmax.z ) );
+          return vec2( t0, t1 );
+        }
+        float sample1( vec3 p ) {
+          return texture( map, p ).r;
+        }
+        float shading( vec3 coord ) {
+          float step = 0.01;
+          return sample1( coord + vec3( - step ) ) - sample1( coord + vec3( step ) );
+        }
+        void main(){
+          vec3 rayDir = normalize( vDirection );
+          vec2 bounds = hitBox( vOrigin, rayDir );
+          if ( bounds.x > bounds.y ) discard;
+          bounds.x = max( bounds.x, 0.0 );
+          vec3 p = vOrigin + bounds.x * rayDir;
+          vec3 inc = 1.0 / abs( rayDir );
+          float delta = min( inc.x, min( inc.y, inc.z ) );
+          delta /= steps;
+          // Jitter
+          // Nice little seed from
+          // https://blog.demofox.org/2020/05/25/casual-shadertoy-path-tracing-1-basic-camera-diffuse-emissive/
+          uint seed = uint( gl_FragCoord.x ) * uint( 1973 ) + uint( gl_FragCoord.y ) * uint( 9277 ) + uint( frame ) * uint( 26699 );
+          vec3 size = vec3( textureSize( map, 0 ) );
+          float randNum = randomFloat( seed ) * 2.0 - 1.0;
+          p += rayDir * randNum * ( 1.0 / size );
+          //
+          vec4 ac = vec4( base, 0.0 );
+          for ( float t = bounds.x; t < bounds.y; t += delta ) {
+            float d = sample1( p + 0.5 );
+            d = smoothstep( threshold - range, threshold + range, d ) * opacity;
+            float col = shading( p + 0.5 ) * 3.0 + ( ( p.x + p.y ) * 0.25 ) + 0.2;
+            ac.rgb += ( 1.0 - ac.a ) * d * col;
+            ac.a += ( 1.0 - ac.a ) * d;
+            if ( ac.a >= 0.95 ) break;
+            p += rayDir * delta;
+          }
+          color = ac;
+          if ( color.a == 0.0 ) discard;
+        }
+      `;
+
+      const geometry = new THREE.BoxGeometry(1, 1, 1);
+      const material = new THREE.RawShaderMaterial({
+        glslVersion: THREE.GLSL3,
+        uniforms: {
+          base: { value: new THREE.Color(0x798aa0) },
+          map: { value: texture },
+          cameraPos: { value: new THREE.Vector3() },
+          threshold: { value: 0.25 },
+          opacity: { value: 0.25 },
+          range: { value: 0.1 },
+          steps: { value: 100 },
+          frame: { value: 0 },
+        },
+        vertexShader,
+        fragmentShader,
+        side: THREE.BackSide,
+        transparent: true,
+      });
+
+      mesh = new THREE.Mesh(geometry, material);
+      scene.add(mesh);
 
       //
+
+      const parameters = {
+        threshold: 0.25,
+        opacity: 0.25,
+        range: 0.1,
+        steps: 100,
+      };
+
+      function update() {
+        material.uniforms.threshold.value = parameters.threshold;
+        material.uniforms.opacity.value = parameters.opacity;
+        material.uniforms.range.value = parameters.range;
+        material.uniforms.steps.value = parameters.steps;
+      }
+
+      const gui = new GUI();
+      gui.add(parameters, 'threshold', 0, 1, 0.01).onChange(update);
+      gui.add(parameters, 'opacity', 0, 1, 0.01).onChange(update);
+      gui.add(parameters, 'range', 0, 1, 0.01).onChange(update);
+      gui.add(parameters, 'steps', 0, 200, 1).onChange(update);
 
       window.addEventListener('resize', onWindowResize);
     }
@@ -161,54 +332,56 @@ const Detail_8 = () => {
       camera.updateProjectionMatrix();
 
       renderer.setSize(window.innerWidth, window.innerHeight);
-
-      controls.handleResize();
     }
 
-    function generateHeight(width, height) {
-      const data = [],
-        perlin = new ImprovedNoise(),
-        size = width * height,
-        z = Math.random() * 100;
+    let curr = 0;
+    const countPerRow = 4;
+    const countPerSlice = countPerRow * countPerRow;
+    const sliceCount = 4;
+    const totalCount = sliceCount * countPerSlice;
+    const margins = 8;
 
-      let quality = 2;
-
-      for (let j = 0; j < 4; j++) {
-        if (j === 0) for (let i = 0; i < size; i++) data[i] = 0;
-
-        for (let i = 0; i < size; i++) {
-          const x = i % width,
-            y = (i / width) | 0;
-          data[i] += perlin.noise(x / quality, y / quality, z) * quality;
-        }
-
-        quality *= 4;
-      }
-
-      return data;
-    }
-
-    function getY(x, z) {
-      return (data[x + z * worldWidth] * 0.2) | 0;
-    }
-
-    //
+    const perElementPaddedSize = (INITIAL_CLOUD_SIZE - margins) / countPerRow;
+    const perElementSize = Math.floor((INITIAL_CLOUD_SIZE - 1) / countPerRow);
 
     function animate() {
       requestAnimationFrame(animate);
 
-      render();
-      stats.update();
-    }
+      const time = performance.now();
+      if (time - prevTime > 1500.0 && curr < totalCount) {
+        const position = new THREE.Vector3(
+          Math.floor(curr % countPerRow) * perElementSize + margins * 0.5,
+          Math.floor((curr % countPerSlice) / countPerRow) * perElementSize +
+            margins * 0.5,
+          Math.floor(curr / countPerSlice) * perElementSize + margins * 0.5
+        ).floor();
 
-    function render() {
-      controls.update(clock.getDelta());
+        const maxDimension = perElementPaddedSize - 1;
+        const box = new THREE.Box3(
+          new THREE.Vector3(0, 0, 0),
+          new THREE.Vector3(maxDimension, maxDimension, maxDimension)
+        );
+        const scaleFactor = (Math.random() + 0.5) * 0.5;
+        const source = generateCloudTexture(perElementPaddedSize, scaleFactor);
+
+        renderer.copyTextureToTexture3D(box, position, source, cloudTexture);
+
+        prevTime = time;
+
+        curr++;
+      }
+
+      mesh.material.uniforms.cameraPos.value.copy(camera.position);
+      // mesh.rotation.y = - performance.now() / 7500;
+
+      mesh.material.uniforms.frame.value++;
+
       renderer.render(scene, camera);
     }
-    // return () => {
-    //   document.body.removeChild(renderer.domElement);
-    // };
+    return () => {
+      document.body.removeChild(renderer.domElement);
+    };
   }, []);
   return <div className="detail-body" id="container"></div>;
 };
-export default Detail_8;
+export default Detail__38;
