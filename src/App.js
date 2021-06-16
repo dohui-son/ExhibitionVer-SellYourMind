@@ -58,7 +58,7 @@ const App = () => {
   return (
     <div>
          {/* <Detail__42 /> */}
-      <Detail__41 />
+      {/* <Detail__41 /> */}
       {/* <Detail__40 /> */}
       {/* <Detail__38 /> */}
       {/* <Detail__37 /> */}
