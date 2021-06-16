@@ -1,0 +1,16 @@
+.header {
+  z-index: 1000;
+  position: fixed;
+  top: 0rem;
+  height: 11rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #dddddd;
+  background-color: #ffff;
+  img {
+    width: 25rem;
+    height: 10rem;
+  }
+}

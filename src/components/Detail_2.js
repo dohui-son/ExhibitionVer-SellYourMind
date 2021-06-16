@@ -1,14 +1,14 @@
-import React, { Component, useEffect } from "react";
-import ReactDOM from "react-dom";
-import * as THREE from "three";
-import { Scene } from "three";
-import img from "../material/texture/1.jpg";
-import wall from "../material/texture/wall.jpg";
-import wall2 from "../material/texture/wall2.jpg";
+import React, { Component, useEffect } from 'react';
+import ReactDOM from 'react-dom';
+import * as THREE from 'three';
+import { Scene } from 'three';
+import img from '../material/texture/1.jpg';
+import wall from '../material/texture/wall.jpg';
+import wall2 from '../material/texture/wall2.jpg';
 
 //import wall from "../material/texture/wall_b.png"
 
-import "../stylesheet/detail.scss";
+import '../stylesheet/detail.scss';
 //import { VRButton } from './jsm/webxr/VRButton.js';
 const Detail_2 = () => {
   useEffect(() => {
@@ -100,21 +100,15 @@ const Detail_2 = () => {
       //   cube = new THREE.Mesh(new THREE.BoxGeometry(20, 20, 20), material);
       //   scene.add(cube);
 
-
       material = new THREE.MeshBasicMaterial({
         //map: texture,
         color: 0xffffff,
         opacity: 0.1,
         transparent: true,
       });
-      cube = new THREE.Mesh(
-        new THREE.PlaneGeometry(70, 100, 60),
-        material
-      );
+      cube = new THREE.Mesh(new THREE.PlaneGeometry(70, 100, 60), material);
 
       //scene.add(cube);
-
-
 
       //draw
       const boxWidth = 750;
@@ -135,8 +129,6 @@ const Detail_2 = () => {
         scene.add(draw);
         draws.push(draw); // add to our list of cubes to rotate
       });
-
-
 
       function resizeRendererToDisplaySize(renderer) {
         const canvas = renderer.domElement;
@@ -168,10 +160,10 @@ const Detail_2 = () => {
       //   light.position.set(-1, 2, 4);
       //   scene.add(light);
 
-      document.addEventListener("pointerdown", onPointerDown);
-      document.addEventListener("wheel", onDocumentMouseWheel);
+      document.addEventListener('pointerdown', onPointerDown);
+      document.addEventListener('wheel', onDocumentMouseWheel);
 
-      window.addEventListener("resize", onWindowResized);
+      window.addEventListener('resize', onWindowResized);
     }
 
     function onWindowResized() {
@@ -190,8 +182,8 @@ const Detail_2 = () => {
       onPointerDownLon = lon;
       onPointerDownLat = lat;
 
-      document.addEventListener("pointermove", onPointerMove);
-      document.addEventListener("pointerup", onPointerUp);
+      document.addEventListener('pointermove', onPointerMove);
+      document.addEventListener('pointerup', onPointerUp);
     }
 
     function onPointerMove(event) {
@@ -200,8 +192,8 @@ const Detail_2 = () => {
     }
 
     function onPointerUp() {
-      document.removeEventListener("pointermove", onPointerMove);
-      document.removeEventListener("pointerup", onPointerUp);
+      document.removeEventListener('pointermove', onPointerMove);
+      document.removeEventListener('pointerup', onPointerUp);
     }
 
     function onDocumentMouseWheel(event) {

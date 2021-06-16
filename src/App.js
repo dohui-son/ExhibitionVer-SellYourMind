@@ -1,63 +1,62 @@
-import React from "react";
+import React from 'react';
 
-import "./stylesheet/global.scss";
-import { Route } from "react-router-dom";
-import Home from "./page/Home";
-import Auth from "./page/Auth";
-import MyPage from "./page/MyPage";
-import Market from "./page/Market";
-import Sell from "./page/Sell";
-import Layout from "./components/Layout";
-import Square from "./components/Square";
-import DetailThree from "./components/DetailThree";
-import DetailQuote from "./components/DetailQuote";
-import Detail_1 from "./components/Detail_1";
-import Detail_2 from "./components/Detail_2";
-import Detail_3 from "./components/Detail_3";
-import Detail_4 from "./components/Detail_4";
-import Detail_5 from "./components/Detail_5";
-import Detail_6 from "./components/Detail_6";
-import Detail_7 from "./components/Detail_7";
-import Detail_8 from "./components/Detail_8";
-import Detail_9 from "./components/Detail_9";
-import Detail_10 from "./components/Detail_10";
-import Detail_11 from "./components/Detail_11";
-import Detail_12 from "./components/Detail_12";
-import Detail_13 from "./components/Detail_13";
-import Detail_14 from "./components/Detail_14";
-import Detail_15 from "./components/Detail_15";
-import Detail_16 from "./components/Detail_16";
-import Detail_17 from "./components/Detail_17";
-import Detail__18 from "./components/Detail__18";
-import Detail__19 from "./components/Detail__19";
-import Detail__20 from "./components/Detail__20";
-import Detail__21 from "./components/Detail__21";
-import Detail__22 from "./components/Detail__22";
-import Detail__23 from "./components/Detail__23";
-import Detail__24 from "./components/Detail__24";
-import Detail__25 from "./components/Detail__25";
-import Detail__26 from "./components/Detail__26";
-import Detail__27 from "./components/Detail__27";
-import Detail__28 from "./components/Detail__28";
-import Detail__29 from "./components/Detail__29";
-import Detail__30 from "./components/Detail__30";
-import Detail__31 from "./components/Detail__31";
-import Detail__32 from "./components/Detail__32";
-import Detail__33 from "./components/Detail__33";
-import Detail__34 from "./components/Detail__34";
-import Detail__35 from "./components/Detail__35";
-import Detail__36 from "./components/Detail__36";
-import Detail__37 from "./components/Detail__37";
-import Detail__38 from "./components/Detail__38";
-import Detail__40 from "./components/Detail__40";
-import Detail__41 from "./components/Detail__41";
-import Detail__42 from "./components/Detail__42";
-
+import './stylesheet/global.scss';
+import { Route } from 'react-router-dom';
+import Home from './page/Home';
+import Auth from './page/Auth';
+import MyPage from './page/MyPage';
+import Market from './page/Market';
+import Sell from './page/Sell';
+import Layout from './components/Layout';
+import Square from './components/Square';
+import DetailThree from './components/DetailThree';
+import DetailQuote from './components/DetailQuote';
+import Detail_1 from './components/Detail_1';
+import Detail_2 from './components/Detail_2';
+import Detail_3 from './components/Detail_3';
+import Detail_4 from './components/Detail_4';
+import Detail_5 from './components/Detail_5';
+import Detail_6 from './components/Detail_6';
+import Detail_7 from './components/Detail_7';
+import Detail_8 from './components/Detail_8';
+import Detail_9 from './components/Detail_9';
+import Detail_10 from './components/Detail_10';
+import Detail_11 from './components/Detail_11';
+import Detail_12 from './components/Detail_12';
+import Detail_13 from './components/Detail_13';
+import Detail_14 from './components/Detail_14';
+import Detail_15 from './components/Detail_15';
+import Detail_16 from './components/Detail_16';
+import Detail_17 from './components/Detail_17';
+import Detail__18 from './components/Detail__18';
+import Detail__19 from './components/Detail__19';
+import Detail__20 from './components/Detail__20';
+import Detail__21 from './components/Detail__21';
+import Detail__22 from './components/Detail__22';
+import Detail__23 from './components/Detail__23';
+import Detail__24 from './components/Detail__24';
+import Detail__25 from './components/Detail__25';
+import Detail__26 from './components/Detail__26';
+import Detail__27 from './components/Detail__27';
+import Detail__28 from './components/Detail__28';
+import Detail__29 from './components/Detail__29';
+import Detail__30 from './components/Detail__30';
+import Detail__31 from './components/Detail__31';
+import Detail__32 from './components/Detail__32';
+import Detail__33 from './components/Detail__33';
+import Detail__34 from './components/Detail__34';
+import Detail__35 from './components/Detail__35';
+import Detail__36 from './components/Detail__36';
+import Detail__37 from './components/Detail__37';
+import Detail__38 from './components/Detail__38';
+import Detail__40 from './components/Detail__40';
+import Detail__41 from './components/Detail__41';
+import Detail__42 from './components/Detail__42';
 
 const App = () => {
   return (
     <div>
-         {/* <Detail__42 /> */}
+      {/* <Detail__42 /> */}
       {/* <Detail__41 /> */}
       {/* <Detail__40 /> */}
       {/* <Detail__38 /> */}
@@ -95,30 +94,65 @@ const App = () => {
       {/* <Detail_9 /> */}
       {/* <Detail_8 /> */}
       {/* <Detail_7 /> */}
-
       {/* <Detail_6 /> */}
-
-
-
-
-
       {/* <Detail_4 /> */}
       {/* <Detail_5 /> */}
       {/* <Detail_3 /> */}
       {/* <Detail_2 /> */}
-      {/* <Detail_1 /> */}
-      {/* <DetailQuote/> */}
       <div className="global">
         {/* <Layout> */}
-        {/* <DetailThree />
-        <Square /> */}
         {/* <Route path="/" component={Home} exact={true} />
-        <Route path="/auth" component={Auth} />
-        <Route path="/mypage" component={MyPage} />
-        <Route path="/market" component={Market} />
-        <Route path="/sell" component={Sell} /> */}
+        <Route path="/auth" component={Auth} /> 
+        <Route path="/mypage" component={MyPage} /> */}
+        <Route path="/" component={Market} exact={true} />
+        {/* <Route path="/sell" component={Sell} /> */}
         {/* </Layout> */}
       </div>
+
+      <Route path="/sell/d42" component={Detail__42} exact={true} />
+      <Route path="/sell/d41" component={Detail__41} exact={true} />
+      <Route path="/sell/d40" component={Detail__40} exact={true} />
+      {/* <Route path="/sell/d39" component={Detail__39} /> */}
+      <Route path="/sell/d38" component={Detail__38} exact={true} />
+      <Route path="/sell/d37" component={Detail__37} exact={true} />
+      <Route path="/sell/d36" component={Detail__36} exact={true} />
+      <Route path="/sell/d35" component={Detail__35} exact={true} />
+      <Route path="/sell/d34" component={Detail__34} exact={true} />
+      <Route path="/sell/d33" component={Detail__33} exact={true} />
+      <Route path="/sell/d32" component={Detail__32} exact={true} />
+      <Route path="/sell/d31" component={Detail__31} exact={true} />
+      <Route path="/sell/d30" component={Detail__30} exact={true} />
+      <Route path="/sell/d29" component={Detail__29} exact={true} />
+      <Route path="/sell/d28" component={Detail__28} exact={true} />
+      <Route path="/sell/d27" component={Detail__27} exact={true} />
+      <Route path="/sell/d26" component={Detail__26} exact={true} />
+      <Route path="/sell/d25" component={Detail__25} exact={true} />
+      <Route path="/sell/d24" component={Detail__24} exact={true} />
+      <Route path="/sell/d23" component={Detail__23} exact={true} />
+      <Route path="/sell/d22" component={Detail__22} exact={true} />
+      <Route path="/sell/d21" component={Detail__21} exact={true} />
+      <Route path="/sell/d20" component={Detail__20} exact={true} />
+      <Route path="/sell/d19" component={Detail__19} exact={true} />
+      <Route path="/sell/d18" component={Detail__18} exact={true} />
+
+      <Route path="/sell/d17" component={Detail_17} exact={true} />
+      <Route path="/sell/d16" component={Detail_16} exact={true} />
+      <Route path="/sell/d15" component={Detail_15} exact={true} />
+      <Route path="/sell/d14" component={Detail_14} exact={true} />
+      <Route path="/sell/d13" component={Detail_13} exact={true} />
+      <Route path="/sell/d12" component={Detail_12} exact={true} />
+      <Route path="/sell/d11" component={Detail_11} exact={true} />
+      <Route path="/sell/d10" component={Detail_10} exact={true} />
+      <Route path="/sell/d9" component={Detail_9} exact={true} />
+      <Route path="/sell/d8" component={Detail_8} exact={true} />
+      <Route path="/sell/d7" component={Detail_7} exact={true} />
+      <Route path="/sell/d6" component={Detail_6} exact={true} />
+      <Route path="/sell/d5" component={Detail_5} exact={true} />
+      <Route path="/sell/d4" component={Detail_4} exact={true} />
+      <Route path="/sell/d3" component={Detail_3} exact={true} />
+      <Route path="/sell/d2" component={Detail_2} exact={true} />
+      <Route path="/sell/d1" component={Detail_1} exact={true} />
+      <Route path="/sell/detailquote" component={DetailQuote} exact={true} />
     </div>
   );
 };

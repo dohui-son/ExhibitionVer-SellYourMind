@@ -1,28 +1,36 @@
 @font-face {
   font-family: NanumM_R;
-  src: ("../src/material/NanumMyeongjo-Regular.ttf");
+  src: ('../src/material/NanumMyeongjo-Regular.ttf');
 }
 @font-face {
   font-family: NanumM_B;
-  src: ("../src/material/NanumMyeongjo-Bold.ttf");
+  src: ('../src/material/NanumMyeongjo-Bold.ttf');
 }
 @font-face {
   font-family: NanumM_EB;
-  src: ("../src/material/NanumMyeongjo-ExtraBold.ttf");
+  src: ('../src/material/NanumMyeongjo-ExtraBold.ttf');
 }
-
+@font-face {
+  font-family: Noto Sans KR;
+  src: '../material/font/NotoSansKR-Regular.otf';
+}
 .global {
-  position: relative;
-  z-index: 1;
+  font: normal 400 16px/1.4 Roboto, Noto Sans KR, Helvetica Neue, Helvetica,
+    Arial, sans-serif;
+  letter-spacing: 0.07em;
   width: 100%;
   height: 100%;
-  font-family: NanumM_R;
-  background-color: black;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding: 0;
+  margin: 0;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  text-decoration: none !important;
 
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   a {
     text-decoration: none;
   }
