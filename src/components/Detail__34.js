@@ -116,8 +116,8 @@ const Detail__34 = () => {
 
       container.appendChild(renderer.domElement);
 
-      stats = new Stats();
-      container.appendChild(stats.dom);
+      // stats = new Stats();
+      // container.appendChild(stats.dom);
 
       window.addEventListener('resize', onWindowResize);
     }
@@ -135,7 +135,7 @@ const Detail__34 = () => {
       requestAnimationFrame(animate);
 
       render();
-      stats.update();
+      // stats.update();
     }
 
     function render() {

@@ -1,55 +1,15 @@
 import React, { Component, useEffect } from 'react';
-import ReactDOM from 'react-dom';
 import * as THREE from 'three';
-import * as ENABLE3D from 'enable3d';
-import { Scene } from 'three';
 import img from '../material/texture/20.jpeg';
-import wall from '../material/texture/b_watercolor.jpg';
-
 //공감
-
 import Stats from 'three/examples/jsm/libs/stats.module.js';
-import { AsciiEffect } from 'three/examples/jsm/effects/AsciiEffect.js';
-import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js';
-
-import { CinematicCamera } from 'three/examples/jsm/cameras/CinematicCamera.js';
-import { SelectionBox } from 'three/examples/jsm/interactive/SelectionBox.js';
-import { SelectionHelper } from 'three/examples/jsm/interactive/SelectionHelper.js';
-import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js';
-
-import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
-import { MapControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { Water } from 'three/examples/jsm/objects/Water.js';
-import { Sky } from 'three/examples/jsm/objects/Sky.js';
-import { Refractor } from 'three/examples/jsm/objects/Refractor.js';
-import { WaterRefractionShader } from 'three/examples/jsm/shaders/WaterRefractionShader.js';
-import {
-  VOXLoader,
-  VOXDataTexture3D,
-} from 'three/examples/jsm/loaders/VOXLoader.js';
 import '../stylesheet/detail.scss';
-import { DragControls } from 'three/examples/jsm/controls/DragControls.js';
-//import { VRButton } from './jsm/webxr/VRButton.js';
-
-//import { AmmoPhysics } from ENABLE3D;
-//import * as THREE from '../build/three.module.js';
-
-//import Stats from './jsm/libs/stats.module.js';
-
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { WEBGL } from 'three/examples/jsm/WebGL.js';
 
-import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
-import { BokehPass } from 'three/examples/jsm/postprocessing/BokehPass.js';
-
-//import { ImprovedNoise } from './jsm/math/ImprovedNoise.js';
 const Detail__36 = () => {
   useEffect(() => {
     let camera, scene, renderer, bulbLight, bulbMat, hemiLight, stats;
     let ballMat, cubeMat, floorMat;
-
     let previousShadowMap = false;
 
     // ref for lumens: http://www.power-sure.com/lumens.htm
@@ -92,8 +52,8 @@ const Detail__36 = () => {
     function init() {
       const container = document.getElementById('container');
 
-      stats = new Stats();
-      container.appendChild(stats.dom);
+      // stats = new Stats();
+      // container.appendChild(stats.dom);
 
       camera = new THREE.PerspectiveCamera(
         50,
@@ -127,10 +87,7 @@ const Detail__36 = () => {
       const texture_img = new THREE.TextureLoader().load(img);
 
       floorMat = new THREE.MeshStandardMaterial({
-        //roughness: 0.8,
         map: texture_img,
-        // metalness: 0.2,
-        // bumpScale: 0.0005
       });
       const textureLoader = new THREE.TextureLoader();
       textureLoader.load('textures/hardwood2_diffuse.jpg', function (map) {
@@ -244,28 +201,16 @@ const Detail__36 = () => {
       controls.maxDistance = 20;
 
       window.addEventListener('resize', onWindowResize);
-
-      // const gui = new GUI();
-
-      // gui.add(params, 'hemiIrradiance', Object.keys(hemiLuminousIrradiances));
-      // gui.add(params, 'bulbPower', Object.keys(bulbLuminousPowers));
-      // gui.add(params, 'exposure', 0, 1);
-      // gui.add(params, 'shadows');
-      // gui.open();
     }
 
     function onWindowResize() {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
-
       renderer.setSize(window.innerWidth, window.innerHeight);
     }
 
-    //
-
     function animate() {
       requestAnimationFrame(animate);
-
       render();
     }
 
@@ -287,15 +232,12 @@ const Detail__36 = () => {
       hemiLight.intensity = hemiLuminousIrradiances[params.hemiIrradiance];
       const time = Date.now() * 0.0005;
 
-      bulbLight.position.y = Math.cos(time) * 0.75 + 1.25;
+      bulbLight.position.y = Math.cos(time) * 0.95 + 1.25;
 
       renderer.render(scene, camera);
 
-      stats.update();
+      // stats.update();
     }
-    // return () => {
-    //   document.body.removeChild(renderer.domElement);
-    // };
   }, []);
   return <div className="detail-body" id="container"></div>;
 };

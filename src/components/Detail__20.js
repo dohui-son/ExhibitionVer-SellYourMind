@@ -3,9 +3,6 @@ import ReactDOM from 'react-dom';
 import * as THREE from 'three';
 import { Scene } from 'three';
 import img from '../material/texture/16.jpg';
-import wall from '../material/texture/b_watercolor.jpg';
-
-import Stats from 'three/examples/jsm/libs/stats.module.js';
 
 import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js';
 import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
@@ -318,11 +315,11 @@ const Detail__20 = () => {
         material.uniforms.steps.value = parameters.steps;
       }
 
-      const gui = new GUI();
-      gui.add(parameters, 'threshold', 0, 1, 0.01).onChange(update);
-      gui.add(parameters, 'opacity', 0, 1, 0.01).onChange(update);
-      gui.add(parameters, 'range', 0, 1, 0.01).onChange(update);
-      gui.add(parameters, 'steps', 0, 200, 1).onChange(update);
+      // const gui = new GUI();
+      // gui.add(parameters, 'threshold', 0, 1, 0.01).onChange(update);
+      // gui.add(parameters, 'opacity', 0, 1, 0.01).onChange(update);
+      // gui.add(parameters, 'range', 0, 1, 0.01).onChange(update);
+      // gui.add(parameters, 'steps', 0, 200, 1).onChange(update);
 
       window.addEventListener('resize', onWindowResize);
     }

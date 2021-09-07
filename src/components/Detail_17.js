@@ -113,8 +113,8 @@ const Detail_17 = () => {
 
       container.addEventListener('pointermove', onPointerMove);
 
-      stats = new Stats();
-      container.appendChild(stats.dom);
+      // stats = new Stats();
+      // container.appendChild(stats.dom);
 
       //
 
@@ -225,7 +225,7 @@ const Detail_17 = () => {
       requestAnimationFrame(animate);
 
       render();
-      stats.update();
+      // stats.update();
     }
 
     function render() {

@@ -148,8 +148,8 @@ const Detail_10 = () => {
       controls.lookSpeed = 0.125;
       controls.lookVertical = true;
 
-      stats = new Stats();
-      container.appendChild(stats.dom);
+      // stats = new Stats();
+      // container.appendChild(stats.dom);
 
       //
 
@@ -198,7 +198,7 @@ const Detail_10 = () => {
       requestAnimationFrame(animate);
 
       render();
-      stats.update();
+      // stats.update();
     }
 
     function render() {

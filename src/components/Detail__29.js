@@ -160,21 +160,21 @@ const Detail__29 = () => {
       container.appendChild(renderer.domElement);
 
       // gui controls
-      const gui = new GUI();
-      const params = {
-        'box projected': true,
-      };
-      const bpcemGui = gui.add(params, 'box projected');
+      // const gui = new GUI();
+      // const params = {
+      //   'box projected': true,
+      // };
+      // const bpcemGui = gui.add(params, 'box projected');
 
-      bpcemGui.onChange(function (value) {
-        if (value) {
-          groundPlane.material = boxProjectedMat;
-        } else {
-          groundPlane.material = defaultMat;
-        }
+      // bpcemGui.onChange(function (value) {
+      //   if (value) {
+      //     groundPlane.material = boxProjectedMat;
+      //   } else {
+      //     groundPlane.material = defaultMat;
+      //   }
 
-        render();
-      });
+      //   render();
+      // });
 
       // scene
       scene = new THREE.Scene();

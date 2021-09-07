@@ -1,21 +1,10 @@
 import React, { Component, useEffect } from 'react';
-import ReactDOM from 'react-dom';
 import * as THREE from 'three';
-import { Scene } from 'three';
 import img from '../material/texture/12.jpg';
-import wall from '../material/texture/b_watercolor.jpg';
-
-import Stats from 'three/examples/jsm/libs/stats.module.js';
-
-import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js';
-import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
-import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 
 import '../stylesheet/detail__18.scss';
 import { PointerLockControls } from 'three/examples/jsm/controls/PointerLockControls.js';
 
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-//import { ImprovedNoise } from './jsm/math/ImprovedNoise.js';
 const Detail__18 = () => {
   useEffect(() => {
     let camera, scene, renderer, controls;

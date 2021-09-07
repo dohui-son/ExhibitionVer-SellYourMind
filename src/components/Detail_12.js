@@ -86,8 +86,8 @@ const Detail_12 = () => {
       controls.movementSpeed = 150;
       controls.lookSpeed = 0.1;
 
-      stats = new Stats();
-      container.appendChild(stats.dom);
+      // stats = new Stats();
+      // container.appendChild(stats.dom);
 
       //
 
@@ -203,7 +203,7 @@ const Detail_12 = () => {
       requestAnimationFrame(animate);
 
       render();
-      stats.update();
+      // stats.update();
     }
 
     function render() {

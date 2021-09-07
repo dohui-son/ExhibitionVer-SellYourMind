@@ -1,30 +1,24 @@
 import React, { Component, useEffect } from 'react';
-import ReactDOM from 'react-dom';
 import * as THREE from 'three';
-import { Scene } from 'three';
 import img from '../material/texture/bp.jpg';
-import wall from '../material/texture/b_watercolor.jpg';
 
-import Stats from 'three/examples/jsm/libs/stats.module.js';
+// import Stats from 'three/examples/jsm/libs/stats.module.js';
 
 import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js';
 import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
 import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 
 import '../stylesheet/detail.scss';
-//import { VRButton } from './jsm/webxr/VRButton.js';
+
 const Detail_7 = () => {
   useEffect(() => {
     let container, stats;
-
     let camera, controls, scene, renderer;
-
     const worldWidth = 128,
       worldDepth = 128;
     const worldHalfWidth = worldWidth / 2;
     const worldHalfDepth = worldDepth / 2;
     const data = generateHeight(worldWidth, worldDepth);
-
     const clock = new THREE.Clock();
 
     init();
@@ -47,9 +41,7 @@ const Detail_7 = () => {
       scene.background = new THREE.TextureLoader().load(img);
 
       // sides
-
       const matrix = new THREE.Matrix4();
-
       const pxGeometry = new THREE.PlaneGeometry(100, 100);
       pxGeometry.attributes.uv.array[1] = 0.5;
       pxGeometry.attributes.uv.array[3] = 0.5;
@@ -121,9 +113,6 @@ const Detail_7 = () => {
       const geometry = BufferGeometryUtils.mergeBufferGeometries(geometries);
       geometry.computeBoundingSphere();
 
-      //const texture = new THREE.TextureLoader().load(img);
-      //texture.magFilter = THREE.NearestFilter;
-
       const mesh = new THREE.Mesh(
         geometry,
         new THREE.MeshLambertMaterial({ map: texture, side: THREE.DoubleSide })
@@ -132,10 +121,6 @@ const Detail_7 = () => {
 
       const ambientLight = new THREE.AmbientLight(0xcccccc);
       scene.add(ambientLight);
-
-      // const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
-      // directionalLight.position.set(1, 1, 0.5).normalize();
-      // scene.add(directionalLight);
 
       renderer = new THREE.WebGLRenderer({ antialias: true });
       renderer.setPixelRatio(window.devicePixelRatio);
@@ -148,8 +133,8 @@ const Detail_7 = () => {
       controls.lookSpeed = 0.125;
       controls.lookVertical = true;
 
-      stats = new Stats();
-      container.appendChild(stats.dom);
+      // stats = new Stats();
+      // container.appendChild(stats.dom);
 
       //
 
@@ -198,16 +183,13 @@ const Detail_7 = () => {
       requestAnimationFrame(animate);
 
       render();
-      stats.update();
+      // stats.update();
     }
 
     function render() {
       controls.update(clock.getDelta());
       renderer.render(scene, camera);
     }
-    // return () => {
-    //   document.body.removeChild(renderer.domElement);
-    // };
   }, []);
   return <div className="detail-body" id="container"></div>;
 };

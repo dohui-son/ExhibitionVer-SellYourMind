@@ -163,8 +163,8 @@ const Detail__33 = () => {
 
       //
 
-      stats = new Stats();
-      document.body.appendChild(stats.dom);
+      // stats = new Stats();
+      // document.body.appendChild(stats.dom);
 
       //
 
@@ -197,7 +197,7 @@ const Detail__33 = () => {
 
       renderer.render(scene, camera);
 
-      stats.update();
+      // stats.update();
     }
     return () => {
       document.body.removeChild(renderer.domElement);
