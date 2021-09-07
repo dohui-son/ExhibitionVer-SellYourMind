@@ -118,9 +118,6 @@ const Detail_4 = () => {
       //
 
       window.addEventListener('resize', onWindowResize);
-
-      const gui = new GUI();
-      gui.add(controls, 'screenSpacePanning');
     }
 
     function onWindowResize() {

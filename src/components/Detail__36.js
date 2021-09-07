@@ -245,13 +245,13 @@ const Detail__36 = () => {
 
       window.addEventListener('resize', onWindowResize);
 
-      const gui = new GUI();
+      // const gui = new GUI();
 
-      gui.add(params, 'hemiIrradiance', Object.keys(hemiLuminousIrradiances));
-      gui.add(params, 'bulbPower', Object.keys(bulbLuminousPowers));
-      gui.add(params, 'exposure', 0, 1);
-      gui.add(params, 'shadows');
-      gui.open();
+      // gui.add(params, 'hemiIrradiance', Object.keys(hemiLuminousIrradiances));
+      // gui.add(params, 'bulbPower', Object.keys(bulbLuminousPowers));
+      // gui.add(params, 'exposure', 0, 1);
+      // gui.add(params, 'shadows');
+      // gui.open();
     }
 
     function onWindowResize() {

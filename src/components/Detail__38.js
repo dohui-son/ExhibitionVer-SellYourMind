@@ -27,7 +27,7 @@ import {
 
 import { WEBGL } from 'three/examples/jsm/WebGL.js';
 
-import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
+//import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
 
 //import { ImprovedNoise } from './jsm/math/ImprovedNoise.js';
 const Detail__38 = () => {
@@ -318,11 +318,11 @@ const Detail__38 = () => {
         material.uniforms.steps.value = parameters.steps;
       }
 
-      const gui = new GUI();
-      gui.add(parameters, 'threshold', 0, 1, 0.01).onChange(update);
-      gui.add(parameters, 'opacity', 0, 1, 0.01).onChange(update);
-      gui.add(parameters, 'range', 0, 1, 0.01).onChange(update);
-      gui.add(parameters, 'steps', 0, 200, 1).onChange(update);
+      // const gui = new GUI();
+      // gui.add(parameters, 'threshold', 0, 1, 0.01).onChange(update);
+      // gui.add(parameters, 'opacity', 0, 1, 0.01).onChange(update);
+      // gui.add(parameters, 'range', 0, 1, 0.01).onChange(update);
+      // gui.add(parameters, 'steps', 0, 200, 1).onChange(update);
 
       window.addEventListener('resize', onWindowResize);
     }
