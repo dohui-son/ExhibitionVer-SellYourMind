@@ -1,33 +1,17 @@
-import React, { Component, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useEffect } from 'react';
 import * as THREE from 'three';
-import { Scene } from 'three';
 import img from '../material/texture/18.jpg';
-import wall from '../material/texture/b_watercolor.jpg';
-
-import Stats from 'three/examples/jsm/libs/stats.module.js';
-
 import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js';
 import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
-import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 
 import '../stylesheet/detail.scss';
-//import { VRButton } from './jsm/webxr/VRButton.js';
-
-//import * as THREE from '../build/three.module.js';
-
-//import Stats from './jsm/libs/stats.module.js';
-
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-//import { ImprovedNoise } from './jsm/math/ImprovedNoise.js';
 const Detail__22 = () => {
   useEffect(() => {
-    //scene.background = new THREE.TextureLoader().load(img);
     let container, stats;
     let camera, controls, scene, renderer;
     let mesh, texture;
 
-    const worldWidth = 256,
+    const worldWidth = 356, //256
       worldDepth = 256;
     const clock = new THREE.Clock();
 
@@ -92,6 +76,13 @@ const Detail__22 = () => {
       // container.appendChild(stats.dom);
 
       //
+      const onKeyDown = function (event) {
+        if (event.code === 'Tab')
+          window.location.href = 'sell_your_mind_research#/d21';
+      };
+
+      //
+      document.addEventListener('keydown', onKeyDown);
 
       window.addEventListener('resize', onWindowResize);
     }

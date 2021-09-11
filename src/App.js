@@ -5,7 +5,7 @@ import { Route, HashRouter } from 'react-router-dom';
 import Home from './page/Home';
 import Auth from './page/Auth';
 import MyPage from './page/MyPage';
-import Market from './page/Market';
+import Market from './components/Detail__32'; //'./page/Market';
 import Sell from './page/Sell';
 import Layout from './components/Layout';
 import Square from './components/Square';

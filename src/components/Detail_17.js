@@ -109,14 +109,13 @@ const Detail_17 = () => {
       geometryHelper.translate(0, 50, 0);
       geometryHelper.rotateX(Math.PI / 2);
       helper = new THREE.Mesh(geometryHelper, new THREE.MeshNormalMaterial());
-      //scene.add(helper);
+      const onKeyDown = function (event) {
+        if (event.code === 'Tab')
+          window.location.href = 'sell_your_mind_research#/d3';
+      };
+      document.addEventListener('keydown', onKeyDown);
 
       container.addEventListener('pointermove', onPointerMove);
-
-      // stats = new Stats();
-      // container.appendChild(stats.dom);
-
-      //
 
       window.addEventListener('resize', onWindowResize);
     }

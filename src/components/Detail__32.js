@@ -1,48 +1,21 @@
 import React, { Component, useEffect } from 'react';
-import ReactDOM from 'react-dom';
 import * as THREE from 'three';
-import { Scene } from 'three';
+
 import img from '../material/texture/21.jpeg';
-import wall from '../material/texture/b_watercolor.jpg';
 
-import Stats from 'three/examples/jsm/libs/stats.module.js';
 //도시의 첫인상
+import { Route, Link } from 'react-router-dom';
+// {/* <Link className="back" to="/sell_your_mind_research">
+//         <img src={LogoK} alt="logo" />
+//       </Link> */}
 
-import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js';
-import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
-import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import { MapControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { Water } from 'three/examples/jsm/objects/Water.js';
-import { Sky } from 'three/examples/jsm/objects/Sky.js';
-import { Refractor } from 'three/examples/jsm/objects/Refractor.js';
-import { WaterRefractionShader } from 'three/examples/jsm/shaders/WaterRefractionShader.js';
-import {
-  VOXLoader,
-  VOXDataTexture3D,
-} from 'three/examples/jsm/loaders/VOXLoader.js';
-import '../stylesheet/detail.scss';
-import { DragControls } from 'three/examples/jsm/controls/DragControls.js';
-//import { VRButton } from './jsm/webxr/VRButton.js';
 
-//import * as THREE from '../build/three.module.js';
-
-//import Stats from './jsm/libs/stats.module.js';
-
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { WEBGL } from 'three/examples/jsm/WebGL.js';
-
-import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
-import { BokehPass } from 'three/examples/jsm/postprocessing/BokehPass.js';
-
-//import { ImprovedNoise } from './jsm/math/ImprovedNoise.js';
 const Detail_4 = () => {
   useEffect(() => {
     let camera, controls, scene, renderer;
 
     init();
-    //render(); // remove when using next line for animation loop (requestAnimationFrame)
     animate();
 
     function init() {
@@ -115,7 +88,11 @@ const Detail_4 = () => {
       const ambientLight = new THREE.AmbientLight(0x222222);
       scene.add(ambientLight);
 
-      //
+      const onKeyDown = function (event) {
+        if (event.code === 'Tab')
+          window.location.href = 'sell_your_mind_research#/d38';
+      };
+      document.addEventListener('keydown', onKeyDown);
 
       window.addEventListener('resize', onWindowResize);
     }

@@ -111,10 +111,13 @@ const Detail_11 = () => {
 
       container.addEventListener('pointermove', onPointerMove);
 
-      // stats = new Stats();
-      // container.appendChild(stats.dom);
+      const onKeyDown = function (event) {
+        if (event.code === 'Tab')
+          window.location.href = 'sell_your_mind_research#/d30';
+      };
 
       //
+      document.addEventListener('keydown', onKeyDown);
 
       window.addEventListener('resize', onWindowResize);
     }

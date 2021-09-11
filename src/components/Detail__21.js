@@ -317,8 +317,13 @@ const Detail__21 = () => {
         material.uniforms.range.value = parameters.range;
         material.uniforms.steps.value = parameters.steps;
       }
+      const onKeyDown = function (event) {
+        if (event.code === 'Tab')
+          window.location.href = 'sell_your_mind_research#/d11';
+      };
 
-
+      //
+      document.addEventListener('keydown', onKeyDown);
 
       window.addEventListener('resize', onWindowResize);
     }

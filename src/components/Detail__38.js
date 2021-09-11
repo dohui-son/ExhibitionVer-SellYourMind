@@ -157,6 +157,10 @@ const Detail__38 = () => {
         scene.add(sphere);
       };
       ///////////////////////////////////////////
+      const onKeyDown = function (event) {
+        if (event.code === 'Tab')
+          window.location.href = 'sell_your_mind_research#/d19';
+      };
 
       const sky = new THREE.Mesh(
         new THREE.SphereGeometry(10),
@@ -318,12 +322,7 @@ const Detail__38 = () => {
         material.uniforms.steps.value = parameters.steps;
       }
 
-      // const gui = new GUI();
-      // gui.add(parameters, 'threshold', 0, 1, 0.01).onChange(update);
-      // gui.add(parameters, 'opacity', 0, 1, 0.01).onChange(update);
-      // gui.add(parameters, 'range', 0, 1, 0.01).onChange(update);
-      // gui.add(parameters, 'steps', 0, 200, 1).onChange(update);
-
+      document.addEventListener('keydown', onKeyDown);
       window.addEventListener('resize', onWindowResize);
     }
 
@@ -372,7 +371,6 @@ const Detail__38 = () => {
       }
 
       mesh.material.uniforms.cameraPos.value.copy(camera.position);
-      // mesh.rotation.y = - performance.now() / 7500;
 
       mesh.material.uniforms.frame.value++;
 

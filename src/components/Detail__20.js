@@ -320,6 +320,11 @@ const Detail__20 = () => {
       // gui.add(parameters, 'opacity', 0, 1, 0.01).onChange(update);
       // gui.add(parameters, 'range', 0, 1, 0.01).onChange(update);
       // gui.add(parameters, 'steps', 0, 200, 1).onChange(update);
+      const onKeyDown = function (event) {
+        if (event.code === 'Tab')
+          window.location.href = 'sell_your_mind_research#/d17';
+      };
+      document.addEventListener('keydown', onKeyDown);
 
       window.addEventListener('resize', onWindowResize);
     }

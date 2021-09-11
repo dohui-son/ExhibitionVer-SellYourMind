@@ -89,6 +89,11 @@ const Detail_15 = () => {
       //document.body.appendChild(VRButton.createButton(renderer));
 
       //
+      const onKeyDown = function (event) {
+        if (event.code === 'Tab')
+          window.location.href = 'sell_your_mind_research#/d20';
+      };
+      document.addEventListener('keydown', onKeyDown);
 
       window.addEventListener('resize', onWindowResize);
     }
@@ -108,11 +113,11 @@ const Detail_15 = () => {
       // If we are not presenting move the camera a little so the effect is visible
 
       if (renderer.xr.isPresenting === false) {
-        const time = clock.getElapsedTime();
+        const time = clock.getElapsedTime() * 10;
 
-        sphere.rotation.y += 0.001;
-        sphere.position.x = Math.sin(time) * 0.2;
-        sphere.position.z = Math.cos(time) * 0.2;
+        sphere.rotation.y += 0.1;
+        sphere.position.x = Math.sin(time) * 4; //0.2
+        sphere.position.z = Math.cos(time) * 4; //0.2
       }
 
       renderer.render(scene, camera);

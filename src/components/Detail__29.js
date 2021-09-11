@@ -189,6 +189,13 @@ const Detail__29 = () => {
       cameraControls.minDistance = 10;
       cameraControls.addEventListener('change', render);
       cameraControls.update();
+      const onKeyDown = function (event) {
+        if (event.code === 'Tab')
+          window.location.href = 'sell_your_mind_research#/d41';
+      };
+
+      //
+      document.addEventListener('keydown', onKeyDown);
 
       // cube camera for environment map
 

@@ -108,20 +108,13 @@ const Detail__30 = () => {
         Refraction: false,
       };
 
-      // const gui = new GUI();
-      // gui.add(params, 'Cube');
-      // gui.add(params, 'Equirectangular');
-      // gui.add(params, 'Refraction').onChange(function (value) {
-      //   if (value) {
-      //     textureEquirec.mapping = THREE.EquirectangularRefractionMapping;
-      //     textureCube.mapping = THREE.CubeRefractionMapping;
-      //   } else {
-      //     textureEquirec.mapping = THREE.EquirectangularReflectionMapping;
-      //     textureCube.mapping = THREE.CubeReflectionMapping;
-      //   }
-      //   sphereMaterial.needsUpdate = true;
-      // });
-      // gui.open();
+      const onKeyDown = function (event) {
+        if (event.code === 'Tab')
+          window.location.href = 'sell_your_mind_research#/d29';
+      };
+
+      //
+      document.addEventListener('keydown', onKeyDown);
 
       window.addEventListener('resize', onWindowResize);
     }

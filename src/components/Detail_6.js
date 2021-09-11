@@ -159,6 +159,11 @@ const Detail_6 = () => {
       //   const light = new THREE.DirectionalLight(0xffffff, 1);
       //   light.position.set(-1, 2, 4);
       //   scene.add(light);
+      const onKeyDown = function (event) {
+        if (event.code === 'Tab')
+          window.location.href = 'sell_your_mind_research#/d43';
+      };
+      document.addEventListener('keydown', onKeyDown);
 
       document.addEventListener('pointerdown', onPointerDown);
       document.addEventListener('wheel', onDocumentMouseWheel);

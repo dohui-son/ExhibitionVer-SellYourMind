@@ -171,6 +171,11 @@ const Detail__33 = () => {
       clock = new THREE.Clock();
 
       //
+      const onKeyDown = function (event) {
+        if (event.code === 'Tab')
+          window.location.href = 'sell_your_mind_research#/d23';
+      };
+      document.addEventListener('keydown', onKeyDown);
 
       window.addEventListener('resize', onWindowResize);
     }

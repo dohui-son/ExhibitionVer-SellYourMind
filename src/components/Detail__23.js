@@ -119,6 +119,11 @@ const Detail__23 = () => {
       // container.appendChild(stats.dom);
 
       //
+      const onKeyDown = function (event) {
+        if (event.code === 'Tab')
+          window.location.href = 'sell_your_mind_research#/d4';
+      };
+      document.addEventListener('keydown', onKeyDown);
 
       window.addEventListener('resize', onWindowResize);
     }

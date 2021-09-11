@@ -4,6 +4,10 @@ import img from '../material/texture/12.jpg';
 
 import '../stylesheet/detail__18.scss';
 import { PointerLockControls } from 'three/examples/jsm/controls/PointerLockControls.js';
+import { Route, Link } from 'react-router-dom';
+// {/* <Link className="back" to="/sell_your_mind_research">
+//         <img src={LogoK} alt="logo" />
+//       </Link> */}
 
 const Detail__18 = () => {
   useEffect(() => {
@@ -93,6 +97,9 @@ const Detail__18 = () => {
           case 'Space':
             if (canJump === true) velocity.y += 350;
             canJump = false;
+            break;
+          case 'Tab':
+            window.location.href = 'sell_your_mind_research#/d33';
             break;
         }
       };

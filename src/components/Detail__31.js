@@ -127,6 +127,13 @@ const Detail__31 = () => {
       controls.addEventListener('drag', render);
 
       //
+      const onKeyDown = function (event) {
+        if (event.code === 'Tab')
+          window.location.href = 'sell_your_mind_research#/d22';
+      };
+
+      //
+      document.addEventListener('keydown', onKeyDown);
 
       window.addEventListener('resize', onWindowResize);
 

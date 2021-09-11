@@ -121,6 +121,10 @@ const Detail_7 = () => {
 
       const ambientLight = new THREE.AmbientLight(0xcccccc);
       scene.add(ambientLight);
+      const onKeyDown = function (event) {
+        if (event.code === 'Tab')
+          window.location.href = 'sell_your_mind_research#/d42';
+      };
 
       renderer = new THREE.WebGLRenderer({ antialias: true });
       renderer.setPixelRatio(window.devicePixelRatio);
@@ -137,6 +141,7 @@ const Detail_7 = () => {
       // container.appendChild(stats.dom);
 
       //
+      document.addEventListener('keydown', onKeyDown);
 
       window.addEventListener('resize', onWindowResize);
     }

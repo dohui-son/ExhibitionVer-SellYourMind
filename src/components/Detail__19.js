@@ -132,6 +132,10 @@ const Detail__19 = () => {
         side: THREE.BackSide,
         displacementScale: -4.0,
       });
+      const onKeyDown = function (event) {
+        if (event.code === 'Tab')
+          window.location.href = 'sell_your_mind_research#/d7';
+      };
 
       // Create the panoramic sphere mesh
       sphere = new THREE.Mesh(panoSphereGeo, panoSphereMat);
@@ -318,8 +322,7 @@ const Detail__19 = () => {
         material.uniforms.steps.value = parameters.steps;
       }
 
-
-
+      document.addEventListener('keydown', onKeyDown);
       window.addEventListener('resize', onWindowResize);
     }
 

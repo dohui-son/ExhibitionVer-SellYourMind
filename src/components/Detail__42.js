@@ -163,10 +163,6 @@ const Detail__42 = () => {
         //new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(canvas), side: THREE.BackSide })
         new THREE.MeshBasicMaterial({ map: texture_img, side: THREE.BackSide })
       );
-      //scene.background = new THREE.TextureLoader().load(img);
-      //scene.add(sky);
-
-      // Texture
 
       const texture = new THREE.DataTexture3D(
         new Uint8Array(
@@ -317,12 +313,13 @@ const Detail__42 = () => {
         material.uniforms.range.value = parameters.range;
         material.uniforms.steps.value = parameters.steps;
       }
+      const onKeyDown = function (event) {
+        if (event.code === 'Tab')
+          window.location.href = 'sell_your_mind_research#/d31';
+      };
 
-      // const gui = new GUI();
-      // gui.add(parameters, 'threshold', 0, 1, 0.01).onChange(update);
-      // gui.add(parameters, 'opacity', 0, 1, 0.01).onChange(update);
-      // gui.add(parameters, 'range', 0, 1, 0.01).onChange(update);
-      // gui.add(parameters, 'steps', 0, 200, 1).onChange(update);
+      //
+      document.addEventListener('keydown', onKeyDown);
 
       window.addEventListener('resize', onWindowResize);
     }
