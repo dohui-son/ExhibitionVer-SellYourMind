@@ -1,17 +1,8 @@
 import React, { Component, useEffect } from 'react';
-import ReactDOM from 'react-dom';
 import * as THREE from 'three';
-import { Scene } from 'three';
 import img from '../material/texture/29.jpeg';
-import wall from '../material/texture/b_watercolor.jpg';
-
-import Stats from 'three/examples/jsm/libs/stats.module.js';
-
-import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js';
 import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
-import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
-
-import '../stylesheet/detail.scss';
+import '../stylesheet/writings.scss';
 //import { VRButton } from './jsm/webxr/VRButton.js';
 
 //import * as THREE from '../build/three.module.js';
@@ -38,8 +29,11 @@ const Detail__38 = () => {
 
     const INITIAL_CLOUD_SIZE = 128;
 
-    let renderer, scene, camera;
-    let mesh;
+    let renderer,
+      scene,
+      camera,
+      mesh,
+      flag = 0;
     let prevTime = performance.now();
     let cloudTexture = null;
     const texture_img = new THREE.TextureLoader().load(img);
@@ -105,7 +99,6 @@ const Detail__38 = () => {
 
       scene.fog = new THREE.Fog(0xffffff, 0, 750);
       // Sky
-
       const canvas = document.createElement('canvas');
       canvas.width = 1;
       canvas.height = 32;
@@ -157,10 +150,6 @@ const Detail__38 = () => {
         scene.add(sphere);
       };
       ///////////////////////////////////////////
-      const onKeyDown = function (event) {
-        if (event.code === 'Tab')
-          window.location.href = 'sell_your_mind_research#/d19';
-      };
 
       const sky = new THREE.Mesh(
         new THREE.SphereGeometry(10),
@@ -187,6 +176,29 @@ const Detail__38 = () => {
 
       cloudTexture = texture_img;
 
+      //blocker and wrintings
+      const blocker = document.getElementById('blocker');
+      const instructions = document.getElementById('instructions');
+      //instructions.style.display = 'none';
+      blocker.style.display = 'none';
+
+      const onKeyDown = function (event) {
+        if (event.code === 'Tab')
+          window.location.href = 'sell_your_mind_research#/d19';
+      };
+      const onKeyPress = function (event) {
+        if (event.code === 'KeyA' && !flag) {
+          blocker.style.display = 'block';
+          instructions.display = '';
+          flag = 1;
+        } else if (event.code === 'KeyA' && flag) {
+          blocker.style.display = 'none';
+          instructions.style.display = 'none';
+          flag = 0;
+        }
+      };
+      document.addEventListener('keypress', onKeyPress);
+      document.addEventListener('keydown', onKeyDown);
       // Material
 
       const vertexShader = /* glsl */ `
@@ -321,8 +333,6 @@ const Detail__38 = () => {
         material.uniforms.range.value = parameters.range;
         material.uniforms.steps.value = parameters.steps;
       }
-
-      document.addEventListener('keydown', onKeyDown);
       window.addEventListener('resize', onWindowResize);
     }
 
@@ -371,15 +381,32 @@ const Detail__38 = () => {
       }
 
       mesh.material.uniforms.cameraPos.value.copy(camera.position);
-
       mesh.material.uniforms.frame.value++;
-
       renderer.render(scene, camera);
     }
     return () => {
       document.body.removeChild(renderer.domElement);
     };
   }, []);
-  return <div className="detail-body" id="container"></div>;
+  return (
+    <div className="blocker" id="blocker">
+      <div className="instructions" id="instructions">
+        <div className="text">
+          <h4>호텔 선인장</h4>
+          어느 시가의 동쪽 변두리에 오래된 아파트가 있었습니다. 낡고 허름한
+          회색의 석조 건물이었습니다. 그런데 막상 안으로 들어서니 제법 선선하여
+          기분이 무척 좋았습니다. ‘호텔 선인장’, 이것이 이 아파트의
+          이름이었습니다. 호텔이 아니라 아파트인데도 그런 이름이었습니다. 호텔
+          선인장에는 아주 작은 마당이 있었는데, 그곳에는 검은 고양이 한 마리가
+          배를 깔고 누워 있었습니다. …… 이 아파트의 현관을 들어서면, 실내라고도
+          실외라고도 말하기 어려운 공간이 있습니다. 우측 벽에 우편함이 늘어서
+          있고, 왼쪽 구석에 철제 접이식 도어가 달린 엘리베이터가 있고, 그 앞으로
+          좁은 통로가 나 있으며 막다른 곳이 마당이었습니다. ……그 중 3층 한구석에
+          ‘모자’, 2층 한구석에 ‘오이’, 그리고 1층 한구석에 숫자 ‘2’가 살고
+          있었습니다. 세 사람은 죽이 잘맞는 친구들이었습니다.
+        </div>
+      </div>
+    </div>
+  );
 };
 export default Detail__38;

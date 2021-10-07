@@ -1,23 +1,10 @@
 import React, { Component, useEffect } from 'react';
-import ReactDOM from 'react-dom';
 import * as THREE from 'three';
-import { Scene } from 'three';
 import img from '../material/texture/18.jpg';
-import wall from '../material/texture/b_watercolor.jpg';
 
-import Stats from 'three/examples/jsm/libs/stats.module.js';
-
-import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js';
 import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
-import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 
-import '../stylesheet/detail.scss';
-//import { VRButton } from './jsm/webxr/VRButton.js';
-
-//import * as THREE from '../build/three.module.js';
-
-//import Stats from './jsm/libs/stats.module.js';
-
+import '../stylesheet/writings.scss';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 import {
@@ -26,7 +13,6 @@ import {
 } from 'three/examples/jsm/loaders/VOXLoader.js';
 
 import { WEBGL } from 'three/examples/jsm/WebGL.js';
-
 import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
 
 //import { ImprovedNoise } from './jsm/math/ImprovedNoise.js';
@@ -35,10 +21,11 @@ const Detail__19 = () => {
     if (WEBGL.isWebGL2Available() === false) {
       document.body.appendChild(WEBGL.getWebGL2ErrorMessage());
     }
-
     const INITIAL_CLOUD_SIZE = 128;
-
-    let renderer, scene, camera;
+    let renderer,
+      scene,
+      camera,
+      flag = 0;
     let mesh;
     let prevTime = performance.now();
     let cloudTexture = null;
@@ -104,6 +91,10 @@ const Detail__19 = () => {
       new OrbitControls(camera, renderer.domElement);
 
       scene.fog = new THREE.Fog(0xffffff, 0, 750);
+      const blocker = document.getElementById('blocker');
+      const instructions = document.getElementById('instructions');
+      blocker.style.display = 'none';
+      instructions.style.display = 'none';
       // Sky
 
       const canvas = document.createElement('canvas');
@@ -135,6 +126,17 @@ const Detail__19 = () => {
       const onKeyDown = function (event) {
         if (event.code === 'Tab')
           window.location.href = 'sell_your_mind_research#/d7';
+      };
+      const onKeyPress = function (event) {
+        if (event.code === 'KeyA' && !flag) {
+          blocker.style.display = 'block';
+          instructions.style.display = '';
+          flag = 1;
+        } else if (event.code === 'KeyA' && flag) {
+          blocker.style.display = 'none';
+          instructions.style.display = 'none';
+          flag = 0;
+        }
       };
 
       // Create the panoramic sphere mesh
@@ -321,7 +323,7 @@ const Detail__19 = () => {
         material.uniforms.range.value = parameters.range;
         material.uniforms.steps.value = parameters.steps;
       }
-
+      document.addEventListener('keypress', onKeyPress);
       document.addEventListener('keydown', onKeyDown);
       window.addEventListener('resize', onWindowResize);
     }
@@ -381,6 +383,29 @@ const Detail__19 = () => {
       document.body.removeChild(renderer.domElement);
     };
   }, []);
-  return <div className="detail-body" id="container"></div>;
+  return (
+    <div className="blocker" id="blocker">
+      <div className="instructions" id="instructions">
+        <div className="text">
+          <h4>BigSur</h4>
+          "The people who are crazy enough to think they can change the world
+          are the ones who do."
+          <br />
+          <br />
+          "I've always been attracted to the more revolutionary changes. I don't
+          know why. Because they're harder. They're much more stressful
+          emotionally. And you usually go through a period where everybody tells
+          you that you’ve completely failed."
+          <br />
+          <br />
+          "It's really hard to design products by focus groups. A lot of times,
+          people don't know what they want until you show it to them."
+          <br />
+          -STEVE JOBS-
+        </div>
+      </div>
+    </div>
+  );
+  <div className="detail-body" id="container"></div>;
 };
 export default Detail__19;
