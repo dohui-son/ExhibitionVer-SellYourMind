@@ -4,10 +4,6 @@ import img from '../material/texture/12.jpg';
 
 import '../stylesheet/detail__18.scss';
 import { PointerLockControls } from 'three/examples/jsm/controls/PointerLockControls.js';
-import { Route, Link } from 'react-router-dom';
-// {/* <Link className="back" to="/sell_your_mind_research">
-//         <img src={LogoK} alt="logo" />
-//       </Link> */}
 
 const Detail__18 = () => {
   useEffect(() => {
@@ -258,16 +254,11 @@ const Detail__18 = () => {
       if (controls.isLocked === true) {
         raycaster.ray.origin.copy(controls.getObject().position);
         raycaster.ray.origin.y -= 10;
-
         const intersections = raycaster.intersectObjects(objects);
-
         const onObject = intersections.length > 0;
-
         const delta = (time - prevTime) / 1000;
-
         velocity.x -= velocity.x * 10.0 * delta;
         velocity.z -= velocity.z * 10.0 * delta;
-
         velocity.y -= 9.8 * 100.0 * delta; // 100.0 = mass
 
         direction.z = Number(moveForward) - Number(moveBackward);
@@ -306,7 +297,6 @@ const Detail__18 = () => {
   }, []);
 
   return (
-    // <div className="detail18-body" id="container">
     <div className="blocker" id="blocker">
       <div className="instructions" id="instructions">
         <p>Click to play</p>
@@ -319,7 +309,6 @@ const Detail__18 = () => {
         </p>
       </div>
     </div>
-    // </div>
   );
 };
 export default Detail__18;

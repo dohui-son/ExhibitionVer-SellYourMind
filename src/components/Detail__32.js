@@ -2,18 +2,19 @@ import React, { Component, useEffect } from 'react';
 import * as THREE from 'three';
 
 import img from '../material/texture/21.jpeg';
-
+import '../stylesheet/writings.scss';
+import '../stylesheet/detail.scss';
 //도시의 첫인상
-import { Route, Link } from 'react-router-dom';
-// {/* <Link className="back" to="/sell_your_mind_research">
-//         <img src={LogoK} alt="logo" />
-//       </Link> */}
 
 import { MapControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 const Detail_4 = () => {
   useEffect(() => {
-    let camera, controls, scene, renderer;
+    let camera,
+      controls,
+      scene,
+      renderer,
+      flag = 0;
 
     init();
     animate();
@@ -36,22 +37,19 @@ const Detail_4 = () => {
       );
       camera.position.set(400, 200, 0);
 
-      // controls
-
       controls = new MapControls(camera, renderer.domElement);
-
-      //controls.addEventListener( 'change', render ); // call this only in static scenes (i.e., if there is no animation loop)
-
-      controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
+      controls.enableDamping = true;
       controls.dampingFactor = 0.05;
-
       controls.screenSpacePanning = false;
 
       controls.minDistance = 100;
       controls.maxDistance = 500;
-
       controls.maxPolarAngle = Math.PI / 2;
 
+      const blocker = document.getElementById('blocker');
+      const instructions = document.getElementById('instructions');
+      instructions.style.display = 'none';
+      blocker.style.display = 'none';
       // world
 
       const geometry = new THREE.BoxGeometry(1, 1, 1);
@@ -88,12 +86,22 @@ const Detail_4 = () => {
       const ambientLight = new THREE.AmbientLight(0x222222);
       scene.add(ambientLight);
 
-      const onKeyDown = function (event) {
-        if (event.code === 'Tab')
+      const onKeyPress = function (event) {
+        if (event.code === 'Tab') {
           window.location.href = 'sell_your_mind_research#/d38';
+        }
+        if (event.code === 'KeyA' && !flag) {
+          blocker.style.display = 'block';
+          instructions.style.display = '';
+          flag = 1;
+        } else if (event.code === 'KeyA' && flag) {
+          blocker.style.display = 'none';
+          instructions.style.display = 'none';
+          flag = 0;
+        }
       };
-      document.addEventListener('keydown', onKeyDown);
 
+      document.addEventListener('keypress', onKeyPress);
       window.addEventListener('resize', onWindowResize);
     }
 
@@ -119,6 +127,15 @@ const Detail_4 = () => {
       document.body.removeChild(renderer.domElement);
     };
   }, []);
-  return <div className="detail-body"></div>;
+  // return <div className="detail-body"></div>;
+  return (
+    <div className="blocker" id="blocker">
+      <div className="instructions" id="instructions">
+        <p>"지우개"로 작품화면으로 돌아가세요. </p>
+        <br />
+        <p>You can go back to the ART PIECE by the "ERASER"</p>
+      </div>
+    </div>
+  );
 };
 export default Detail_4;
