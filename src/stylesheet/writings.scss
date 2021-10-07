@@ -1,32 +1,41 @@
-// .detail18-body{
-    // width:100%;
-    // height:100%;
-    // display:block;
-    .blocker {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0,0,0,0.5);
+@font-face {
+  font-family: Noto Sans KR;
+  src: '../material/font/NotoSansKR-Regular.otf';
+}
+.blocker {
+  font: normal 400 16px/1.4 Roboto, Noto Sans KR, Helvetica Neue, Helvetica,
+    Arial, sans-serif;
+  letter-spacing: 0.8rem;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.68);
 
+  .instructions {
+    width: 100%;
+    height: 100%;
 
-        .instructions {
-            width: 100%;
-            height: 100%;
-    
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-    
-            text-align: center;
-            font-size: 14px;
-            cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-            p{
-                font-size: 36px;
-            }
-        }
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+
+    .text {
+      letter-spacing: 0.1em;
+      margin-top: 3rem;
+      width: 70%;
+      font-size: 22px;
+      color: rgba(250, 235, 215, 0.762);
+      h4 {
+        color: #8a9292b6;
+      }
+      @media only screen and (max-width: 600px) {
+        font-size: 14px;
+      }
     }
-
-    
-// }
+  }
+}

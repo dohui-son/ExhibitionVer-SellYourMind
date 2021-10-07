@@ -79,7 +79,7 @@ import Write22 from './components/Write22';
 
 const App = () => {
   return (
-    <div>
+    <div classname="global">
       <HashRouter>
         {/* <Detail__42 /> */}
         {/* <Detail__41 /> */}
