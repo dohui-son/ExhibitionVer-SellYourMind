@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import * as THREE from 'three';
 import { Scene } from 'three';
 import img from '../material/texture/4.jpg';
-import wall from '../material/texture/b_watercolor.jpg';
+import l17 from '../material/letter17.jpeg';
 
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 
@@ -22,7 +22,8 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 //import { ImprovedNoise } from './jsm/math/ImprovedNoise.js';
 const Detail_17 = () => {
   useEffect(() => {
-    let container, stats;
+    let container,
+      flag = 0;
 
     let camera, controls, scene, renderer;
 
@@ -43,7 +44,6 @@ const Detail_17 = () => {
 
     function init() {
       container = document.getElementById('container');
-      container.innerHTML = '';
 
       renderer = new THREE.WebGLRenderer({ antialias: true });
       renderer.setPixelRatio(window.devicePixelRatio);
@@ -78,10 +78,10 @@ const Detail_17 = () => {
       controls.update();
 
       const geometry = new THREE.PlaneGeometry(
-        7500,
-        7500,
-        worldWidth - 1,
-        worldDepth - 1
+        15500,
+        10500,
+        worldWidth - 2,
+        worldDepth - 2
       );
       geometry.rotateX(-Math.PI / 2);
 
@@ -109,14 +109,31 @@ const Detail_17 = () => {
       geometryHelper.translate(0, 50, 0);
       geometryHelper.rotateX(Math.PI / 2);
       helper = new THREE.Mesh(geometryHelper, new THREE.MeshNormalMaterial());
+
+      const blocker = document.getElementById('blocker');
+      const instructions = document.getElementById('instructions');
+      instructions.style.display = 'none';
+      blocker.style.display = 'none';
+      const onKeyPress = function (event) {
+        if (event.code === 'KeyG' && !flag) {
+          blocker.style.display = 'block';
+          instructions.style.display = '';
+          flag = 1;
+        } else if (event.code === 'KeyG' && flag) {
+          blocker.style.display = 'none';
+          instructions.style.display = 'none';
+          flag = 0;
+        }
+      };
+
       const onKeyDown = function (event) {
-        if (event.code === 'Tab')
+        if (event.code === 'KeyF')
           window.location.href = 'sell_your_mind_research#/d3';
       };
       document.addEventListener('keydown', onKeyDown);
 
       container.addEventListener('pointermove', onPointerMove);
-
+      document.addEventListener('keypress', onKeyPress);
       window.addEventListener('resize', onWindowResize);
     }
 
@@ -251,6 +268,14 @@ const Detail_17 = () => {
     //   document.body.removeChild(renderer.domElement);
     // };
   }, []);
-  return <div className="detail-body" id="container"></div>;
+  return (
+    <div className="detail-body" id="container">
+      <div className="blocker" id="blocker">
+        <div className="instructions" id="instructions">
+          <img src={l17} alt="letter" />
+        </div>
+      </div>
+    </div>
+  );
 };
 export default Detail_17;

@@ -159,7 +159,7 @@ const Detail_3 = () => {
       //   light.position.set(-1, 2, 4);
       //   scene.add(light);
       const onKeyDown = function (event) {
-        if (event.code === 'Tab')
+        if (event.code === 'KeyF')
           window.location.href = 'sell_your_mind_research#/d32';
       };
       document.addEventListener('keydown', onKeyDown);

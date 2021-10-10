@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import * as THREE from 'three';
 import { Scene } from 'three';
 import img from '../material/texture/16.jpg';
-
+import l20 from '../material/letter20.png';
 import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js';
 import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
 import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
@@ -35,7 +35,10 @@ const Detail__20 = () => {
 
     const INITIAL_CLOUD_SIZE = 128;
 
-    let renderer, scene, camera;
+    let renderer,
+      scene,
+      camera,
+      flag = 0;
     let mesh;
     let prevTime = performance.now();
     let cloudTexture = null;
@@ -314,18 +317,27 @@ const Detail__20 = () => {
         material.uniforms.range.value = parameters.range;
         material.uniforms.steps.value = parameters.steps;
       }
-
-      // const gui = new GUI();
-      // gui.add(parameters, 'threshold', 0, 1, 0.01).onChange(update);
-      // gui.add(parameters, 'opacity', 0, 1, 0.01).onChange(update);
-      // gui.add(parameters, 'range', 0, 1, 0.01).onChange(update);
-      // gui.add(parameters, 'steps', 0, 200, 1).onChange(update);
+      const blocker = document.getElementById('blocker');
+      const instructions = document.getElementById('instructions');
+      instructions.style.display = 'none';
+      blocker.style.display = 'none';
+      const onKeyPress = function (event) {
+        if (event.code === 'KeyG' && !flag) {
+          blocker.style.display = 'block';
+          instructions.style.display = '';
+          flag = 1;
+        } else if (event.code === 'KeyG' && flag) {
+          blocker.style.display = 'none';
+          instructions.style.display = 'none';
+          flag = 0;
+        }
+      };
       const onKeyDown = function (event) {
-        if (event.code === 'Tab')
+        if (event.code === 'KeyF')
           window.location.href = 'sell_your_mind_research#/d17';
       };
       document.addEventListener('keydown', onKeyDown);
-
+      document.addEventListener('keypress', onKeyPress);
       window.addEventListener('resize', onWindowResize);
     }
 
@@ -384,6 +396,14 @@ const Detail__20 = () => {
       document.body.removeChild(renderer.domElement);
     };
   }, []);
-  return <div className="detail-body" id="container"></div>;
+  return (
+    <div className="detail-body" id="container">
+      <div className="blocker" id="blocker">
+        <div className="instructions" id="instructions">
+          <img src={l20} alt="letter" />
+        </div>
+      </div>
+    </div>
+  );
 };
 export default Detail__20;
