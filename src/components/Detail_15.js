@@ -5,7 +5,7 @@ import { Scene } from 'three';
 import img from '../material/texture/6.jpg';
 import wall from '../material/texture/b_watercolor.jpg';
 
-import Stats from 'three/examples/jsm/libs/stats.module.js';
+import l15 from '../material/letter15.png';
 
 import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js';
 import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
@@ -22,7 +22,12 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 //import { ImprovedNoise } from './jsm/math/ImprovedNoise.js';
 const Detail_15 = () => {
   useEffect(() => {
-    let camera, scene, renderer, sphere, clock;
+    let camera,
+      scene,
+      renderer,
+      sphere,
+      clock,
+      flag = 0;
 
     init();
     animate();
@@ -86,15 +91,27 @@ const Detail_15 = () => {
       renderer.xr.setReferenceSpaceType('local');
       container.appendChild(renderer.domElement);
 
-      //document.body.appendChild(VRButton.createButton(renderer));
-
-      //
+      const blocker = document.getElementById('blocker');
+      const instructions = document.getElementById('instructions');
+      instructions.style.display = 'none';
+      blocker.style.display = 'none';
+      const onKeyPress = function (event) {
+        if (event.code === 'KeyG' && !flag) {
+          blocker.style.display = 'block';
+          instructions.style.display = '';
+          flag = 1;
+        } else if (event.code === 'KeyG' && flag) {
+          blocker.style.display = 'none';
+          instructions.style.display = 'none';
+          flag = 0;
+        }
+      };
       const onKeyDown = function (event) {
-        if (event.code === 'Tab')
+        if (event.code === 'KeyF')
           window.location.href = 'sell_your_mind_research#/d20';
       };
       document.addEventListener('keydown', onKeyDown);
-
+      document.addEventListener('keypress', onKeyPress);
       window.addEventListener('resize', onWindowResize);
     }
 
@@ -122,10 +139,15 @@ const Detail_15 = () => {
 
       renderer.render(scene, camera);
     }
-    // return () => {
-    //   document.body.removeChild(renderer.domElement);
-    // };
   }, []);
-  return <div className="detail-body" id="container"></div>;
+  return (
+    <div className="detail-body" id="container">
+      <div className="blocker" id="blocker">
+        <div className="instructions" id="instructions">
+          <img src={l15} alt="letter" />
+        </div>
+      </div>
+    </div>
+  );
 };
 export default Detail_15;

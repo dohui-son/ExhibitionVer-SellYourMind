@@ -9,15 +9,8 @@ import Stats from 'three/examples/jsm/libs/stats.module.js';
 
 import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js';
 import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
-import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 
 import '../stylesheet/detail.scss';
-//import { VRButton } from './jsm/webxr/VRButton.js';
-
-//import * as THREE from '../build/three.module.js';
-
-//import Stats from './jsm/libs/stats.module.js';
-
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 import {
@@ -26,8 +19,6 @@ import {
 } from 'three/examples/jsm/loaders/VOXLoader.js';
 
 import { WEBGL } from 'three/examples/jsm/WebGL.js';
-
-import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
 
 //import { ImprovedNoise } from './jsm/math/ImprovedNoise.js';
 const Detail__41 = () => {

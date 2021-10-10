@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import * as THREE from 'three';
 import { Scene } from 'three';
 import img from '../material/texture/33.png';
-import wall from '../material/texture/wall.jpg';
+import l2 from '../material/letter2.png';
 import wall2 from '../material/texture/wall2.jpg';
 
 //import wall from "../material/texture/wall_b.png"
@@ -13,7 +13,9 @@ import '../stylesheet/detail.scss';
 const Detail_2 = () => {
   useEffect(() => {
     let camera, scene, renderer;
-    let cube, sphere, torus, material;
+    let cube,
+      flag = 0,
+      material;
 
     let count = 0,
       cubeCamera1,
@@ -140,31 +142,27 @@ const Detail_2 = () => {
         }
         return needResize;
       }
-      //   function render(time) {
-      //     time *= 0.001;
-      //     if (resizeRendererToDisplaySize(renderer)) {
-      //       const canvas = renderer.domElement;
-      //       camera.aspect = canvas.clientWidth / canvas.clientHeight;
-      //       camera.updateProjectionMatrix();
-      //     }
-      //     draws.forEach((draw, ndx) => {
-      //       const speed = 0.2 + ndx * 0.1;
-      //       const rot = time * speed;
-      //       draw.rotation.x = rot;
-      //       draw.rotation.y = rot;
-      //     });
-      //   }
-
-      //adding light - experiment
-      //   const light = new THREE.DirectionalLight(0xffffff, 1);
-      //   light.position.set(-1, 2, 4);
-      //   scene.add(light);
+      const blocker = document.getElementById('blocker');
+      const instructions = document.getElementById('instructions');
+      instructions.style.display = 'none';
+      blocker.style.display = 'none';
+      const onKeyPress = function (event) {
+        if (event.code === 'KeyG' && !flag) {
+          blocker.style.display = 'block';
+          instructions.style.display = '';
+          flag = 1;
+        } else if (event.code === 'KeyG' && flag) {
+          blocker.style.display = 'none';
+          instructions.style.display = 'none';
+          flag = 0;
+        }
+      };
       const onKeyDown = function (event) {
-        if (event.code === 'Tab')
+        if (event.code === 'KeyF')
           window.location.href = 'sell_your_mind_research#/d15';
       };
       document.addEventListener('keydown', onKeyDown);
-
+      document.addEventListener('keypress', onKeyPress);
       document.addEventListener('pointerdown', onPointerDown);
       document.addEventListener('wheel', onDocumentMouseWheel);
 
@@ -259,6 +257,14 @@ const Detail_2 = () => {
       document.body.removeChild(renderer.domElement);
     };
   }, []);
-  return <div className="detail-body" id="container"></div>;
+  return (
+    <div className="detail-body" id="container">
+      <div className="blocker" id="blocker">
+        <div className="instructions" id="instructions">
+          <img src={l2} alt="letter" />
+        </div>
+      </div>
+    </div>
+  );
 };
 export default Detail_2;

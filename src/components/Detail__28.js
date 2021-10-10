@@ -26,7 +26,7 @@ import {
 } from 'three/examples/jsm/loaders/VOXLoader.js';
 
 import { WEBGL } from 'three/examples/jsm/WebGL.js';
-
+import l28 from '../material/letter28.png';
 import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
 
 //import { ImprovedNoise } from './jsm/math/ImprovedNoise.js';
@@ -38,7 +38,10 @@ const Detail__28 = () => {
 
     const INITIAL_CLOUD_SIZE = 128;
 
-    let renderer, scene, camera;
+    let renderer,
+      scene,
+      camera,
+      flag = 0;
     let mesh;
     let prevTime = performance.now();
     let cloudTexture = null;
@@ -317,12 +320,27 @@ const Detail__28 = () => {
         material.uniforms.range.value = parameters.range;
         material.uniforms.steps.value = parameters.steps;
       }
+      const blocker = document.getElementById('blocker');
+      const instructions = document.getElementById('instructions');
+      instructions.style.display = 'none';
+      blocker.style.display = 'none';
+      const onKeyPress = function (event) {
+        if (event.code === 'KeyG' && !flag) {
+          blocker.style.display = 'block';
+          instructions.style.display = '';
+          flag = 1;
+        } else if (event.code === 'KeyG' && flag) {
+          blocker.style.display = 'none';
+          instructions.style.display = 'none';
+          flag = 0;
+        }
+      };
       const onKeyDown = function (event) {
-        if (event.code === 'Tab')
-          window.location.href = 'sell_your_mind_research#/d6';
+        if (event.code === 'KeyF')
+          window.location.href = 'sell_your_mind_research#/d43';
       };
       document.addEventListener('keydown', onKeyDown);
-
+      document.addEventListener('keypress', onKeyPress);
       window.addEventListener('resize', onWindowResize);
     }
 
@@ -381,6 +399,14 @@ const Detail__28 = () => {
       document.body.removeChild(renderer.domElement);
     };
   }, []);
-  return <div className="detail-body" id="container"></div>;
+  return (
+    <div className="detail-body" id="container">
+      <div className="blocker" id="blocker">
+        <div className="instructions" id="instructions">
+          <img src={l28} alt="letter" />
+        </div>
+      </div>
+    </div>
+  );
 };
 export default Detail__28;
