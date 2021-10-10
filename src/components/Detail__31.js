@@ -139,7 +139,6 @@ const Detail__31 = () => {
       //
 
       //
-      document.addEventListener('keydown', onKeyDown);
 
       window.addEventListener('resize', onWindowResize);
 
@@ -214,7 +213,7 @@ const Detail__31 = () => {
     };
   }, []);
   return (
-    <div className="detail-body">
+    <div className="detail-body" id="container">
       <div className="blocker" id="blocker">
         <div className="instructions" id="instructions">
           <div className="text">

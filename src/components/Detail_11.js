@@ -12,17 +12,13 @@ import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
 import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 
 import '../stylesheet/detail.scss';
-//import { VRButton } from './jsm/webxr/VRButton.js';
-
-//import * as THREE from '../build/three.module.js';
-
-//import Stats from './jsm/libs/stats.module.js';
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-//import { ImprovedNoise } from './jsm/math/ImprovedNoise.js';
+
 const Detail_11 = () => {
   useEffect(() => {
-    let container, stats;
+    let container,
+      flag = 0;
 
     let camera, controls, scene, renderer;
 
@@ -43,7 +39,7 @@ const Detail_11 = () => {
 
     function init() {
       container = document.getElementById('container');
-      container.innerHTML = '';
+      //gcontainer.innerHTML = '';
 
       renderer = new THREE.WebGLRenderer({ antialias: true });
       renderer.setPixelRatio(window.devicePixelRatio);
@@ -111,12 +107,28 @@ const Detail_11 = () => {
 
       container.addEventListener('pointermove', onPointerMove);
 
+      const blocker = document.getElementById('blocker');
+      const instructions = document.getElementById('instructions');
+      instructions.style.display = 'none';
+      blocker.style.display = 'none';
+      const onKeyPress = function (event) {
+        if (event.code === 'KeyG' && !flag) {
+          blocker.style.display = 'block';
+          instructions.style.display = '';
+          flag = 1;
+        } else if (event.code === 'KeyG' && flag) {
+          blocker.style.display = 'none';
+          instructions.style.display = 'none';
+          flag = 0;
+        }
+      };
       const onKeyDown = function (event) {
-        if (event.code === 'Tab')
+        if (event.code === 'KeyF')
           window.location.href = 'sell_your_mind_research#/d30';
       };
 
       //
+      document.addEventListener('keypress', onKeyPress);
       document.addEventListener('keydown', onKeyDown);
 
       window.addEventListener('resize', onWindowResize);
@@ -249,10 +261,29 @@ const Detail_11 = () => {
         helper.position.copy(intersects[0].point);
       }
     }
-    // return () => {
-    //   document.body.removeChild(renderer.domElement);
-    // };
   }, []);
-  return <div className="detail-body" id="container"></div>;
+  return (
+    <div className="detail-body" id="container">
+      <div className="blocker" id="blocker">
+        <div className="instructions" id="instructions">
+          <div className="text">
+            <h4>사랑의 질감</h4>
+            <h4>사랑하는 OO에게</h4>너무 예쁜 우리 아가야 난 우리 아가가 있어서
+            하루하루 행복해요오 하루가 힘들때면 빨리 집에가서 우리아가 안고
+            힘내고 싶어요오 이젠 우리아가 없다면 아무것도 못할거같아요 그래서
+            맨날 걱정해요오 우리 아가가 평생 내곁에 있으면 좋겠어요 오래오래
+            건강히 옆에 있어주세요오 빨리 결혼해서 하루종일 붙어 있을래요오
+            죽을때까지 곁에 있어주세요. 우리 아가가 옆에 있으면 다시 힘내서
+            하루하루 버틸수 있어요. 우울함은 사라지고 에너지는 회복되고 사랑도
+            가득하고 내일을 나아갈수 있어요 곁에 있는게 큰힘이되요 나두
+            우리아가가 평생 힘낼 수 있도록 곁에서 지켜줄게요. 취업빨리하구
+            예식장알아보러가요. 우리아가랑 함께라면 두려울게 없어요. 나 인생의
+            최고의 사람 나의 전부 우리애기. 사랑해요, 제일많이.
+            <h4>사랑하는 OO가</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 export default Detail_11;

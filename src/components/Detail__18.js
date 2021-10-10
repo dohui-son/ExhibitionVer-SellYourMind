@@ -1,13 +1,18 @@
 import React, { Component, useEffect } from 'react';
 import * as THREE from 'three';
 import img from '../material/texture/12.jpg';
+import l18 from '../material/letter18.jpeg';
 
 import '../stylesheet/detail__18.scss';
 import { PointerLockControls } from 'three/examples/jsm/controls/PointerLockControls.js';
 
 const Detail__18 = () => {
   useEffect(() => {
-    let camera, scene, renderer, controls;
+    let camera,
+      scene,
+      renderer,
+      controls,
+      flag = 0;
 
     const objects = [];
 
@@ -49,21 +54,21 @@ const Detail__18 = () => {
 
       controls = new PointerLockControls(camera, document.body);
 
-      const blocker = document.getElementById('blocker');
-      const instructions = document.getElementById('instructions');
+      const b = document.getElementById('b');
+      const i = document.getElementById('i');
 
-      instructions.addEventListener('click', function () {
+      i.addEventListener('click', function () {
         controls.lock();
       });
 
       controls.addEventListener('lock', function () {
-        instructions.style.display = 'none';
-        blocker.style.display = 'none';
+        i.style.display = 'none';
+        b.style.display = 'none';
       });
 
       controls.addEventListener('unlock', function () {
-        blocker.style.display = 'block';
-        instructions.style.display = '';
+        b.style.display = 'block';
+        i.style.display = '';
       });
 
       scene.add(controls.getObject());
@@ -94,7 +99,7 @@ const Detail__18 = () => {
             if (canJump === true) velocity.y += 350;
             canJump = false;
             break;
-          case 'Tab':
+          case 'KeyF':
             window.location.href = 'sell_your_mind_research#/d33';
             break;
         }
@@ -123,7 +128,22 @@ const Detail__18 = () => {
             break;
         }
       };
-
+      const blocker = document.getElementById('blocker');
+      const instructions = document.getElementById('instructions');
+      instructions.style.display = 'none';
+      blocker.style.display = 'none';
+      const onKeyPress = function (event) {
+        if (event.code === 'KeyG' && !flag) {
+          blocker.style.display = 'block';
+          instructions.style.display = '';
+          flag = 1;
+        } else if (event.code === 'KeyG' && flag) {
+          blocker.style.display = 'none';
+          instructions.style.display = 'none';
+          flag = 0;
+        }
+      };
+      document.addEventListener('keypress', onKeyPress);
       document.addEventListener('keydown', onKeyDown);
       document.addEventListener('keyup', onKeyUp);
 
@@ -297,16 +317,24 @@ const Detail__18 = () => {
   }, []);
 
   return (
-    <div className="blocker" id="blocker">
-      <div className="instructions" id="instructions">
-        <p>Click to play</p>
-        <p>
-          Move: WASD
-          <br />
-          Jump: SPACE
-          <br />
-          Look: MOUSE
-        </p>
+    <div>
+      <div className="blocker" id="blocker">
+        <div className="instructions" id="instructions">
+          <img src={l18} alt="letter" />
+        </div>
+      </div>
+      <div className="b" id="b">
+        <div className="i" id="i">
+          <p>Start to Experience</p>
+          <p>산책을 시작해 주세요.</p>
+          <p>
+            Move: ← ↑ ↓ →
+            <br />
+            Jump: ↑
+            <br />
+            Look: ← ↑ ↓ →
+          </p>
+        </div>
       </div>
     </div>
   );

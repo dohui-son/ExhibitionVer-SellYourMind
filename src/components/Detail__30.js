@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import * as THREE from 'three';
 import { Scene } from 'three';
 import img from '../material/texture/22.jpeg';
-import wall from '../material/texture/b_watercolor.jpg';
+import l3 from '../material/letter30.jpeg';
 
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 
@@ -12,20 +12,18 @@ import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
 import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 
 import '../stylesheet/detail.scss';
-//import { VRButton } from './jsm/webxr/VRButton.js';
-
-//import * as THREE from '../build/three.module.js';
-
-//import Stats from './jsm/libs/stats.module.js';
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
 
-//import { ImprovedNoise } from './jsm/math/ImprovedNoise.js';
 const Detail__30 = () => {
   useEffect(() => {
-    let controls, camera, scene, renderer;
+    let controls,
+      camera,
+      scene,
+      renderer,
+      flag = 0;
     let textureEquirec, textureCube;
     let sphereMesh, sphereMaterial;
     const texture_img = new THREE.TextureLoader().load(img);
@@ -107,15 +105,30 @@ const Detail__30 = () => {
         },
         Refraction: false,
       };
+      const blocker = document.getElementById('blocker');
+      const instructions = document.getElementById('instructions');
+      instructions.style.display = 'none';
+      blocker.style.display = 'none';
+      const onKeyPress = function (event) {
+        if (event.code === 'KeyG' && !flag) {
+          blocker.style.display = 'block';
+          instructions.style.display = '';
+          flag = 1;
+        } else if (event.code === 'KeyG' && flag) {
+          blocker.style.display = 'none';
+          instructions.style.display = 'none';
+          flag = 0;
+        }
+      };
 
       const onKeyDown = function (event) {
-        if (event.code === 'Tab')
+        if (event.code === 'KeyF')
           window.location.href = 'sell_your_mind_research#/d29';
       };
 
       //
       document.addEventListener('keydown', onKeyDown);
-
+      document.addEventListener('keypress', onKeyPress);
       window.addEventListener('resize', onWindowResize);
     }
 
@@ -142,6 +155,14 @@ const Detail__30 = () => {
       document.body.removeChild(renderer.domElement);
     };
   }, []);
-  return <div className="detail-body" id="container"></div>;
+  return (
+    <div className="detail-body" id="container">
+      <div className="blocker" id="blocker">
+        <div className="instructions" id="instructions">
+          <img src={l3} alt="background_img" />
+        </div>
+      </div>
+    </div>
+  );
 };
 export default Detail__30;

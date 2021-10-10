@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import * as ENABLE3D from 'enable3d';
 import { Scene } from 'three';
 import img from '../material/texture/24.jpeg';
-import wall from '../material/texture/b_watercolor.jpg';
+import l34 from '../material/letter34.jpeg';
 
 //공감
 
@@ -12,39 +12,14 @@ import Stats from 'three/examples/jsm/libs/stats.module.js';
 
 import { SelectionBox } from 'three/examples/jsm/interactive/SelectionBox.js';
 import { SelectionHelper } from 'three/examples/jsm/interactive/SelectionHelper.js';
-import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js';
-import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
-import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
-import { MapControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { Water } from 'three/examples/jsm/objects/Water.js';
-import { Sky } from 'three/examples/jsm/objects/Sky.js';
-import { Refractor } from 'three/examples/jsm/objects/Refractor.js';
-import { WaterRefractionShader } from 'three/examples/jsm/shaders/WaterRefractionShader.js';
-import {
-  VOXLoader,
-  VOXDataTexture3D,
-} from 'three/examples/jsm/loaders/VOXLoader.js';
+
 import '../stylesheet/detail.scss';
-import { DragControls } from 'three/examples/jsm/controls/DragControls.js';
-//import { VRButton } from './jsm/webxr/VRButton.js';
-
-//import { AmmoPhysics } from ENABLE3D;
-//import * as THREE from '../build/three.module.js';
-
-//import Stats from './jsm/libs/stats.module.js';
-
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { WEBGL } from 'three/examples/jsm/WebGL.js';
-
-import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
-import { BokehPass } from 'three/examples/jsm/postprocessing/BokehPass.js';
 
 //import { ImprovedNoise } from './jsm/math/ImprovedNoise.js';
 const Detail__34 = () => {
   useEffect(() => {
-    let container, stats;
+    let container,
+      flag = 0;
     let camera, scene, renderer;
 
     init();
@@ -116,12 +91,29 @@ const Detail__34 = () => {
 
       container.appendChild(renderer.domElement);
 
+      const blocker = document.getElementById('blocker');
+      const instructions = document.getElementById('instructions');
+      instructions.style.display = 'none';
+      blocker.style.display = 'none';
+      const onKeyPress = function (event) {
+        if (event.code === 'KeyG' && !flag) {
+          blocker.style.display = 'block';
+          instructions.style.display = '';
+          flag = 1;
+        } else if (event.code === 'KeyG' && flag) {
+          blocker.style.display = 'none';
+          instructions.style.display = 'none';
+          flag = 0;
+        }
+      };
+
       const onKeyDown = function (event) {
-        if (event.code === 'Tab')
+        if (event.code === 'KeyF')
           window.location.href = 'sell_your_mind_research#/d18';
       };
 
       //
+      document.addEventListener('keypress', onKeyPress);
       document.addEventListener('keydown', onKeyDown);
 
       window.addEventListener('resize', onWindowResize);
@@ -201,6 +193,14 @@ const Detail__34 = () => {
       toerase.remove();
     };
   }, []);
-  return <div className="detail-body" id="div"></div>;
+  return (
+    <div className="detail-body" id="container">
+      <div className="blocker" id="blocker">
+        <div className="instructions" id="instructions">
+          <img src={l34} alt="letter" />
+        </div>
+      </div>
+    </div>
+  );
 };
 export default Detail__34;

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import * as THREE from 'three';
 import { Scene } from 'three';
 import img from '../material/texture/35.jpeg';
-import wall from '../material/texture/b_watercolor.jpg';
+import l41 from '../material/letter41.jpeg';
 
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 
@@ -38,7 +38,10 @@ const Detail__41 = () => {
 
     const INITIAL_CLOUD_SIZE = 128;
 
-    let renderer, scene, camera;
+    let renderer,
+      scene,
+      camera,
+      flag = 0;
     let mesh;
     let prevTime = performance.now();
     let cloudTexture = null;
@@ -317,16 +320,26 @@ const Detail__41 = () => {
         material.uniforms.range.value = parameters.range;
         material.uniforms.steps.value = parameters.steps;
       }
-
-      // const gui = new GUI();
-      // gui.add(parameters, 'threshold', 0, 1, 0.01).onChange(update);
-      // gui.add(parameters, 'opacity', 0, 1, 0.01).onChange(update);
-      // gui.add(parameters, 'range', 0, 1, 0.01).onChange(update);
-      // gui.add(parameters, 'steps', 0, 200, 1).onChange(update);
+      const blocker = document.getElementById('blocker');
+      const instructions = document.getElementById('instructions');
+      instructions.style.display = 'none';
+      blocker.style.display = 'none';
+      const onKeyPress = function (event) {
+        if (event.code === 'KeyG' && !flag) {
+          blocker.style.display = 'block';
+          instructions.style.display = '';
+          flag = 1;
+        } else if (event.code === 'KeyG' && flag) {
+          blocker.style.display = 'none';
+          instructions.style.display = 'none';
+          flag = 0;
+        }
+      };
       const onKeyDown = function (event) {
-        if (event.code === 'Tab')
+        if (event.code === 'KeyF')
           window.location.href = 'sell_your_mind_research#/d34';
       };
+      document.addEventListener('keypress', onKeyPress);
 
       //
       document.addEventListener('keydown', onKeyDown);
@@ -389,6 +402,14 @@ const Detail__41 = () => {
       document.body.removeChild(renderer.domElement);
     };
   }, []);
-  return <div className="detail-body" id="container"></div>;
+  return (
+    <div className="detail-body" id="container">
+      <div className="blocker" id="blocker">
+        <div className="instructions" id="instructions">
+          <img src={l41} alt="letter" />
+        </div>
+      </div>
+    </div>
+  );
 };
 export default Detail__41;

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import * as THREE from 'three';
 import { Scene } from 'three';
 import img from '../material/texture/26.jpeg';
-import wall from '../material/texture/b_watercolor.jpg';
+import l4 from '../material/letter4.png';
 
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 
@@ -15,7 +15,8 @@ import '../stylesheet/detail.scss';
 //import { VRButton } from './jsm/webxr/VRButton.js';
 const Detail_4 = () => {
   useEffect(() => {
-    let container, stats;
+    let container,
+      flag = 0;
 
     let camera, controls, scene, renderer;
 
@@ -148,16 +149,27 @@ const Detail_4 = () => {
       controls.lookSpeed = 0.125;
       controls.lookVertical = true;
 
-      // stats = new Stats();
-      // container.appendChild(stats.dom);
-
-      //
+      const blocker = document.getElementById('blocker');
+      const instructions = document.getElementById('instructions');
+      instructions.style.display = 'none';
+      blocker.style.display = 'none';
+      const onKeyPress = function (event) {
+        if (event.code === 'KeyG' && !flag) {
+          blocker.style.display = 'block';
+          instructions.style.display = '';
+          flag = 1;
+        } else if (event.code === 'KeyG' && flag) {
+          blocker.style.display = 'none';
+          instructions.style.display = 'none';
+          flag = 0;
+        }
+      };
       const onKeyDown = function (event) {
-        if (event.code === 'Tab')
+        if (event.code === 'KeyF')
           window.location.href = 'sell_your_mind_research#/d28';
       };
       document.addEventListener('keydown', onKeyDown);
-
+      document.addEventListener('keypress', onKeyPress);
       window.addEventListener('resize', onWindowResize);
     }
 
@@ -210,10 +222,15 @@ const Detail_4 = () => {
       controls.update(clock.getDelta());
       renderer.render(scene, camera);
     }
-    // return () => {
-    //   document.body.removeChild(renderer.domElement);
-    // };
   }, []);
-  return <div className="detail-body" id="container"></div>;
+  return (
+    <div className="detail-body" id="container">
+      <div className="blocker" id="blocker">
+        <div className="instructions" id="instructions">
+          <img src={l4} alt="letter" />
+        </div>
+      </div>
+    </div>
+  );
 };
 export default Detail_4;

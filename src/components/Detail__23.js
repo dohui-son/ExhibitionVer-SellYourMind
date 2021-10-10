@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import * as THREE from 'three';
 import { Scene } from 'three';
 import img from '../material/texture/10.jpg';
-import wall from '../material/texture/b_watercolor.jpg';
+import l23 from '../material/letter23.png';
 
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 
@@ -22,7 +22,8 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 //import { ImprovedNoise } from './jsm/math/ImprovedNoise.js';
 const Detail__23 = () => {
   useEffect(() => {
-    let container, stats;
+    let container,
+      flag = 0;
 
     let camera, controls, scene, renderer;
 
@@ -43,7 +44,6 @@ const Detail__23 = () => {
 
     function init() {
       container = document.getElementById('container');
-      container.innerHTML = '';
 
       renderer = new THREE.WebGLRenderer({ antialias: true });
       renderer.setPixelRatio(window.devicePixelRatio);
@@ -80,11 +80,12 @@ const Detail__23 = () => {
       controls.update();
 
       const geometry = new THREE.PlaneGeometry(
-        7500,
-        7500,
-        worldWidth - 1,
-        worldDepth - 1
+        1950,
+        1950,
+        worldWidth - 100,
+        worldDepth - 10
       );
+
       geometry.rotateX(-Math.PI / 2);
 
       const vertices = geometry.attributes.position.array;
@@ -115,16 +116,27 @@ const Detail__23 = () => {
 
       container.addEventListener('pointermove', onPointerMove);
 
-      // stats = new Stats();
-      // container.appendChild(stats.dom);
-
-      //
+      const blocker = document.getElementById('blocker');
+      const instructions = document.getElementById('instructions');
+      instructions.style.display = 'none';
+      blocker.style.display = 'none';
+      const onKeyPress = function (event) {
+        if (event.code === 'KeyG' && !flag) {
+          blocker.style.display = 'block';
+          instructions.style.display = '';
+          flag = 1;
+        } else if (event.code === 'KeyG' && flag) {
+          blocker.style.display = 'none';
+          instructions.style.display = 'none';
+          flag = 0;
+        }
+      };
       const onKeyDown = function (event) {
-        if (event.code === 'Tab')
+        if (event.code === 'KeyF')
           window.location.href = 'sell_your_mind_research#/d4';
       };
       document.addEventListener('keydown', onKeyDown);
-
+      document.addEventListener('keypress', onKeyPress);
       window.addEventListener('resize', onWindowResize);
     }
 
@@ -255,10 +267,17 @@ const Detail__23 = () => {
         helper.position.copy(intersects[0].point);
       }
     }
-    // return () => {
-    //   document.body.removeChild(renderer.domElement);
-    // };
   }, []);
-  return <div className="detail-body" id="container"></div>;
+  return (
+    <div className="detail-body" id="container">
+      <div className="blocker" id="blocker">
+        <div className="instructions" id="instructions">
+          <div className="text">
+            <img src={l23} alt="letter" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 export default Detail__23;

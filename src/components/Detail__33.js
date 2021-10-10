@@ -3,23 +3,11 @@ import ReactDOM from 'react-dom';
 import * as THREE from 'three';
 import { Scene } from 'three';
 import img from '../material/texture/34.jpeg';
-import wall from '../material/texture/b_watercolor.jpg';
+import l33 from '../material/letter33.jpeg';
 
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 //짝사랑
 
-import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js';
-import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
-import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
-import { MapControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { Water } from 'three/examples/jsm/objects/Water.js';
-import { Sky } from 'three/examples/jsm/objects/Sky.js';
-import { Refractor } from 'three/examples/jsm/objects/Refractor.js';
-import { WaterRefractionShader } from 'three/examples/jsm/shaders/WaterRefractionShader.js';
-import {
-  VOXLoader,
-  VOXDataTexture3D,
-} from 'three/examples/jsm/loaders/VOXLoader.js';
 import '../stylesheet/detail.scss';
 import { DragControls } from 'three/examples/jsm/controls/DragControls.js';
 //import { VRButton } from './jsm/webxr/VRButton.js';
@@ -39,7 +27,8 @@ import { BokehPass } from 'three/examples/jsm/postprocessing/BokehPass.js';
 //import { ImprovedNoise } from './jsm/math/ImprovedNoise.js';
 const Detail__33 = () => {
   useEffect(() => {
-    let stats, clock;
+    let flag = 0,
+      clock;
     let scene, camera, renderer, mixer;
 
     init();
@@ -160,23 +149,30 @@ const Detail__33 = () => {
       renderer.setPixelRatio(window.devicePixelRatio);
       renderer.setSize(window.innerWidth, window.innerHeight);
       document.body.appendChild(renderer.domElement);
-
-      //
-
-      // stats = new Stats();
-      // document.body.appendChild(stats.dom);
-
-      //
+      document.exitPointerLock();
 
       clock = new THREE.Clock();
-
-      //
+      const blocker = document.getElementById('blocker');
+      const instructions = document.getElementById('instructions');
+      instructions.style.display = 'none';
+      blocker.style.display = 'none';
+      const onKeyPress = function (event) {
+        if (event.code === 'KeyG' && !flag) {
+          blocker.style.display = 'block';
+          instructions.style.display = '';
+          flag = 1;
+        } else if (event.code === 'KeyG' && flag) {
+          blocker.style.display = 'none';
+          instructions.style.display = 'none';
+          flag = 0;
+        }
+      };
       const onKeyDown = function (event) {
-        if (event.code === 'Tab')
+        if (event.code === 'KeyF')
           window.location.href = 'sell_your_mind_research#/d23';
       };
       document.addEventListener('keydown', onKeyDown);
-
+      document.addEventListener('keypress', onKeyPress);
       window.addEventListener('resize', onWindowResize);
     }
 
@@ -208,6 +204,14 @@ const Detail__33 = () => {
       document.body.removeChild(renderer.domElement);
     };
   }, []);
-  return <div className="detail-body"></div>;
+  return (
+    <div className="detail-body" id="container">
+      <div className="blocker" id="blocker">
+        <div className="instructions" id="instructions">
+          <img src={l33} alt="letter" />
+        </div>
+      </div>
+    </div>
+  );
 };
 export default Detail__33;

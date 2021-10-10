@@ -304,6 +304,23 @@ const Detail__19 = () => {
         side: THREE.BackSide,
         transparent: true,
       });
+      // const material = new THREE.RawShaderMaterial({
+      //   glslVersion: THREE.GLSL3,
+      //   uniforms: {
+      //     base: { value: new THREE.Color(0x798aa0) },
+      //     map: { value: texture },
+      //     cameraPos: { value: new THREE.Vector3() },
+      //     threshold: { value: 0.25 },
+      //     opacity: { value: 0.25 },
+      //     range: { value: 0.1 },
+      //     steps: { value: 100 },
+      //     frame: { value: 0 },
+      //   },
+      //   vertexShader,
+      //   fragmentShader,
+      //   side: THREE.BackSide,
+      //   transparent: true,
+      // });
 
       mesh = new THREE.Mesh(geometry, material);
       scene.add(mesh);
