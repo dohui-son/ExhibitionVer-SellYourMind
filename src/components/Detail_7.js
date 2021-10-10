@@ -1,8 +1,10 @@
 import React, { Component, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import * as THREE from 'three';
+import { Scene } from 'three';
 import img from '../material/texture/bp.jpg';
 
-// import Stats from 'three/examples/jsm/libs/stats.module.js';
+//import Stats from 'three/examples/jsm/libs/stats.module.js';
 
 import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js';
 import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
@@ -12,13 +14,16 @@ import '../stylesheet/detail.scss';
 
 const Detail_7 = () => {
   useEffect(() => {
-    let container, stats;
+    let container,
+      flag = 0;
     let camera, controls, scene, renderer;
+
     const worldWidth = 128,
       worldDepth = 128;
     const worldHalfWidth = worldWidth / 2;
     const worldHalfDepth = worldDepth / 2;
     const data = generateHeight(worldWidth, worldDepth);
+
     const clock = new THREE.Clock();
 
     init();
@@ -40,9 +45,16 @@ const Detail_7 = () => {
 
       scene.background = new THREE.TextureLoader().load(img);
 
+      const blocker = document.getElementById('blocker');
+      const instructions = document.getElementById('instructions');
+      instructions.style.display = 'none';
+      blocker.style.display = 'none';
+
       // sides
+
       const matrix = new THREE.Matrix4();
-      const pxGeometry = new THREE.PlaneGeometry(100, 100);
+
+      const pxGeometry = new THREE.PlaneGeometry(100, 2500);
       pxGeometry.attributes.uv.array[1] = 0.5;
       pxGeometry.attributes.uv.array[3] = 0.5;
       pxGeometry.rotateY(Math.PI / 2);
@@ -113,6 +125,9 @@ const Detail_7 = () => {
       const geometry = BufferGeometryUtils.mergeBufferGeometries(geometries);
       geometry.computeBoundingSphere();
 
+      //const texture = new THREE.TextureLoader().load(img);
+      //texture.magFilter = THREE.NearestFilter;
+
       const mesh = new THREE.Mesh(
         geometry,
         new THREE.MeshLambertMaterial({ map: texture, side: THREE.DoubleSide })
@@ -121,8 +136,9 @@ const Detail_7 = () => {
 
       const ambientLight = new THREE.AmbientLight(0xcccccc);
       scene.add(ambientLight);
+
       const onKeyDown = function (event) {
-        if (event.code === 'Tab')
+        if (event.code === 'KeyF')
           window.location.href = 'sell_your_mind_research#/d42';
       };
 
@@ -137,12 +153,22 @@ const Detail_7 = () => {
       controls.lookSpeed = 0.125;
       controls.lookVertical = true;
 
-      // stats = new Stats();
-      // container.appendChild(stats.dom);
+      //stats = new Stats();
+      //container.appendChild(stats.dom);
+      const onKeyPress = function (event) {
+        if (event.code === 'KeyG' && !flag) {
+          blocker.style.display = 'block';
+          instructions.style.display = '';
+          flag = 1;
+        } else if (event.code === 'KeyG' && flag) {
+          blocker.style.display = 'none';
+          instructions.style.display = 'none';
+          flag = 0;
+        }
+      };
+      document.addEventListener('keypress', onKeyPress);
 
-      //
       document.addEventListener('keydown', onKeyDown);
-
       window.addEventListener('resize', onWindowResize);
     }
 
@@ -188,7 +214,6 @@ const Detail_7 = () => {
       requestAnimationFrame(animate);
 
       render();
-      // stats.update();
     }
 
     function render() {
@@ -196,6 +221,19 @@ const Detail_7 = () => {
       renderer.render(scene, camera);
     }
   }, []);
-  return <div className="detail-body" id="container"></div>;
+  return (
+    <div className="detail-body" id="container">
+      <div className="blocker" id="blocker">
+        <div className="instructions" id="instructions">
+          <div className="text">
+            <h4>메스꺼움</h4>거북하다. 이사람과는 어쩐지 불편하다, 어디라고 꼭
+            짚어 말할 수는 없어도 이 사람과는 어쩐지 잘 맞지 않는다. 그렇게
+            속으로 느낄 때 드러나는 표정이다. 혐오와도, 조심스러움과도 다른
+            본능적인 기피의 감정이 든다.
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 export default Detail_7;

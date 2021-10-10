@@ -124,15 +124,15 @@ const Detail__19 = () => {
         displacementScale: -4.0,
       });
       const onKeyDown = function (event) {
-        if (event.code === 'Tab')
+        if (event.code === 'KeyF')
           window.location.href = 'sell_your_mind_research#/d7';
       };
       const onKeyPress = function (event) {
-        if (event.code === 'KeyA' && !flag) {
+        if (event.code === 'KeyG' && !flag) {
           blocker.style.display = 'block';
           instructions.style.display = '';
           flag = 1;
-        } else if (event.code === 'KeyA' && flag) {
+        } else if (event.code === 'KeyG' && flag) {
           blocker.style.display = 'none';
           instructions.style.display = 'none';
           flag = 0;

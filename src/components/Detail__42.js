@@ -12,11 +12,6 @@ import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
 import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 
 import '../stylesheet/detail.scss';
-//import { VRButton } from './jsm/webxr/VRButton.js';
-
-//import * as THREE from '../build/three.module.js';
-
-//import Stats from './jsm/libs/stats.module.js';
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
@@ -38,7 +33,10 @@ const Detail__42 = () => {
 
     const INITIAL_CLOUD_SIZE = 128;
 
-    let renderer, scene, camera;
+    let renderer,
+      scene,
+      camera,
+      flag = 0;
     let mesh;
     let prevTime = performance.now();
     let cloudTexture = null;
@@ -306,6 +304,10 @@ const Detail__42 = () => {
         range: 0.1,
         steps: 100,
       };
+      const blocker = document.getElementById('blocker');
+      const instructions = document.getElementById('instructions');
+      instructions.style.display = 'none';
+      blocker.style.display = 'none';
 
       function update() {
         material.uniforms.threshold.value = parameters.threshold;
@@ -313,13 +315,25 @@ const Detail__42 = () => {
         material.uniforms.range.value = parameters.range;
         material.uniforms.steps.value = parameters.steps;
       }
+      const onKeyPress = function (event) {
+        if (event.code === 'KeyG' && !flag) {
+          blocker.style.display = 'block';
+          instructions.style.display = '';
+          flag = 1;
+        } else if (event.code === 'KeyG' && flag) {
+          blocker.style.display = 'none';
+          instructions.style.display = 'none';
+          flag = 0;
+        }
+      };
       const onKeyDown = function (event) {
-        if (event.code === 'Tab')
+        if (event.code === 'KeyF')
           window.location.href = 'sell_your_mind_research#/d31';
       };
 
       //
       document.addEventListener('keydown', onKeyDown);
+      document.addEventListener('keypress', onKeyPress);
 
       window.addEventListener('resize', onWindowResize);
     }
@@ -380,6 +394,23 @@ const Detail__42 = () => {
       document.body.removeChild(renderer.domElement);
     };
   }, []);
-  return <div className="detail-body" id="container"></div>;
+  return (
+    <div className="detail-body" id="container">
+      <div className="blocker" id="blocker">
+        <div className="instructions" id="instructions">
+          <div className="text">
+            <h4>게으름</h4>꽃잎처럼 부푼 반면 자그마하지만 힘이 있고 세심하게
+            나오는 면이 있다. 세심하게 나있으면서도 갑작스레 나온 수정들과 달리
+            부푼면은 성길지 않고 화려하기만 하다. 세심한 부분의 면을
+            숨기기위해서 부푼걸까 아니면 그부분으로부터 자라난걸까. 성가시게
+            생겼다. 신기하고 이상하지만 마냥 싫지만은 않도록 성가시다. 난
+            귀찮아하는 것이 많다. 그에 비해 걱정도 많고 생각도 많지만 귀찮게
+            느껴지면 그마저도 한 번씩 손을 놔버린다. 생각하는 것에 비해 행동은
+            단순하게 나가며 후회로 돌아와 생각거리를 보충하여 굴러간다.
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 export default Detail__42;

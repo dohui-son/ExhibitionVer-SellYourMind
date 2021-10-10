@@ -12,11 +12,6 @@ import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
 import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 
 import '../stylesheet/detail.scss';
-//import { VRButton } from './jsm/webxr/VRButton.js';
-
-//import * as THREE from '../build/three.module.js';
-
-//import Stats from './jsm/libs/stats.module.js';
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
@@ -38,7 +33,10 @@ const Detail__21 = () => {
 
     const INITIAL_CLOUD_SIZE = 128;
 
-    let renderer, scene, camera;
+    let renderer,
+      scene,
+      camera,
+      flag = 0;
     let mesh;
     let prevTime = performance.now();
     let cloudTexture = null;
@@ -317,12 +315,26 @@ const Detail__21 = () => {
         material.uniforms.range.value = parameters.range;
         material.uniforms.steps.value = parameters.steps;
       }
-      const onKeyDown = function (event) {
-        if (event.code === 'Tab')
-          window.location.href = 'sell_your_mind_research#/d11';
+      const blocker = document.getElementById('blocker');
+      const instructions = document.getElementById('instructions');
+      instructions.style.display = 'none';
+      blocker.style.display = 'none';
+      const onKeyPress = function (event) {
+        if (event.code === 'KeyG' && !flag) {
+          blocker.style.display = 'block';
+          instructions.style.display = '';
+          flag = 1;
+        } else if (event.code === 'KeyG' && flag) {
+          blocker.style.display = 'none';
+          instructions.style.display = 'none';
+          flag = 0;
+        }
       };
-
-      //
+      const onKeyDown = function (event) {
+        if (event.code === 'KeyF')
+          window.location.href = 'sell_your_mind_research#/d22';
+      };
+      document.addEventListener('keypress', onKeyPress);
       document.addEventListener('keydown', onKeyDown);
 
       window.addEventListener('resize', onWindowResize);
@@ -383,6 +395,23 @@ const Detail__21 = () => {
       document.body.removeChild(renderer.domElement);
     };
   }, []);
-  return <div className="detail-body" id="container"></div>;
+  return (
+    <div className="detail-body">
+      <div className="blocker" id="blocker">
+        <div className="instructions" id="instructions">
+          <div className="text">
+            <h4>나이는 항상 7살</h4>운동회, 하고 싶은거 다하는 삶을 살거야.
+            뚱땅뚱땅 어설픈 발걸음은 당차다. 뒷모습에서 초등학교 운동회에서의
+            활기가 잠깐 보였다. 허공에 휘두르는 팔에 주먹을 꽉 진 손이
+            인상적이다. 여러 사람, 여러 목표가 보인다. 다채로운 사람들. 모두
+            저마다의 활기를 갖고 숲을 이룬다. 나도 다시 시작해볼까 기지개를
+            피어본다. 마냥 어리게 보겠지. 하지만 돌아,돌아 나이를 먹어도, 치매가
+            찾아와도, 가슴속에 동요는 흐르고. 점점 어려지는 우리 할머니도
+            그렇겠지.
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 export default Detail__21;
