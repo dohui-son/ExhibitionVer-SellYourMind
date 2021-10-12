@@ -6,7 +6,6 @@ import img from '../material/texture/33.png';
 import l2 from '../material/letter2.png';
 import wall2 from '../material/texture/wall2.jpg';
 
-//import wall from "../material/texture/wall_b.png"
 
 import '../stylesheet/detail.scss';
 //import { VRButton } from './jsm/webxr/VRButton.js';

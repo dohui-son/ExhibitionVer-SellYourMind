@@ -51,14 +51,13 @@ const Detail_4 = () => {
       instructions.style.display = 'none';
       blocker.style.display = 'none';
       // world
-
       const geometry = new THREE.BoxGeometry(1, 1, 1);
       geometry.translate(0, 0.5, 0);
       const texture = new THREE.TextureLoader().load(img);
       const material = new THREE.MeshPhongMaterial({
         map: texture,
         flatShading: true,
-      }); //( { color: 0xffffff, flatShading: true } );
+      });
 
       for (let i = 0; i < 500; i++) {
         const mesh = new THREE.Mesh(geometry, material);
@@ -74,7 +73,6 @@ const Detail_4 = () => {
       }
 
       // lights
-
       const dirLight1 = new THREE.DirectionalLight(0xffffff);
       dirLight1.position.set(1, 1, 1);
       scene.add(dirLight1);
@@ -101,27 +99,20 @@ const Detail_4 = () => {
         if (event.code === 'KeyF')
           window.location.href = 'sell_your_mind_research#/d38';
       };
-
       document.addEventListener('keypress', onKeyPress);
       document.addEventListener('keydown', onKeyDown);
       window.addEventListener('resize', onWindowResize);
     }
-
     function onWindowResize() {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
-
       renderer.setSize(window.innerWidth, window.innerHeight);
     }
-
     function animate() {
       requestAnimationFrame(animate);
-
       controls.update(); // only required if controls.enableDamping = true, or if controls.autoRotate = true
-
       render();
     }
-
     function render() {
       renderer.render(scene, camera);
     }
