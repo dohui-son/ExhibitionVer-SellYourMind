@@ -1,20 +1,10 @@
 import React, { Component, useEffect } from 'react';
 import * as THREE from 'three';
 import img from '../material/texture/29.jpeg';
+import l38 from '../material/letter38.PNG';
 import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
 import '../stylesheet/writings.scss';
-//import { VRButton } from './jsm/webxr/VRButton.js';
-
-//import * as THREE from '../build/three.module.js';
-
-//import Stats from './jsm/libs/stats.module.js';
-
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-
-import {
-  VOXLoader,
-  VOXDataTexture3D,
-} from 'three/examples/jsm/loaders/VOXLoader.js';
 
 import { WEBGL } from 'three/examples/jsm/WebGL.js';
 
@@ -195,7 +185,8 @@ const Detail__38 = () => {
           blocker.style.display = 'none';
           instructions.style.display = 'none';
           flag = 0;
-        }
+        } else if (event.code === 'KeyF')
+          window.location.href = 'sell_your_mind_research#/d19';
       };
       document.addEventListener('keypress', onKeyPress);
       document.addEventListener('keydown', onKeyDown);
@@ -391,20 +382,7 @@ const Detail__38 = () => {
   return (
     <div className="blocker" id="blocker">
       <div className="instructions" id="instructions">
-        <div className="text">
-          <h4>호텔 선인장</h4>
-          어느 시가의 동쪽 변두리에 오래된 아파트가 있었습니다. 낡고 허름한
-          회색의 석조 건물이었습니다. 그런데 막상 안으로 들어서니 제법 선선하여
-          기분이 무척 좋았습니다. ‘호텔 선인장’, 이것이 이 아파트의
-          이름이었습니다. 호텔이 아니라 아파트인데도 그런 이름이었습니다. 호텔
-          선인장에는 아주 작은 마당이 있었는데, 그곳에는 검은 고양이 한 마리가
-          배를 깔고 누워 있었습니다. …… 이 아파트의 현관을 들어서면, 실내라고도
-          실외라고도 말하기 어려운 공간이 있습니다. 우측 벽에 우편함이 늘어서
-          있고, 왼쪽 구석에 철제 접이식 도어가 달린 엘리베이터가 있고, 그 앞으로
-          좁은 통로가 나 있으며 막다른 곳이 마당이었습니다. ……그 중 3층 한구석에
-          ‘모자’, 2층 한구석에 ‘오이’, 그리고 1층 한구석에 숫자 ‘2’가 살고
-          있었습니다. 세 사람은 죽이 잘맞는 친구들이었습니다.
-        </div>
+        <img src={l38} alt="letter" />
       </div>
     </div>
   );

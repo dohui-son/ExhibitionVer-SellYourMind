@@ -126,6 +126,9 @@ const Detail__18 = () => {
           case 'KeyD':
             moveRight = false;
             break;
+          case 'KeyF':
+            window.location.href = 'sell_your_mind_research#/d33';
+            break;
         }
       };
       const blocker = document.getElementById('blocker');

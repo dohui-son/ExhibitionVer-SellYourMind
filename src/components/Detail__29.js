@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import * as THREE from 'three';
 import { Scene } from 'three';
 import img from '../material/texture/23.jpeg';
-import wall from '../material/texture/b_watercolor.jpg';
+import l29 from '../material/letter29.jpg';
 
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 import { Water } from 'three/examples/jsm/objects/Water.js';
@@ -202,15 +202,17 @@ const Detail__29 = () => {
           blocker.style.display = 'none';
           instructions.style.display = 'none';
           flag = 0;
+        } else if (event.code === 'KeyF') {
+          window.location.href = 'sell_your_mind_research#/d41';
         }
       };
-      const onKeyDown = function (event) {
-        if (event.code === 'KeyF')
-          window.location.href = 'sell_your_mind_research#/d41';
-      };
+      // const onKeyDown = function (event) {
+      //   if (event.code === 'KeyF')
+      //     window.location.href = 'sell_your_mind_research#/d41';
+      // };
 
       document.addEventListener('keypress', onKeyPress);
-      document.addEventListener('keydown', onKeyDown);
+      //document.addEventListener('keydown', onKeyDown);
 
       // cube camera for environment map
 
@@ -386,19 +388,7 @@ const Detail__29 = () => {
     <div className="detail-body" id="container">
       <div className="blocker" id="blocker">
         <div className="instructions" id="instructions">
-          <div className="text">
-            <h4>자기만의 방</h4>
-            <h4>버지니아 울프</h4>어느 성(性)에게나 삶은 힘들고 어려운 영속적인
-            투쟁입니다. 그것은 어마어마한 용기와 힘을 요구합니다. 그리고
-            우리같이 환상을 지닌 피조물에겐 그것은 아마 다른 무엇보다도 자기
-            자신에 대한 자신감을 필요로 할 겁니다. 자신감이 없다면 우리는 요람에
-            누운 아기와 마찬가지이지요. 이 측정할 수 없이 가벼운, 그러나 무한한
-            가치가 있는 자질을 어떻게 해야 가장 신속하게 획득할 수 있을까요?
-            다른 사람들이 자신보다 열등하다고 생각함으로써 가능하겠지요.…
-            그러므로 통치해야 하고 정복해야 할 가장에게 있어서 다수의 사람들,
-            사실 인류의 절반이 자신보다 열등하다고 느끼는 것은 막대한 중요성을
-            가질 겁니다.
-          </div>
+          <img src={l29} alt="letter" />
         </div>
       </div>
     </div>

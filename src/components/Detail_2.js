@@ -6,7 +6,6 @@ import img from '../material/texture/33.png';
 import l2 from '../material/letter2.png';
 import wall2 from '../material/texture/wall2.jpg';
 
-
 import '../stylesheet/detail.scss';
 //import { VRButton } from './jsm/webxr/VRButton.js';
 const Detail_2 = () => {
@@ -154,7 +153,8 @@ const Detail_2 = () => {
           blocker.style.display = 'none';
           instructions.style.display = 'none';
           flag = 0;
-        }
+        } else if (event.code === 'KeyF')
+          window.location.href = 'sell_your_mind_research#/d15';
       };
       const onKeyDown = function (event) {
         if (event.code === 'KeyF')

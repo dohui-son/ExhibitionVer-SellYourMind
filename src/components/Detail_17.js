@@ -123,7 +123,8 @@ const Detail_17 = () => {
           blocker.style.display = 'none';
           instructions.style.display = 'none';
           flag = 0;
-        }
+        } else if (event.code === 'KeyF')
+          window.location.href = 'sell_your_mind_research#/d3';
       };
 
       const onKeyDown = function (event) {

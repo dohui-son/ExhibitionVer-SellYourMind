@@ -118,16 +118,18 @@ const Detail__30 = () => {
           blocker.style.display = 'none';
           instructions.style.display = 'none';
           flag = 0;
+        } else if (event.code === 'KeyF') {
+          window.location.href = 'sell_your_mind_research#/d29';
         }
       };
 
-      const onKeyDown = function (event) {
-        if (event.code === 'KeyF')
-          window.location.href = 'sell_your_mind_research#/d29';
-      };
+      // const onKeyDown = function (event) {
+      //   if (event.code === 'KeyF')
+      //     window.location.href = 'sell_your_mind_research#/d29';
+      // };
 
       //
-      document.addEventListener('keydown', onKeyDown);
+      //document.addEventListener('keydown', onKeyDown);
       document.addEventListener('keypress', onKeyPress);
       window.addEventListener('resize', onWindowResize);
     }

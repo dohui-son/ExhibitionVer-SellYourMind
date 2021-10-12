@@ -13,11 +13,6 @@ import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
 import '../stylesheet/detail.scss';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
-import {
-  VOXLoader,
-  VOXDataTexture3D,
-} from 'three/examples/jsm/loaders/VOXLoader.js';
-
 import { WEBGL } from 'three/examples/jsm/WebGL.js';
 
 //import { ImprovedNoise } from './jsm/math/ImprovedNoise.js';
@@ -324,16 +319,18 @@ const Detail__41 = () => {
           blocker.style.display = 'none';
           instructions.style.display = 'none';
           flag = 0;
+        } else if (event.code === 'KeyF') {
+          window.location.href = 'sell_your_mind_research#/d34';
         }
       };
-      const onKeyDown = function (event) {
-        if (event.code === 'KeyF')
-          window.location.href = 'sell_your_mind_research#/d34';
-      };
+      // const onKeyDown = function (event) {
+      //   if (event.code === 'KeyF')
+      //     window.location.href = 'sell_your_mind_research#/d34';
+      // };
       document.addEventListener('keypress', onKeyPress);
 
       //
-      document.addEventListener('keydown', onKeyDown);
+      //document.addEventListener('keydown', onKeyDown);
 
       window.addEventListener('resize', onWindowResize);
     }

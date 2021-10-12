@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import * as THREE from 'three';
 import { Scene } from 'three';
 import img from '../material/texture/15.jpg';
-import wall from '../material/texture/b_watercolor.jpg';
+import l21 from '../material/letter21.jpeg';
 
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 
@@ -14,11 +14,6 @@ import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtil
 import '../stylesheet/detail.scss';
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-
-import {
-  VOXLoader,
-  VOXDataTexture3D,
-} from 'three/examples/jsm/loaders/VOXLoader.js';
 
 import { WEBGL } from 'three/examples/jsm/WebGL.js';
 
@@ -328,13 +323,15 @@ const Detail__21 = () => {
           blocker.style.display = 'none';
           instructions.style.display = 'none';
           flag = 0;
+        } else if (event.code === 'KeyF') {
+          window.location.href = 'sell_your_mind_research#/d11';
         }
       };
       const onKeyDown = function (event) {
         if (event.code === 'KeyF')
           window.location.href = 'sell_your_mind_research#/d11';
       };
-
+      document.body.style.cursor = 'none';
       document.addEventListener('keypress', onKeyPress);
       //
       document.addEventListener('keydown', onKeyDown);
@@ -401,29 +398,7 @@ const Detail__21 = () => {
     <div className="detail-body">
       <div className="blocker" id="blocker">
         <div className="instructions" id="instructions">
-          <div className="text">
-            <h4>두통</h4>
-            <h4>강영환</h4>참을 수 없는 두통으로 지하보도에 누워 있을 때<br />
-            무자비한 발자국이 나를 밟고 지나갔다
-            <br />
-            살아 있는 자들이 저지르는 방화는
-            <br />
-            따뜻한 유리창에 활활 타오르고
-            <br />
-            바다처럼 질펀하게 드러누운 석양이
-            <br />
-            도시와 벌판을 우울하게 한다
-            <br />
-            두통은 부서지지 않고 젖은 바닥을 흘러간다
-            <br />
-            내가 가서 닿은 바닥은 풀밭이 아니었다
-            <br />
-            새벽까지 사라지지 않는 별들이
-            <br />
-            나를 지하보도에 그냥 눕혀 놓았다
-            <br />
-            그렇겠지.
-          </div>
+          <img src={l21} alt="letter" />
         </div>
       </div>
     </div>

@@ -165,13 +165,14 @@ const Detail__33 = () => {
           blocker.style.display = 'none';
           instructions.style.display = 'none';
           flag = 0;
-        }
-      };
-      const onKeyDown = function (event) {
-        if (event.code === 'KeyF')
+        } else if (event.code === 'KeyF')
           window.location.href = 'sell_your_mind_research#/d23';
       };
-      document.addEventListener('keydown', onKeyDown);
+      // const onKeyDown = function (event) {
+      //   if (event.code === 'KeyF')
+      //     window.location.href = 'sell_your_mind_research#/d23';
+      // };
+      // document.addEventListener('keydown', onKeyDown);
       document.addEventListener('keypress', onKeyPress);
       window.addEventListener('resize', onWindowResize);
     }

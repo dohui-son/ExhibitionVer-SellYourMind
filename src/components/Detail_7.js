@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import * as THREE from 'three';
 import { Scene } from 'three';
 import img from '../material/texture/bp.jpg';
+import l7 from '../material/letter7.jpg';
 
 //import Stats from 'three/examples/jsm/libs/stats.module.js';
 
@@ -164,7 +165,8 @@ const Detail_7 = () => {
           blocker.style.display = 'none';
           instructions.style.display = 'none';
           flag = 0;
-        }
+        } else if (event.code === 'KeyF')
+          window.location.href = 'sell_your_mind_research#/d42';
       };
       document.addEventListener('keypress', onKeyPress);
 
@@ -225,12 +227,7 @@ const Detail_7 = () => {
     <div className="detail-body" id="container">
       <div className="blocker" id="blocker">
         <div className="instructions" id="instructions">
-          <div className="text">
-            <h4>메스꺼움</h4>거북하다. 이사람과는 어쩐지 불편하다, 어디라고 꼭
-            짚어 말할 수는 없어도 이 사람과는 어쩐지 잘 맞지 않는다. 그렇게
-            속으로 느낄 때 드러나는 표정이다. 혐오와도, 조심스러움과도 다른
-            본능적인 기피의 감정이 든다.
-          </div>
+          <img src={l7} alt="letter" />
         </div>
       </div>
     </div>

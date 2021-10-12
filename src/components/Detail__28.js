@@ -333,12 +333,14 @@ const Detail__28 = () => {
           blocker.style.display = 'none';
           instructions.style.display = 'none';
           flag = 0;
-        }
+        } else if (event.code === 'KeyF')
+          window.location.href = 'sell_your_mind_research#/d43';
       };
       const onKeyDown = function (event) {
         if (event.code === 'KeyF')
           window.location.href = 'sell_your_mind_research#/d43';
       };
+      document.body.style.cursor = 'none';
       document.addEventListener('keydown', onKeyDown);
       document.addEventListener('keypress', onKeyPress);
       window.addEventListener('resize', onWindowResize);

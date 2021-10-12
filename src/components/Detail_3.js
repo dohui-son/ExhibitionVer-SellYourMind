@@ -140,11 +140,11 @@ const Detail_3 = () => {
         return needResize;
       }
 
-      const onKeyDown = function (event) {
+      const onKeyPress = function (event) {
         if (event.code === 'KeyF')
           window.location.href = 'sell_your_mind_research#/d32';
       };
-      document.addEventListener('keydown', onKeyDown);
+      document.addEventListener('keypress', onKeyPress);
 
       document.addEventListener('pointerdown', onPointerDown);
       document.addEventListener('wheel', onDocumentMouseWheel);

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import * as THREE from 'three';
 import img from '../material/texture/18.jpg';
+import l22 from '../material/letter22.PNG';
 import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js';
 import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
 
@@ -90,16 +91,18 @@ const Detail__22 = () => {
           blocker.style.display = 'none';
           instructions.style.display = 'none';
           flag = 0;
+        } else if (event.code == 'KeyF') {
+          window.location.href = 'sell_your_mind_research#/d21';
         }
       };
-      const onKeyDown = function (event) {
-        if (event.code === 'KeyF')
-          window.location.href = 'sell_your_mind_research#/d21';
-      };
+      // const onKeyDown = function (event) {
+      //   if (event.code === 'KeyF')
+      //     window.location.href = 'sell_your_mind_research#/d21';
+      // };
       document.addEventListener('keypress', onKeyPress);
 
       //
-      document.addEventListener('keydown', onKeyDown);
+      //document.addEventListener('keydown', onKeyDown);
 
       window.addEventListener('resize', onWindowResize);
     }
@@ -225,16 +228,7 @@ const Detail__22 = () => {
     <div className="detail-body" id="container">
       <div className="blocker" id="blocker">
         <div className="instructions" id="instructions">
-          <div className="text">
-            <h4>섬유유연제</h4>맑은 하늘이 뜨면 먼저 하는 생각은 빨래. 나의 옷에
-            보이지 않는 색을 빨아 깨끗이하는 과정은 귀찮지만 빨래향기는 안정감을
-            준다. 저절로 나오는 콧노래는 이웃의 귀를 생각해 참아 보지만 그것도
-            잠시, 자꾸자꾸 흥얼거림이 터져나와 버린다. 오랜만에 바꾼 섬유유연제
-            향이 마음에 들어 기분이 좋다. 보이지 않는 향이 두둥실. 내 바로 앞에
-            놓여있다는 걸 안다. 포근하다. 코를 파묻어 마구 부비고 미소 짓는다.
-            낮잠에 들것만 같은 나른한 기분. 나른한 건 뽀송한 빨래 때문인가
-            햇살때문인가.
-          </div>
+          <img src={l22} alt="letter" />
         </div>
       </div>
     </div>

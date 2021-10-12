@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import * as THREE from 'three';
 import { Scene } from 'three';
 import img from '../material/texture/25.jpeg';
+import l31 from '../material/letter31.png';
 // import wall from '../material/texture/b_watercolor.jpg';
 
 // import Stats from 'three/examples/jsm/libs/stats.module.js';
@@ -128,7 +129,8 @@ const Detail__31 = () => {
           blocker.style.display = 'none';
           instructions.style.display = 'none';
           flag = 0;
-        }
+        } else if (event.code === 'KeyF')
+          window.location.href = 'sell_your_mind_research#/d22';
       };
       const onKeyDown = function (event) {
         if (event.code === 'KeyF')
@@ -216,16 +218,7 @@ const Detail__31 = () => {
     <div className="detail-body" id="container">
       <div className="blocker" id="blocker">
         <div className="instructions" id="instructions">
-          <div className="text">
-            <h4>나이는 항상 7살</h4>운동회, 하고 싶은거 다하는 삶을 살거야.
-            뚱땅뚱땅 어설픈 발걸음은 당차다. 뒷모습에서 초등학교 운동회에서의
-            활기가 잠깐 보였다. 허공에 휘두르는 팔에 주먹을 꽉 진 손이
-            인상적이다. 여러 사람, 여러 목표가 보인다. 다채로운 사람들. 모두
-            저마다의 활기를 갖고 숲을 이룬다. 나도 다시 시작해볼까 기지개를
-            피어본다. 마냥 어리게 보겠지. 하지만 돌아,돌아 나이를 먹어도, 치매가
-            찾아와도, 가슴속에 동요는 흐르고. 점점 어려지는 우리 할머니도
-            그렇겠지.
-          </div>
+          <img src={l31} alt="letter" />
         </div>
       </div>
     </div>
