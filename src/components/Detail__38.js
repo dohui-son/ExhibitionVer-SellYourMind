@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import img from '../material/texture/29.jpeg';
 import l38 from '../material/letter38.PNG';
 import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
-import '../stylesheet/writings.scss';
+import '../stylesheet/detail.scss';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 import { WEBGL } from 'three/examples/jsm/WebGL.js';
