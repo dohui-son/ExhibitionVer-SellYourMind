@@ -45,7 +45,7 @@ const Detail_7 = () => {
       const texture = new THREE.TextureLoader().load(img);
 
       scene.background = new THREE.TextureLoader().load(img);
-
+      document.body.style.cursor = 'none';
       const blocker = document.getElementById('blocker');
       const instructions = document.getElementById('instructions');
       instructions.style.display = 'none';

@@ -212,6 +212,7 @@ const Detail__29 = () => {
       // };
 
       document.addEventListener('keypress', onKeyPress);
+      document.body.style.cursor = 'none';
       //document.addEventListener('keydown', onKeyDown);
 
       // cube camera for environment map

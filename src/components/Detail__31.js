@@ -136,6 +136,7 @@ const Detail__31 = () => {
         if (event.code === 'KeyF')
           window.location.href = 'sell_your_mind_research#/d22';
       };
+      document.body.style.cursor = 'none';
       document.addEventListener('keypress', onKeyPress);
 
       //

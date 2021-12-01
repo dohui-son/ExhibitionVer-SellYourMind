@@ -132,7 +132,7 @@ const Detail_11 = () => {
       //
       document.addEventListener('keypress', onKeyPress);
       document.addEventListener('keydown', onKeyDown);
-
+      document.body.style.cursor = 'none';
       window.addEventListener('resize', onWindowResize);
     }
 
