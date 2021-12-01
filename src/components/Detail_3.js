@@ -148,7 +148,7 @@ const Detail_3 = () => {
 
       document.addEventListener('pointerdown', onPointerDown);
       document.addEventListener('wheel', onDocumentMouseWheel);
-
+      document.body.style.cursor = 'none';
       window.addEventListener('resize', onWindowResized);
     }
 

@@ -164,6 +164,7 @@ const Detail_2 = () => {
       document.addEventListener('keypress', onKeyPress);
       document.addEventListener('pointerdown', onPointerDown);
       document.addEventListener('wheel', onDocumentMouseWheel);
+      document.body.style.cursor = 'none';
 
       window.addEventListener('resize', onWindowResized);
     }

@@ -341,6 +341,7 @@ const Detail__19 = () => {
       document.addEventListener('keypress', onKeyPress);
       document.addEventListener('keydown', onKeyDown);
       window.addEventListener('resize', onWindowResize);
+      document.body.style.cursor = 'none';
     }
 
     function onWindowResize() {

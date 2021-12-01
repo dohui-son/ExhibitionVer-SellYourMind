@@ -136,6 +136,7 @@ const Detail_17 = () => {
       container.addEventListener('pointermove', onPointerMove);
       document.addEventListener('keypress', onKeyPress);
       window.addEventListener('resize', onWindowResize);
+      document.body.style.cursor = 'none';
     }
 
     function onWindowResize() {
