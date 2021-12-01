@@ -100,7 +100,7 @@ const Detail__18 = () => {
             canJump = false;
             break;
           case 'KeyF':
-            window.location.href = 'sell_your_mind_research#/d33';
+            window.location.href = 'sell_your_mind_research#/d23';
             break;
         }
       };
@@ -127,7 +127,7 @@ const Detail__18 = () => {
             moveRight = false;
             break;
           case 'KeyF':
-            window.location.href = 'sell_your_mind_research#/d33';
+            window.location.href = 'sell_your_mind_research#/d23';
             break;
         }
       };

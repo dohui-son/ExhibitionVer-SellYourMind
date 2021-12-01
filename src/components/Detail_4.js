@@ -216,7 +216,7 @@ const Detail_4 = () => {
       requestAnimationFrame(animate);
 
       render();
-      // stats.update();
+      
     }
 
     function render() {

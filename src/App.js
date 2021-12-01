@@ -2,14 +2,8 @@ import React from 'react';
 
 import './stylesheet/global.scss';
 import { Route, HashRouter } from 'react-router-dom';
-import Home from './page/Home';
-import Auth from './page/Auth';
-import MyPage from './page/MyPage';
 import Market from './components/Detail__32'; //'./page/Market';
-import Sell from './page/Sell';
-import Layout from './components/Layout';
-import Square from './components/Square';
-import DetailThree from './components/DetailThree';
+
 import DetailQuote from './components/DetailQuote';
 import Detail_1 from './components/Detail_1';
 import Detail_2 from './components/Detail_2';
@@ -81,59 +75,8 @@ const App = () => {
   return (
     <div classname="global">
       <HashRouter>
-        {/* <Detail__42 /> */}
-        {/* <Detail__41 /> */}
-        {/* <Detail__40 /> */}
-        {/* <Detail__38 /> */}
-        {/* <Detail__37 /> */}
-        {/* <Detail__36 /> */}
-        {/* <Detail__35 /> */}
-        {/* <Detail__34 /> */}
-        {/* <Detail__33 /> */}
-        {/* <Detail__32 /> */}
-        {/* <Detail__31 /> */}
-        {/* <Detail__30 /> */}
-        {/* <Detail__29 /> */}
-        {/* <Detail__28 /> */}
-        {/* <Detail__27 /> */}
-        {/* <Detail__26 /> */}
-        {/* <Detail__25 /> */}
-        {/* <Detail__24 /> */}
-        {/* <Detail__23 /> */}
-        {/* <Detail__22 /> */}
-        {/* <Detail__21 /> */}
-        {/* <Detail__20 /> */}
-        {/* <Detail__19 /> */}
-        {/* <Detail__18 />
-
-
-
-      {/* <Detail_17 /> */}
-        {/* <Detail_16 /> */}
-        {/* <Detail_15 /> */}
-        {/* <Detail_14 /> */}
-        {/* <Detail_13 /> */}
-        {/* <Detail_12 /> */}
-        {/* <Detail_11 /> */}
-        {/* <Detail_10 /> */}
-        {/* <Detail_9 /> */}
-        {/* <Detail_8 /> */}
-        {/* <Detail_7 /> */}
-        {/* <Detail_6 /> */}
-        {/* <Detail_4 /> */}
-        {/* <Detail_5 /> */}
-        {/* <Detail_3 /> */}
-        {/* <Detail_2 /> */}
-        {/* <div className="global"> */}
-        {/* <Layout> */}
-        {/* <Route path="/" component={Home} exact={true} />
-        <Route path="/auth" component={Auth} /> 
-        <Route path="/mypage" component={MyPage} /> */}
         <Route exact path="/sell_your_mind_research" component={Market} />
         <Route exact path="/" component={Market} />
-        {/* <Route path="/sell" component={Sell} /> */}
-        {/* </Layout> */}
-        {/* </div> */}
         <Route path="/w0" component={Write0} exact={true} />
         <Route path="/w1" component={Write1} exact={true} />
         <Route path="/w2" component={Write2} exact={true} />
@@ -161,7 +104,6 @@ const App = () => {
         <Route path="/d42" component={Detail__42} exact={true} />
         <Route path="/d41" component={Detail__41} exact={true} />
         <Route path="/d40" component={Detail__40} exact={true} />
-        {/* <Route path="/sell/d39" component={Detail__39} /> */}
         <Route path="/d38" component={Detail__38} exact={true} />
         <Route path="/d37" component={Detail__37} exact={true} />
         <Route path="/d36" component={Detail__36} exact={true} />

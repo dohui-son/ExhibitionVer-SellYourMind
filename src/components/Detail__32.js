@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import * as THREE from 'three';
 
 import img from '../material/texture/21.jpeg';
