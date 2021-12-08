@@ -1,27 +1,19 @@
-import React, { Component, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState, useEffect } from 'react';
 import * as THREE from 'three';
-import { Scene } from 'three';
 import img from '../material/texture/6.jpg';
-import wall from '../material/texture/b_watercolor.jpg';
-
 import l15 from '../material/letter15.png';
-
-import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js';
-import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
-import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
-
 import '../stylesheet/detail.scss';
-import { VRButton } from 'three/examples/jsm/webxr/VRButton.js';
 
-//import * as THREE from '../build/three.module.js';
-
-//import Stats from './jsm/libs/stats.module.js';
-
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-//import { ImprovedNoise } from './jsm/math/ImprovedNoise.js';
 const Detail_15 = () => {
+  let [letter, letterSet] = useState(true);
   useEffect(() => {
+    let timer = setTimeout(() => {
+      letterSet(false);
+    }, 4000);
+    let timer2 = setTimeout(() => {
+      window.location.href = 'sell_your_mind_research#/d20';
+    }, 90000);
+
     let camera,
       scene,
       renderer,
@@ -91,30 +83,34 @@ const Detail_15 = () => {
       renderer.xr.setReferenceSpaceType('local');
       container.appendChild(renderer.domElement);
 
-      const blocker = document.getElementById('blocker');
-      const instructions = document.getElementById('instructions');
-      instructions.style.display = 'none';
-      blocker.style.display = 'none';
-      const onKeyPress = function (event) {
-        if (event.code === 'KeyG' && !flag) {
-          blocker.style.display = 'block';
-          instructions.style.display = '';
-          flag = 1;
-        } else if (event.code === 'KeyG' && flag) {
-          blocker.style.display = 'none';
-          instructions.style.display = 'none';
-          flag = 0;
-        } else if (event.code === 'KeyF')
-          window.location.href = 'sell_your_mind_research#/d20';
-      };
-      const onKeyDown = function (event) {
-        if (event.code === 'KeyF')
-          window.location.href = 'sell_your_mind_research#/d20';
-      };
-      document.addEventListener('keydown', onKeyDown);
-      document.addEventListener('keypress', onKeyPress);
+      // const blocker = document.getElementById('blocker');
+      // const instructions = document.getElementById('instructions');
+      // instructions.style.display = 'none';
+      // blocker.style.display = 'none';
+      // const onKeyPress = function (event) {
+      //   if (event.code === 'KeyG' && !flag) {
+      //     blocker.style.display = 'block';
+      //     instructions.style.display = '';
+      //     flag = 1;
+      //   } else if (event.code === 'KeyG' && flag) {
+      //     blocker.style.display = 'none';
+      //     instructions.style.display = 'none';
+      //     flag = 0;
+      //   } else if (event.code === 'KeyF')
+      //     window.location.href = 'sell_your_mind_research#/d20';
+      // };
+      // const onKeyDown = function (event) {
+      //   if (event.code === 'KeyF')
+      //     window.location.href = 'sell_your_mind_research#/d20';
+      // };
+      // document.addEventListener('keydown', onKeyDown);
+      // document.addEventListener('keypress', onKeyPress);
+
       window.addEventListener('resize', onWindowResize);
       document.body.style.cursor = 'none';
+      document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+      });
     }
 
     function onWindowResize() {
@@ -130,13 +126,12 @@ const Detail_15 = () => {
 
     function render() {
       // If we are not presenting move the camera a little so the effect is visible
-
       if (renderer.xr.isPresenting === false) {
-        const time = clock.getElapsedTime() * 10;
+        const time = clock.getElapsedTime() * 25;
 
-        sphere.rotation.y += 0.1;
-        sphere.position.x = Math.sin(time) * 4; //0.2
-        sphere.position.z = Math.cos(time) * 4; //0.2
+        sphere.rotation.y += 0.01;
+        sphere.position.x = Math.sin(time) * 0.002; //0.2
+        sphere.position.z = Math.cos(time) * 0.002; //0.2
       }
 
       renderer.render(scene, camera);
@@ -144,11 +139,13 @@ const Detail_15 = () => {
   }, []);
   return (
     <div className="detail-body" id="container">
-      <div className="blocker" id="blocker">
-        <div className="instructions" id="instructions">
-          <img src={l15} alt="letter" />
+      {letter === true ? (
+        <div className="blocker" id="blocker">
+          <div className="instructions" id="instructions">
+            <img src={l15} alt="letter" />
+          </div>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 };

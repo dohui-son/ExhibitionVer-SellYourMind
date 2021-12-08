@@ -1,13 +1,21 @@
-import React, { Component, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as THREE from 'three';
 import img from '../material/texture/20.jpeg';
 //공감
-import Stats from 'three/examples/jsm/libs/stats.module.js';
+import l41 from '../material/letter41.jpeg';
 import '../stylesheet/detail.scss';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 const Detail__36 = () => {
+  let [letter, letterSet] = useState(true);
   useEffect(() => {
+    let timer = setTimeout(() => {
+      letterSet(false);
+    }, 4000);
+    let timer2 = setTimeout(() => {
+      window.location.href = 'sell_your_mind_research#/d34';
+    }, 90000);
+
     let camera, scene, renderer, bulbLight, bulbMat, hemiLight, stats;
     let ballMat, cubeMat, floorMat;
     let previousShadowMap = false;
@@ -51,10 +59,10 @@ const Detail__36 = () => {
 
     function init() {
       const container = document.getElementById('container');
-
-      // stats = new Stats();
-      // container.appendChild(stats.dom);
-
+      document.body.style.cursor = 'none';
+      document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+      });
       camera = new THREE.PerspectiveCamera(
         50,
         window.innerWidth / window.innerHeight,
@@ -235,10 +243,18 @@ const Detail__36 = () => {
       bulbLight.position.y = Math.cos(time) * 0.95 + 1.25;
 
       renderer.render(scene, camera);
-
-      // stats.update();
     }
   }, []);
-  return <div className="detail-body" id="container"></div>;
+  return (
+    <div className="detail-body" id="container">
+      {letter === true ? (
+        <div className="blocker" id="blocker">
+          <div className="instructions" id="instructions">
+            <img src={l41} alt="letter" />
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
 };
 export default Detail__36;

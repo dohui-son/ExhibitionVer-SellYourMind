@@ -1,24 +1,19 @@
-import React, { Component, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useEffect, useState } from 'react';
 import * as THREE from 'three';
-import { Scene } from 'three';
 import img from '../material/texture/22.jpeg';
 import l3 from '../material/letter30.jpeg';
-
-import Stats from 'three/examples/jsm/libs/stats.module.js';
-
-import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js';
-import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
-import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
-
 import '../stylesheet/detail.scss';
-
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
-import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
-
 const Detail__30 = () => {
+  let [letter, letterSet] = useState(true);
   useEffect(() => {
+    let timer = setTimeout(() => {
+      letterSet(false);
+    }, 4000);
+    let timer2 = setTimeout(() => {
+      window.location.href = 'sell_your_mind_research#/d29';
+    }, 90000);
     let controls,
       camera,
       scene,
@@ -48,7 +43,7 @@ const Detail__30 = () => {
 
       // Lights
 
-      const ambient = new THREE.AmbientLight(0xffffff);
+      const ambient = new THREE.AmbientLight(0xffffff, 0.8);
       scene.add(ambient);
 
       // Textures
@@ -56,21 +51,19 @@ const Detail__30 = () => {
       const loader = new THREE.CubeTextureLoader();
       loader.setPath('textures/cube/Bridge2/');
 
-      textureCube = texture_img; //loader.load( [ 'posx.jpg', 'negx.jpg', 'posy.jpg', 'negy.jpg', 'posz.jpg', 'negz.jpg' ] );
-      textureCube.encoding = THREE.sRGBEncoding;
+      textureCube = texture_img;
 
       const textureLoader = new THREE.TextureLoader();
 
-      textureEquirec = texture_img; //textureLoader.load( 'textures/2294472375_24a3b8ef46_o.jpg' );
+      textureEquirec = texture_img;
       textureEquirec.mapping = THREE.EquirectangularReflectionMapping;
       textureEquirec.encoding = THREE.sRGBEncoding;
 
       scene.background = texture_img;
 
       //
-
       const geometry = new THREE.IcosahedronGeometry(400, 15);
-      sphereMaterial = new THREE.MeshLambertMaterial({ map: texture_img }); //( { envMap: textureCube } );
+      sphereMaterial = new THREE.MeshLambertMaterial({ map: texture_img });
       sphereMesh = new THREE.Mesh(geometry, sphereMaterial);
       scene.add(sphereMesh);
 
@@ -105,32 +98,22 @@ const Detail__30 = () => {
         },
         Refraction: false,
       };
-      const blocker = document.getElementById('blocker');
-      const instructions = document.getElementById('instructions');
-      instructions.style.display = 'none';
-      blocker.style.display = 'none';
-      const onKeyPress = function (event) {
-        if (event.code === 'KeyG' && !flag) {
-          blocker.style.display = 'block';
-          instructions.style.display = '';
-          flag = 1;
-        } else if (event.code === 'KeyG' && flag) {
-          blocker.style.display = 'none';
-          instructions.style.display = 'none';
-          flag = 0;
-        } else if (event.code === 'KeyF') {
-          window.location.href = 'sell_your_mind_research#/d29';
-        }
-      };
 
-      // const onKeyDown = function (event) {
-      //   if (event.code === 'KeyF')
+      // const onKeyPress = function (event) {
+      //   if (event.code === 'KeyG' && !flag) {
+      //     blocker.style.display = 'block';
+      //     instructions.style.display = '';
+      //     flag = 1;
+      //   } else if (event.code === 'KeyG' && flag) {
+      //     blocker.style.display = 'none';
+      //     instructions.style.display = 'none';
+      //     flag = 0;
+      //   } else if (event.code === 'KeyF') {
       //     window.location.href = 'sell_your_mind_research#/d29';
+      //   }
       // };
 
-      //
-      //document.addEventListener('keydown', onKeyDown);
-      document.addEventListener('keypress', onKeyPress);
+      //document.addEventListener('keypress', onKeyPress);
       window.addEventListener('resize', onWindowResize);
     }
 
@@ -140,8 +123,6 @@ const Detail__30 = () => {
 
       renderer.setSize(window.innerWidth, window.innerHeight);
     }
-
-    //
 
     function animate() {
       requestAnimationFrame(animate);
@@ -159,11 +140,13 @@ const Detail__30 = () => {
   }, []);
   return (
     <div className="detail-body" id="container">
-      <div className="blocker" id="blocker">
-        <div className="instructions" id="instructions">
-          <img src={l3} alt="background_img" />
+      {letter === true ? (
+        <div className="blocker" id="blocker">
+          <div className="instructions" id="instructions">
+            <img src={l3} alt="background_img" />
+          </div>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 };

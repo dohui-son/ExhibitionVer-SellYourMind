@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as THREE from 'three';
 import img from '../material/texture/18.jpg';
 import l22 from '../material/letter22.PNG';
@@ -7,13 +7,21 @@ import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
 
 import '../stylesheet/detail.scss';
 const Detail__22 = () => {
+  let [letter, letterSet] = useState(true);
   useEffect(() => {
+    let timer = setTimeout(() => {
+      letterSet(false);
+    }, 4000);
+    let timer2 = setTimeout(() => {
+      window.location.href = 'sell_your_mind_research#/d21';
+    }, 90000);
+
     let container,
       flag = 0;
     let camera, controls, scene, renderer;
     let mesh, texture;
 
-    const worldWidth = 356, //256
+    const worldWidth = 356,
       worldDepth = 256;
     const clock = new THREE.Clock();
 
@@ -33,8 +41,7 @@ const Detail__22 = () => {
       scene = new THREE.Scene();
 
       scene.background = new THREE.Color(0xffffff);
-      //scene.background = new THREE.TextureLoader().load(img);
-      scene.fog = new THREE.FogExp2(0xffffff, 0.0025);
+      scene.fog = new THREE.FogExp2(0xffffff, 0.0014);
 
       const data = generateHeight(worldWidth, worldDepth);
 
@@ -74,34 +81,28 @@ const Detail__22 = () => {
       controls.movementSpeed = 150;
       controls.lookSpeed = 0.1;
 
-      // stats = new Stats();
-      // container.appendChild(stats.dom);
-
-      //
-      const blocker = document.getElementById('blocker');
-      const instructions = document.getElementById('instructions');
-      instructions.style.display = 'none';
-      blocker.style.display = 'none';
-      const onKeyPress = function (event) {
-        if (event.code === 'KeyG' && !flag) {
-          blocker.style.display = 'block';
-          instructions.style.display = '';
-          flag = 1;
-        } else if (event.code === 'KeyG' && flag) {
-          blocker.style.display = 'none';
-          instructions.style.display = 'none';
-          flag = 0;
-        } else if (event.code == 'KeyF') {
-          window.location.href = 'sell_your_mind_research#/d21';
-        }
-      };
+      // const blocker = document.getElementById('blocker');
+      // const instructions = document.getElementById('instructions');
+      // instructions.style.display = 'none';
+      // blocker.style.display = 'none';
+      // const onKeyPress = function (event) {
+      //   if (event.code === 'KeyG' && !flag) {
+      //     blocker.style.display = 'block';
+      //     instructions.style.display = '';
+      //     flag = 1;
+      //   } else if (event.code === 'KeyG' && flag) {
+      //     blocker.style.display = 'none';
+      //     instructions.style.display = 'none';
+      //     flag = 0;
+      //   } else if (event.code == 'KeyF') {
+      //     window.location.href = 'sell_your_mind_research#/d21';
+      //   }
+      // };
       // const onKeyDown = function (event) {
       //   if (event.code === 'KeyF')
       //     window.location.href = 'sell_your_mind_research#/d21';
       // };
-      document.addEventListener('keypress', onKeyPress);
-
-      //
+      //document.addEventListener('keypress', onKeyPress);
       //document.addEventListener('keydown', onKeyDown);
 
       window.addEventListener('resize', onWindowResize);
@@ -210,13 +211,9 @@ const Detail__22 = () => {
       return canvasScaled;
     }
 
-    //
-
     function animate() {
       requestAnimationFrame(animate);
-
       render();
-      // stats.update();
     }
 
     function render() {
@@ -226,11 +223,13 @@ const Detail__22 = () => {
   }, []);
   return (
     <div className="detail-body" id="container">
-      <div className="blocker" id="blocker">
-        <div className="instructions" id="instructions">
-          <img src={l22} alt="letter" />
+      {letter === true ? (
+        <div className="blocker" id="blocker">
+          <div className="instructions" id="instructions">
+            <img src={l22} alt="letter" />
+          </div>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 };

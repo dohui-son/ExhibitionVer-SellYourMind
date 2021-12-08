@@ -1,20 +1,21 @@
-import React, { Component, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState, useEffect } from 'react';
 import * as THREE from 'three';
-import { Scene } from 'three';
 import img from '../material/texture/bp.jpg';
 import l7 from '../material/letter7.jpg';
-
-//import Stats from 'three/examples/jsm/libs/stats.module.js';
-
 import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js';
 import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
 import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
-
 import '../stylesheet/detail.scss';
 
 const Detail_7 = () => {
+  let [letter, letterSet] = useState(true);
   useEffect(() => {
+    let timer = setTimeout(() => {
+      letterSet(false);
+    }, 4000);
+    let timer2 = setTimeout(() => {
+      window.location.href = 'sell_your_mind_research#/d42';
+    }, 90000);
     let container,
       flag = 0;
     let camera, controls, scene, renderer;
@@ -46,13 +47,12 @@ const Detail_7 = () => {
 
       scene.background = new THREE.TextureLoader().load(img);
       document.body.style.cursor = 'none';
-      const blocker = document.getElementById('blocker');
-      const instructions = document.getElementById('instructions');
-      instructions.style.display = 'none';
-      blocker.style.display = 'none';
+      // const blocker = document.getElementById('blocker');
+      // const instructions = document.getElementById('instructions');
+      // instructions.style.display = 'none';
+      // blocker.style.display = 'none';
 
       // sides
-
       const matrix = new THREE.Matrix4();
 
       const pxGeometry = new THREE.PlaneGeometry(100, 2500);
@@ -126,22 +126,19 @@ const Detail_7 = () => {
       const geometry = BufferGeometryUtils.mergeBufferGeometries(geometries);
       geometry.computeBoundingSphere();
 
-      //const texture = new THREE.TextureLoader().load(img);
-      //texture.magFilter = THREE.NearestFilter;
-
       const mesh = new THREE.Mesh(
         geometry,
         new THREE.MeshLambertMaterial({ map: texture, side: THREE.DoubleSide })
       );
       scene.add(mesh);
 
-      const ambientLight = new THREE.AmbientLight(0xcccccc);
+      const ambientLight = new THREE.AmbientLight(0xcccccc); //
       scene.add(ambientLight);
 
-      const onKeyDown = function (event) {
-        if (event.code === 'KeyF')
-          window.location.href = 'sell_your_mind_research#/d42';
-      };
+      // const onKeyDown = function (event) {
+      //   if (event.code === 'KeyF')
+      //     window.location.href = 'sell_your_mind_research#/d42';
+      //};
 
       renderer = new THREE.WebGLRenderer({ antialias: true });
       renderer.setPixelRatio(window.devicePixelRatio);
@@ -154,23 +151,20 @@ const Detail_7 = () => {
       controls.lookSpeed = 0.125;
       controls.lookVertical = true;
 
-      //stats = new Stats();
-      //container.appendChild(stats.dom);
-      const onKeyPress = function (event) {
-        if (event.code === 'KeyG' && !flag) {
-          blocker.style.display = 'block';
-          instructions.style.display = '';
-          flag = 1;
-        } else if (event.code === 'KeyG' && flag) {
-          blocker.style.display = 'none';
-          instructions.style.display = 'none';
-          flag = 0;
-        } else if (event.code === 'KeyF')
-          window.location.href = 'sell_your_mind_research#/d42';
-      };
-      document.addEventListener('keypress', onKeyPress);
-
-      document.addEventListener('keydown', onKeyDown);
+      // const onKeyPress = function (event) {
+      //   if (event.code === 'KeyG' && !flag) {
+      //     blocker.style.display = 'block';
+      //     instructions.style.display = '';
+      //     flag = 1;
+      //   } else if (event.code === 'KeyG' && flag) {
+      //     blocker.style.display = 'none';
+      //     instructions.style.display = 'none';
+      //     flag = 0;
+      //   } else if (event.code === 'KeyF')
+      //     window.location.href = 'sell_your_mind_research#/d42';
+      // };
+      // document.addEventListener('keypress', onKeyPress);
+      // document.addEventListener('keydown', onKeyDown);
       window.addEventListener('resize', onWindowResize);
     }
 
@@ -224,13 +218,17 @@ const Detail_7 = () => {
     }
   }, []);
   return (
-    <div className="detail-body" id="container">
-      <div className="blocker" id="blocker">
-        <div className="instructions" id="instructions">
-          <img src={l7} alt="letter" />
-        </div>
+    <>
+      <div className="detail-body" id="container">
+        {letter === true ? (
+          <div className="blocker" id="blocker">
+            <div className="instructions" id="instructions">
+              <img src={l7} alt="letter" />
+            </div>
+          </div>
+        ) : null}
       </div>
-    </div>
+    </>
   );
 };
 export default Detail_7;

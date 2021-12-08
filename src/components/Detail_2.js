@@ -1,15 +1,19 @@
-import React, { Component, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState, useEffect } from 'react';
 import * as THREE from 'three';
-import { Scene } from 'three';
 import img from '../material/texture/33.png';
 import l2 from '../material/letter2.png';
 import wall2 from '../material/texture/wall2.jpg';
-
 import '../stylesheet/detail.scss';
-//import { VRButton } from './jsm/webxr/VRButton.js';
+
 const Detail_2 = () => {
+  let [letter, letterSet] = useState(true);
   useEffect(() => {
+    let timer = setTimeout(() => {
+      letterSet(false);
+    }, 4000);
+    let timer2 = setTimeout(() => {
+      window.location.href = 'sell_your_mind_research#/d15';
+    }, 90000);
     let camera, scene, renderer;
     let cube,
       flag = 0,
@@ -259,11 +263,13 @@ const Detail_2 = () => {
   }, []);
   return (
     <div className="detail-body" id="container">
-      <div className="blocker" id="blocker">
-        <div className="instructions" id="instructions">
-          <img src={l2} alt="letter" />
+      {letter === true ? (
+        <div className="blocker" id="blocker">
+          <div className="instructions" id="instructions">
+            <img src={l2} alt="letter" />
+          </div>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 };

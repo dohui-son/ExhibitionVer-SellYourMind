@@ -1,12 +1,7 @@
-import React, { Component, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState, useEffect } from 'react';
 import * as THREE from 'three';
-import { Scene } from 'three';
 import img from '../material/texture/26.jpeg';
 import l4 from '../material/letter4.png';
-
-import Stats from 'three/examples/jsm/libs/stats.module.js';
-
 import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js';
 import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
 import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
@@ -14,7 +9,14 @@ import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtil
 import '../stylesheet/detail.scss';
 //import { VRButton } from './jsm/webxr/VRButton.js';
 const Detail_4 = () => {
+  let [letter, letterSet] = useState(true);
   useEffect(() => {
+    let timer = setTimeout(() => {
+      letterSet(false);
+    }, 4000);
+    let timer2 = setTimeout(() => {
+      window.location.href = 'sell_your_mind_research#/d28';
+    }, 90000);
     let container,
       flag = 0;
 
@@ -33,6 +35,10 @@ const Detail_4 = () => {
 
     function init() {
       container = document.getElementById('container');
+      document.body.style.cursor = 'none';
+      document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+      });
 
       camera = new THREE.PerspectiveCamera(
         60,
@@ -149,28 +155,28 @@ const Detail_4 = () => {
       controls.lookSpeed = 0.125;
       controls.lookVertical = true;
 
-      const blocker = document.getElementById('blocker');
-      const instructions = document.getElementById('instructions');
-      instructions.style.display = 'none';
-      blocker.style.display = 'none';
-      const onKeyPress = function (event) {
-        if (event.code === 'KeyG' && !flag) {
-          blocker.style.display = 'block';
-          instructions.style.display = '';
-          flag = 1;
-        } else if (event.code === 'KeyG' && flag) {
-          blocker.style.display = 'none';
-          instructions.style.display = 'none';
-          flag = 0;
-        } else if (event.code === 'KeyF')
-          window.location.href = 'sell_your_mind_research#/d28';
-      };
-      const onKeyDown = function (event) {
-        if (event.code === 'KeyF')
-          window.location.href = 'sell_your_mind_research#/d28';
-      };
-      document.addEventListener('keydown', onKeyDown);
-      document.addEventListener('keypress', onKeyPress);
+      // const blocker = document.getElementById('blocker');
+      // const instructions = document.getElementById('instructions');
+      // instructions.style.display = 'none';
+      // blocker.style.display = 'none';
+      // const onKeyPress = function (event) {
+      //   if (event.code === 'KeyG' && !flag) {
+      //     blocker.style.display = 'block';
+      //     instructions.style.display = '';
+      //     flag = 1;
+      //   } else if (event.code === 'KeyG' && flag) {
+      //     blocker.style.display = 'none';
+      //     instructions.style.display = 'none';
+      //     flag = 0;
+      //   } else if (event.code === 'KeyF')
+      //     window.location.href = 'sell_your_mind_research#/d28';
+      // };
+      // const onKeyDown = function (event) {
+      //   if (event.code === 'KeyF')
+      //     window.location.href = 'sell_your_mind_research#/d28';
+      // };
+      // document.addEventListener('keydown', onKeyDown);
+      // document.addEventListener('keypress', onKeyPress);
       window.addEventListener('resize', onWindowResize);
     }
 
@@ -216,7 +222,6 @@ const Detail_4 = () => {
       requestAnimationFrame(animate);
 
       render();
-      
     }
 
     function render() {
@@ -226,11 +231,13 @@ const Detail_4 = () => {
   }, []);
   return (
     <div className="detail-body" id="container">
-      <div className="blocker" id="blocker">
-        <div className="instructions" id="instructions">
-          <img src={l4} alt="letter" />
+      {letter === true ? (
+        <div className="blocker" id="blocker">
+          <div className="instructions" id="instructions">
+            <img src={l4} alt="letter" />
+          </div>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 };

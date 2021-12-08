@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as THREE from 'three';
 import img from '../material/texture/29.jpeg';
 import l38 from '../material/letter38.PNG';
@@ -8,11 +8,16 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 import { WEBGL } from 'three/examples/jsm/WebGL.js';
 
-//import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
-
-//import { ImprovedNoise } from './jsm/math/ImprovedNoise.js';
 const Detail__38 = () => {
+  let [letter, letterSet] = useState(true);
+
   useEffect(() => {
+    let timer = setTimeout(() => {
+      letterSet(false);
+    }, 4000);
+    let timer2 = setTimeout(() => {
+      window.location.href = 'sell_your_mind_research#/d19';
+    }, 90000);
     if (WEBGL.isWebGL2Available() === false) {
       document.body.appendChild(WEBGL.getWebGL2ErrorMessage());
     }
@@ -54,11 +59,11 @@ const Detail__38 = () => {
             data[i] =
               (128 +
                 128 *
-                perlin.noise(
-                  (x * scale) / 1.5,
-                  y * scale,
-                  (z * scale) / 1.5
-                )) *
+                  perlin.noise(
+                    (x * scale) / 1.5,
+                    y * scale,
+                    (z * scale) / 1.5
+                  )) *
               fadingFactor;
 
             i++;
@@ -102,7 +107,7 @@ const Detail__38 = () => {
       context.fillRect(0, 0, 1, 32);
 
       //background
-      const container = document.getElementById('container');
+      // const container = document.getElementById('container');
       clock = new THREE.Clock();
       scene.background = new THREE.Color(0x101010);
       const light = new THREE.AmbientLight(0xffffff, 1);
@@ -139,17 +144,11 @@ const Detail__38 = () => {
       manager.onLoad = function () {
         scene.add(sphere);
       };
-      ///////////////////////////////////////////
 
       const sky = new THREE.Mesh(
         new THREE.SphereGeometry(10),
-        //new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(canvas), side: THREE.BackSide })
         new THREE.MeshBasicMaterial({ map: texture_img, side: THREE.BackSide })
       );
-      //scene.background = new THREE.TextureLoader().load(img);
-      //scene.add(sky);
-
-      // Texture
 
       const texture = new THREE.DataTexture3D(
         new Uint8Array(
@@ -167,31 +166,31 @@ const Detail__38 = () => {
       cloudTexture = texture_img;
 
       //blocker and wrintings
-      const blocker = document.getElementById('blocker');
-      const instructions = document.getElementById('instructions');
+      // const blocker = document.getElementById('blocker');
+      // const instructions = document.getElementById('instructions');
       //instructions.style.display = 'none';
-      blocker.style.display = 'none';
+      // blocker.style.display = 'none';
 
-      const onKeyDown = function (event) {
-        if (event.code === 'KeyF')
-          window.location.href = 'sell_your_mind_research#/d19';
-      };
-      const onKeyPress = function (event) {
-        if (event.code === 'KeyG' && !flag) {
-          blocker.style.display = 'block';
-          instructions.display = '';
-          flag = 1;
-        } else if (event.code === 'KeyG' && flag) {
-          blocker.style.display = 'none';
-          instructions.style.display = 'none';
-          flag = 0;
-        } else if (event.code === 'KeyF')
-          window.location.href = 'sell_your_mind_research#/d19';
-      };
-      document.addEventListener('keypress', onKeyPress);
-      document.addEventListener('keydown', onKeyDown);
+      // const onKeyDown = function (event) {
+      //   if (event.code === 'KeyF')
+      //     window.location.href = 'sell_your_mind_research#/d19';
+      // };
+      // const onKeyPress = function (event) {
+      //   if (event.code === 'KeyG' && !flag) {
+      //     blocker.style.display = 'block';
+      //     instructions.display = '';
+      //     flag = 1;
+      //   } else if (event.code === 'KeyG' && flag) {
+      //     blocker.style.display = 'none';
+      //     instructions.style.display = 'none';
+      //     flag = 0;
+      //   } else if (event.code === 'KeyF')
+      //     window.location.href = 'sell_your_mind_research#/d19';
+      // };
+      // document.addEventListener('keypress', onKeyPress);
+      // document.addEventListener('keydown', onKeyDown);
+
       // Material
-
       const vertexShader = /* glsl */ `
         in vec3 position;
         uniform mat4 modelMatrix;
@@ -352,7 +351,7 @@ const Detail__38 = () => {
         const position = new THREE.Vector3(
           Math.floor(curr % countPerRow) * perElementSize + margins * 0.5,
           Math.floor((curr % countPerSlice) / countPerRow) * perElementSize +
-          margins * 0.5,
+            margins * 0.5,
           Math.floor(curr / countPerSlice) * perElementSize + margins * 0.5
         ).floor();
 
@@ -380,11 +379,15 @@ const Detail__38 = () => {
     };
   }, []);
   return (
-    <div className="blocker" id="blocker">
-      <div className="instructions" id="instructions">
-        <img src={l38} alt="letter" />
-      </div>
-    </div>
+    <>
+      {letter === true ? (
+        <div className="blocker" id="blocker">
+          <div className="instructions" id="instructions">
+            <img src={l38} alt="letter" />
+          </div>
+        </div>
+      ) : null}
+    </>
   );
 };
 export default Detail__38;

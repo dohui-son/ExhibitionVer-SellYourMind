@@ -1,22 +1,20 @@
-import React, { Component, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState, useEffect } from 'react';
 import * as THREE from 'three';
-import { Scene } from 'three';
 import img from '../material/texture/2.jpg';
 import l11 from '../material/letter11.jpg';
-
-import Stats from 'three/examples/jsm/libs/stats.module.js';
-
-import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js';
 import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
-import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
-
 import '../stylesheet/detail.scss';
-
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 const Detail_11 = () => {
+  let [letter, letterSet] = useState(true);
   useEffect(() => {
+    let timer = setTimeout(() => {
+      letterSet(false);
+    }, 4000);
+    let timer2 = setTimeout(() => {
+      window.location.href = 'sell_your_mind_research#/d30';
+    }, 90000);
     let container,
       flag = 0;
 
@@ -39,15 +37,11 @@ const Detail_11 = () => {
 
     function init() {
       container = document.getElementById('container');
-      //gcontainer.innerHTML = '';
-
       renderer = new THREE.WebGLRenderer({ antialias: true });
       renderer.setPixelRatio(window.devicePixelRatio);
       renderer.setSize(window.innerWidth, window.innerHeight);
       container.appendChild(renderer.domElement);
-
       scene = new THREE.Scene();
-      //scene.background = new THREE.Color(img);
       scene.background = new THREE.TextureLoader().load(img);
       camera = new THREE.PerspectiveCamera(
         60,
@@ -89,7 +83,6 @@ const Detail_11 = () => {
 
       //
       texture = new THREE.TextureLoader().load(img);
-      //texture = new THREE.CanvasTexture(generateTexture(data, worldWidth, worldDepth));
       texture.wrapS = THREE.ClampToEdgeWrapping;
       texture.wrapT = THREE.ClampToEdgeWrapping;
 
@@ -107,31 +100,31 @@ const Detail_11 = () => {
 
       container.addEventListener('pointermove', onPointerMove);
 
-      const blocker = document.getElementById('blocker');
-      const instructions = document.getElementById('instructions');
-      instructions.style.display = 'none';
-      blocker.style.display = 'none';
-      const onKeyPress = function (event) {
-        if (event.code === 'KeyG' && !flag) {
-          blocker.style.display = 'block';
-          instructions.style.display = '';
-          flag = 1;
-        } else if (event.code === 'KeyG' && flag) {
-          blocker.style.display = 'none';
-          instructions.style.display = 'none';
-          flag = 0;
-        } else if (event.code === 'KeyF') {
-          window.location.href = 'sell_your_mind_research#/d30';
-        }
-      };
-      const onKeyDown = function (event) {
-        if (event.code === 'KeyF')
-          window.location.href = 'sell_your_mind_research#/d30';
-      };
+      // const blocker = document.getElementById('blocker');
+      // const instructions = document.getElementById('instructions');
+      // instructions.style.display = 'none';
+      // blocker.style.display = 'none';
+      // const onKeyPress = function (event) {
+      //   if (event.code === 'KeyG' && !flag) {
+      //     blocker.style.display = 'block';
+      //     instructions.style.display = '';
+      //     flag = 1;
+      //   } else if (event.code === 'KeyG' && flag) {
+      //     blocker.style.display = 'none';
+      //     instructions.style.display = 'none';
+      //     flag = 0;
+      //   } else if (event.code === 'KeyF') {
+      //     window.location.href = 'sell_your_mind_research#/d30';
+      //   }
+      // };
+      // const onKeyDown = function (event) {
+      //   if (event.code === 'KeyF')
+      //     window.location.href = 'sell_your_mind_research#/d30';
+      // };
 
-      //
-      document.addEventListener('keypress', onKeyPress);
-      document.addEventListener('keydown', onKeyDown);
+      // //
+      // document.addEventListener('keypress', onKeyPress);
+      // document.addEventListener('keydown', onKeyDown);
       document.body.style.cursor = 'none';
       window.addEventListener('resize', onWindowResize);
     }
@@ -238,9 +231,7 @@ const Detail_11 = () => {
 
     function animate() {
       requestAnimationFrame(animate);
-
       render();
-      // stats.update();
     }
 
     function render() {
@@ -266,11 +257,13 @@ const Detail_11 = () => {
   }, []);
   return (
     <div className="detail-body" id="container">
-      <div className="blocker" id="blocker">
-        <div className="instructions" id="instructions">
-          <img src={l11} alt="letter" />
+      {letter === true ? (
+        <div className="blocker" id="blocker">
+          <div className="instructions" id="instructions">
+            <img src={l11} alt="letter" />
+          </div>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 };

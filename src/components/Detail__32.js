@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as THREE from 'three';
 
 import img from '../material/texture/21.jpeg';
@@ -10,12 +10,17 @@ import '../stylesheet/detail.scss';
 import { MapControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 const Detail_4 = () => {
+  let [letter, letterSet] = useState(true);
   useEffect(() => {
-    let camera,
-      controls,
-      scene,
-      renderer,
-      flag = 0;
+    let timer = setTimeout(() => {
+      letterSet(false);
+    }, 4000);
+    let timer2 = setTimeout(() => {
+      window.location.href = 'sell_your_mind_research#/d38';
+    }, 100000);
+
+    let camera, controls, scene, renderer;
+    // flag = 0;
 
     init();
     animate();
@@ -47,11 +52,6 @@ const Detail_4 = () => {
       controls.maxDistance = 500;
       controls.maxPolarAngle = Math.PI / 2;
 
-      const blocker = document.getElementById('blocker');
-      const instructions = document.getElementById('instructions');
-      instructions.style.display = 'none';
-      blocker.style.display = 'none';
-      // world
       const geometry = new THREE.BoxGeometry(1, 1, 1);
       geometry.translate(0, 0.5, 0);
       const texture = new THREE.TextureLoader().load(img);
@@ -85,25 +85,17 @@ const Detail_4 = () => {
       const ambientLight = new THREE.AmbientLight(0x222222);
       scene.add(ambientLight);
 
-      const onKeyPress = function (event) {
-        if (event.code === 'KeyG' && !flag) {
-          blocker.style.display = 'block';
-          instructions.style.display = '';
-          flag = 1;
-        } else if (event.code === 'KeyG' && flag) {
-          blocker.style.display = 'none';
-          instructions.style.display = 'none';
-          flag = 0;
-        } else if (event.code === 'KeyF')
-          window.location.href = 'sell_your_mind_research#/d38';
-      };
-      const onKeyDown = function (event) {
-        if (event.code === 'KeyF')
-          window.location.href = 'sell_your_mind_research#/d38';
-      };
+      // const onKeyPress = function (event) {
+      //   if (event.code === 'KeyF')
+      //     window.location.href = 'sell_your_mind_research#/d38';
+      // };
+      // const onKeyDown = function (event) {
+      //   if (event.code === 'KeyF')
+      //     window.location.href = 'sell_your_mind_research#/d38';
+      // };
       document.body.style.cursor = 'none';
-      document.addEventListener('keypress', onKeyPress);
-      document.addEventListener('keydown', onKeyDown);
+      // document.addEventListener('keypress', onKeyPress);
+      // document.addEventListener('keydown', onKeyDown);
       window.addEventListener('resize', onWindowResize);
     }
     function onWindowResize() {
@@ -119,17 +111,22 @@ const Detail_4 = () => {
     function render() {
       renderer.render(scene, camera);
     }
+
     return () => {
       document.body.removeChild(renderer.domElement);
     };
   }, []);
 
   return (
-    <div className="blocker" id="blocker">
-      <div className="instructions" id="instructions">
-        <img src={l32} alt="letter" />
-      </div>
-    </div>
+    <>
+      {letter === true ? (
+        <div className="blocker" id="blocker">
+          <div className="instructions" id="instructions">
+            <img src={l32} alt="letter" />
+          </div>
+        </div>
+      ) : null}
+    </>
   );
 };
 export default Detail_4;

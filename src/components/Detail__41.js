@@ -1,23 +1,21 @@
-import React, { Component, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState, useEffect } from 'react';
 import * as THREE from 'three';
-import { Scene } from 'three';
 import img from '../material/texture/35.jpeg';
 import l41 from '../material/letter41.jpeg';
-
-import Stats from 'three/examples/jsm/libs/stats.module.js';
-
-import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js';
 import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
-
 import '../stylesheet/detail.scss';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-
 import { WEBGL } from 'three/examples/jsm/WebGL.js';
 
-//import { ImprovedNoise } from './jsm/math/ImprovedNoise.js';
 const Detail__41 = () => {
+  let [letter, letterSet] = useState(true);
   useEffect(() => {
+    let timer = setTimeout(() => {
+      letterSet(false);
+    }, 4000);
+    let timer2 = setTimeout(() => {
+      window.location.href = 'sell_your_mind_research#/d34';
+    }, 90000);
     if (WEBGL.isWebGL2Available() === false) {
       document.body.appendChild(WEBGL.getWebGL2ErrorMessage());
     }
@@ -306,31 +304,24 @@ const Detail__41 = () => {
         material.uniforms.range.value = parameters.range;
         material.uniforms.steps.value = parameters.steps;
       }
-      const blocker = document.getElementById('blocker');
-      const instructions = document.getElementById('instructions');
-      instructions.style.display = 'none';
-      blocker.style.display = 'none';
-      const onKeyPress = function (event) {
-        if (event.code === 'KeyG' && !flag) {
-          blocker.style.display = 'block';
-          instructions.style.display = '';
-          flag = 1;
-        } else if (event.code === 'KeyG' && flag) {
-          blocker.style.display = 'none';
-          instructions.style.display = 'none';
-          flag = 0;
-        } else if (event.code === 'KeyF') {
-          window.location.href = 'sell_your_mind_research#/d34';
-        }
-      };
-      // const onKeyDown = function (event) {
-      //   if (event.code === 'KeyF')
+      // const blocker = document.getElementById('blocker');
+      // const instructions = document.getElementById('instructions');
+      // instructions.style.display = 'none';
+      // blocker.style.display = 'none';
+      // const onKeyPress = function (event) {
+      //   if (event.code === 'KeyG' && !flag) {
+      //     blocker.style.display = 'block';
+      //     instructions.style.display = '';
+      //     flag = 1;
+      //   } else if (event.code === 'KeyG' && flag) {
+      //     blocker.style.display = 'none';
+      //     instructions.style.display = 'none';
+      //     flag = 0;
+      //   } else if (event.code === 'KeyF') {
       //     window.location.href = 'sell_your_mind_research#/d34';
+      //   }
       // };
-      document.addEventListener('keypress', onKeyPress);
-
-      //
-      //document.addEventListener('keydown', onKeyDown);
+      // document.addEventListener('keypress', onKeyPress);
 
       window.addEventListener('resize', onWindowResize);
     }
@@ -380,23 +371,25 @@ const Detail__41 = () => {
       }
 
       mesh.material.uniforms.cameraPos.value.copy(camera.position);
-      // mesh.rotation.y = - performance.now() / 7500;
 
       mesh.material.uniforms.frame.value++;
 
       renderer.render(scene, camera);
     }
     return () => {
+      document.body.style.cursor = 'none';
       document.body.removeChild(renderer.domElement);
     };
   }, []);
   return (
     <div className="detail-body" id="container">
-      <div className="blocker" id="blocker">
-        <div className="instructions" id="instructions">
-          <img src={l41} alt="letter" />
+      {letter === true ? (
+        <div className="blocker" id="blocker">
+          <div className="instructions" id="instructions">
+            <img src={l41} alt="letter" />
+          </div>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 };

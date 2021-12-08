@@ -1,41 +1,21 @@
-import React, { Component, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState, useEffect } from 'react';
 import * as THREE from 'three';
-import { Scene } from 'three';
 import img from '../material/texture/23.jpeg';
 import l29 from '../material/letter29.jpg';
-
-import Stats from 'three/examples/jsm/libs/stats.module.js';
-import { Water } from 'three/examples/jsm/objects/Water.js';
-import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js';
-import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
-import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
-
 import '../stylesheet/detail.scss';
-//import { VRButton } from './jsm/webxr/VRButton.js';
-
-//import * as THREE from '../build/three.module.js';
-
-//import Stats from './jsm/libs/stats.module.js';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { EXRLoader } from 'three/examples/jsm/loaders/EXRLoader.js';
-
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { RectAreaLightHelper } from 'three/examples//jsm/helpers/RectAreaLightHelper.js';
 import { RectAreaLightUniformsLib } from 'three/examples//jsm/lights/RectAreaLightUniformsLib.js';
 
-import {
-  VOXLoader,
-  VOXDataTexture3D,
-} from 'three/examples/jsm/loaders/VOXLoader.js';
-
-import { WEBGL } from 'three/examples/jsm/WebGL.js';
-
-import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
-
-//import { ImprovedNoise } from './jsm/math/ImprovedNoise.js';
 const Detail__29 = () => {
+  let [letter, letterSet] = useState(true);
   useEffect(() => {
+    let timer = setTimeout(() => {
+      letterSet(false);
+    }, 4000);
+    let timer2 = setTimeout(() => {
+      window.location.href = 'sell_your_mind_research#/d36';
+    }, 90000);
     let flag = 0;
 
     // shader injection for box projected cube environment mapping
@@ -189,29 +169,29 @@ const Detail__29 = () => {
       cameraControls.minDistance = 10;
       cameraControls.addEventListener('change', render);
       cameraControls.update();
-      const blocker = document.getElementById('blocker');
-      const instructions = document.getElementById('instructions');
-      instructions.style.display = 'none';
-      blocker.style.display = 'none';
-      const onKeyPress = function (event) {
-        if (event.code === 'KeyG' && !flag) {
-          blocker.style.display = 'block';
-          instructions.style.display = '';
-          flag = 1;
-        } else if (event.code === 'KeyG' && flag) {
-          blocker.style.display = 'none';
-          instructions.style.display = 'none';
-          flag = 0;
-        } else if (event.code === 'KeyF') {
-          window.location.href = 'sell_your_mind_research#/d41';
-        }
-      };
+      // const blocker = document.getElementById('blocker');
+      // const instructions = document.getElementById('instructions');
+      // instructions.style.display = 'none';
+      // blocker.style.display = 'none';
+      // const onKeyPress = function (event) {
+      //   if (event.code === 'KeyG' && !flag) {
+      //     blocker.style.display = 'block';
+      //     instructions.style.display = '';
+      //     flag = 1;
+      //   } else if (event.code === 'KeyG' && flag) {
+      //     blocker.style.display = 'none';
+      //     instructions.style.display = 'none';
+      //     flag = 0;
+      //   } else if (event.code === 'KeyF') {
+      //     window.location.href = 'sell_your_mind_research#/d41';
+      //   }
+      // };
       // const onKeyDown = function (event) {
       //   if (event.code === 'KeyF')
       //     window.location.href = 'sell_your_mind_research#/d41';
       // };
 
-      document.addEventListener('keypress', onKeyPress);
+      // document.addEventListener('keypress', onKeyPress);
       document.body.style.cursor = 'none';
       //document.addEventListener('keydown', onKeyDown);
 
@@ -380,18 +360,16 @@ const Detail__29 = () => {
     function render() {
       renderer.render(scene, camera);
     }
-    // return () => {
-    //   var toerase = document.getElementById('container');
-    //   toerase.remove();
-    // };
   }, []);
   return (
     <div className="detail-body" id="container">
-      <div className="blocker" id="blocker">
-        <div className="instructions" id="instructions">
-          <img src={l29} alt="letter" />
+      {letter === true ? (
+        <div className="blocker" id="blocker">
+          <div className="instructions" id="instructions">
+            <img src={l29} alt="letter" />
+          </div>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 };

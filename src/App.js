@@ -5,6 +5,7 @@ import { Route, HashRouter } from 'react-router-dom';
 import Market from './components/Detail__32'; //'./page/Market';
 
 import DetailQuote from './components/DetailQuote';
+
 import Detail_1 from './components/Detail_1';
 import Detail_2 from './components/Detail_2';
 import Detail_3 from './components/Detail_3';

@@ -11,6 +11,9 @@ import '../stylesheet/detail.scss';
 //import { VRButton } from './jsm/webxr/VRButton.js';
 const Detail_3 = () => {
   useEffect(() => {
+    let timer2 = setTimeout(() => {
+      window.location.href = 'sell_your_mind_research#/d32';
+    }, 90000);
     let camera, scene, renderer;
     let cube, sphere, torus, material;
 

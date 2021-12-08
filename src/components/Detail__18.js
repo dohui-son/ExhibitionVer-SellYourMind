@@ -1,13 +1,20 @@
-import React, { Component, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as THREE from 'three';
 import img from '../material/texture/12.jpg';
 import l18 from '../material/letter18.jpeg';
-
 import '../stylesheet/detail__18.scss';
 import { PointerLockControls } from 'three/examples/jsm/controls/PointerLockControls.js';
 
 const Detail__18 = () => {
+  let [letter, letterSet] = useState(true);
   useEffect(() => {
+    let timer = setTimeout(() => {
+      letterSet(false);
+      controls.lock();
+    }, 4000);
+    let timer2 = setTimeout(() => {
+      window.location.href = 'sell_your_mind_research#/d23';
+    }, 90000);
     let camera,
       scene,
       renderer,
@@ -67,8 +74,8 @@ const Detail__18 = () => {
       });
 
       controls.addEventListener('unlock', function () {
-        b.style.display = 'block';
-        i.style.display = '';
+        i.style.display = 'none';
+        b.style.display = 'none';
       });
 
       scene.add(controls.getObject());
@@ -194,9 +201,6 @@ const Detail__18 = () => {
         'color',
         new THREE.Float32BufferAttribute(colorsFloor, 3)
       );
-
-      //const floorMaterial = new THREE.MeshBasicMaterial({ vertexColors: true });
-
       const floorMaterial = new THREE.MeshBasicMaterial({
         map: texture,
         side: THREE.DoubleSide,
@@ -228,7 +232,6 @@ const Detail__18 = () => {
       );
 
       for (let i = 0; i < 500; i++) {
-        //const boxMaterial = new THREE.MeshPhongMaterial({ specular: 0xffffff, flatShading: true, vertexColors: true });
         const boxMaterial = new THREE.MeshPhongMaterial({
           map: texture,
           specular: 0xffffff,
@@ -321,22 +324,20 @@ const Detail__18 = () => {
 
   return (
     <div>
-      <div className="blocker" id="blocker">
-        <div className="instructions" id="instructions">
-          <img src={l18} alt="letter" />
+      {letter === true ? (
+        <div className="blocker" id="blocker">
+          <div className="instructions" id="instructions">
+            <img src={l18} alt="letter" />
+          </div>
         </div>
-      </div>
+      ) : null}
       <div className="b" id="b">
         <div className="i" id="i">
-          <p>Start to Experience</p>
-          <p>산책을 시작해 주세요.</p>
-          <p>
-            Move: ← ↑ ↓ →
-            <br />
-            Jump: ↑
-            <br />
-            Look: ← ↑ ↓ →
-          </p>
+          {/* <div className="blocker" id="blocker">
+            <div className="instructions" id="instructions">
+              <img src={l18} alt="letter" />
+            </div>
+          </div> */}
         </div>
       </div>
     </div>

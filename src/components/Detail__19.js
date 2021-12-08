@@ -1,19 +1,26 @@
-import React, { Component, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as THREE from 'three';
 import img from '../material/texture/18.jpg';
 import l19 from '../material/letter19.jpeg';
-
 import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
-
 import '../stylesheet/detail.scss';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-
 import { WEBGL } from 'three/examples/jsm/WebGL.js';
-import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
 
-//import { ImprovedNoise } from './jsm/math/ImprovedNoise.js';
 const Detail__19 = () => {
+  let [letter, letterSet] = useState(true);
+
   useEffect(() => {
+    let timer = setTimeout(() => {
+      letterSet(false);
+    }, 4000);
+    let timer2 = setTimeout(() => {
+      window.location.href = 'sell_your_mind_research#/d7';
+    }, 90000);
+    if (WEBGL.isWebGL2Available() === false) {
+      document.body.appendChild(WEBGL.getWebGL2ErrorMessage());
+    }
+
     if (WEBGL.isWebGL2Available() === false) {
       document.body.appendChild(WEBGL.getWebGL2ErrorMessage());
     }
@@ -53,11 +60,11 @@ const Detail__19 = () => {
             data[i] =
               (128 +
                 128 *
-                perlin.noise(
-                  (x * scale) / 1.5,
-                  y * scale,
-                  (z * scale) / 1.5
-                )) *
+                  perlin.noise(
+                    (x * scale) / 1.5,
+                    y * scale,
+                    (z * scale) / 1.5
+                  )) *
               fadingFactor;
 
             i++;
@@ -88,12 +95,12 @@ const Detail__19 = () => {
       new OrbitControls(camera, renderer.domElement);
 
       scene.fog = new THREE.Fog(0xffffff, 0, 750);
-      const blocker = document.getElementById('blocker');
-      const instructions = document.getElementById('instructions');
-      blocker.style.display = 'none';
-      instructions.style.display = 'none';
-      // Sky
+      // const blocker = document.getElementById('blocker');
+      // const instructions = document.getElementById('instructions');
+      // blocker.style.display = 'none';
+      // instructions.style.display = 'none';
 
+      // Sky
       const canvas = document.createElement('canvas');
       canvas.width = 1;
       canvas.height = 32;
@@ -107,10 +114,10 @@ const Detail__19 = () => {
       context.fillRect(0, 0, 1, 32);
 
       //background
-      const container = document.getElementById('container');
+
       clock = new THREE.Clock();
       scene.background = new THREE.Color(0x101010);
-      const light = new THREE.AmbientLight(0xffffff, 1);
+      const light = new THREE.AmbientLight(0xffffff, 0.9);
       scene.add(light);
       // Create the panoramic sphere geometery
       const panoSphereGeo = new THREE.SphereGeometry(6, 256, 256);
@@ -120,22 +127,22 @@ const Detail__19 = () => {
         side: THREE.BackSide,
         displacementScale: -4.0,
       });
-      const onKeyDown = function (event) {
-        if (event.code === 'KeyF')
-          window.location.href = 'sell_your_mind_research#/d7';
-      };
-      const onKeyPress = function (event) {
-        if (event.code === 'KeyG' && !flag) {
-          blocker.style.display = 'block';
-          instructions.style.display = '';
-          flag = 1;
-        } else if (event.code === 'KeyG' && flag) {
-          blocker.style.display = 'none';
-          instructions.style.display = 'none';
-          flag = 0;
-        } else if (event.code === 'KeyF')
-          window.location.href = 'sell_your_mind_research#/d7';
-      };
+      // const onKeyDown = function (event) {
+      //   if (event.code === 'KeyF')
+      //     window.location.href = 'sell_your_mind_research#/d7';
+      // };
+      // const onKeyPress = function (event) {
+      //   if (event.code === 'KeyG' && !flag) {
+      //     blocker.style.display = 'block';
+      //     instructions.style.display = '';
+      //     flag = 1;
+      //   } else if (event.code === 'KeyG' && flag) {
+      //     blocker.style.display = 'none';
+      //     instructions.style.display = 'none';
+      //     flag = 0;
+      //   } else if (event.code === 'KeyF')
+      //     window.location.href = 'sell_your_mind_research#/d7';
+      // };
 
       // Create the panoramic sphere mesh
       sphere = new THREE.Mesh(panoSphereGeo, panoSphereMat);
@@ -160,18 +167,8 @@ const Detail__19 = () => {
       manager.onLoad = function () {
         scene.add(sphere);
       };
-      ///////////////////////////////////////////
-
-      const sky = new THREE.Mesh(
-        new THREE.SphereGeometry(10),
-        //new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(canvas), side: THREE.BackSide })
-        new THREE.MeshBasicMaterial({ map: texture_img, side: THREE.BackSide })
-      );
-      //scene.background = new THREE.TextureLoader().load(img);
-      //scene.add(sky);
 
       // Texture
-
       const texture = new THREE.DataTexture3D(
         new Uint8Array(
           INITIAL_CLOUD_SIZE * INITIAL_CLOUD_SIZE * INITIAL_CLOUD_SIZE
@@ -188,7 +185,6 @@ const Detail__19 = () => {
       cloudTexture = texture;
 
       // Material
-
       const vertexShader = /* glsl */ `
         in vec3 position;
         uniform mat4 modelMatrix;
@@ -302,23 +298,6 @@ const Detail__19 = () => {
         side: THREE.BackSide,
         transparent: true,
       });
-      // const material = new THREE.RawShaderMaterial({
-      //   glslVersion: THREE.GLSL3,
-      //   uniforms: {
-      //     base: { value: new THREE.Color(0x798aa0) },
-      //     map: { value: texture },
-      //     cameraPos: { value: new THREE.Vector3() },
-      //     threshold: { value: 0.25 },
-      //     opacity: { value: 0.25 },
-      //     range: { value: 0.1 },
-      //     steps: { value: 100 },
-      //     frame: { value: 0 },
-      //   },
-      //   vertexShader,
-      //   fragmentShader,
-      //   side: THREE.BackSide,
-      //   transparent: true,
-      // });
 
       mesh = new THREE.Mesh(geometry, material);
       scene.add(mesh);
@@ -338,9 +317,9 @@ const Detail__19 = () => {
         material.uniforms.range.value = parameters.range;
         material.uniforms.steps.value = parameters.steps;
       }
-      document.addEventListener('keypress', onKeyPress);
-      document.addEventListener('keydown', onKeyDown);
-      window.addEventListener('resize', onWindowResize);
+      // document.addEventListener('keypress', onKeyPress);
+      // document.addEventListener('keydown', onKeyDown);
+      // window.addEventListener('resize', onWindowResize);
       document.body.style.cursor = 'none';
     }
 
@@ -369,7 +348,7 @@ const Detail__19 = () => {
         const position = new THREE.Vector3(
           Math.floor(curr % countPerRow) * perElementSize + margins * 0.5,
           Math.floor((curr % countPerSlice) / countPerRow) * perElementSize +
-          margins * 0.5,
+            margins * 0.5,
           Math.floor(curr / countPerSlice) * perElementSize + margins * 0.5
         ).floor();
 
@@ -400,11 +379,15 @@ const Detail__19 = () => {
     };
   }, []);
   return (
-    <div className="blocker" id="blocker">
-      <div className="instructions" id="instructions">
-        <img src={l19} alt="letter" />
-      </div>
-    </div>
+    <>
+      {letter === true ? (
+        <div className="blocker" id="blocker">
+          <div className="instructions" id="instructions">
+            <img src={l19} alt="letter" />
+          </div>
+        </div>
+      ) : null}
+    </>
   );
 };
 export default Detail__19;

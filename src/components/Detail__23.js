@@ -1,27 +1,20 @@
-import React, { Component, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState, useEffect } from 'react';
 import * as THREE from 'three';
-import { Scene } from 'three';
 import img from '../material/texture/10.jpg';
 import l23 from '../material/letter23.png';
-
-import Stats from 'three/examples/jsm/libs/stats.module.js';
-
-import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js';
 import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise.js';
-import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
-
 import '../stylesheet/detail.scss';
-//import { VRButton } from './jsm/webxr/VRButton.js';
-
-//import * as THREE from '../build/three.module.js';
-
-//import Stats from './jsm/libs/stats.module.js';
-
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-//import { ImprovedNoise } from './jsm/math/ImprovedNoise.js';
+
 const Detail__23 = () => {
+  let [letter, letterSet] = useState(true);
   useEffect(() => {
+    let timer = setTimeout(() => {
+      letterSet(false);
+    }, 4000);
+    let timer2 = setTimeout(() => {
+      window.location.href = 'sell_your_mind_research#/d4';
+    }, 90000);
     let container,
       flag = 0;
 
@@ -44,6 +37,10 @@ const Detail__23 = () => {
 
     function init() {
       container = document.getElementById('container');
+      document.body.style.cursor = 'none';
+      document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+      });
 
       renderer = new THREE.WebGLRenderer({ antialias: true });
       renderer.setPixelRatio(window.devicePixelRatio);
@@ -116,28 +113,24 @@ const Detail__23 = () => {
 
       container.addEventListener('pointermove', onPointerMove);
 
-      const blocker = document.getElementById('blocker');
-      const instructions = document.getElementById('instructions');
-      instructions.style.display = 'none';
-      blocker.style.display = 'none';
-      const onKeyPress = function (event) {
-        if (event.code === 'KeyG' && !flag) {
-          blocker.style.display = 'block';
-          instructions.style.display = '';
-          flag = 1;
-        } else if (event.code === 'KeyG' && flag) {
-          blocker.style.display = 'none';
-          instructions.style.display = 'none';
-          flag = 0;
-        } else if (event.code === 'KeyF')
-          window.location.href = 'sell_your_mind_research#/d4';
-      };
-      // const onKeyDown = function (event) {
-      //   if (event.code === 'KeyF')
+      // const blocker = document.getElementById('blocker');
+      // const instructions = document.getElementById('instructions');
+      // instructions.style.display = 'none';
+      // blocker.style.display = 'none';
+      // const onKeyPress = function (event) {
+      //   if (event.code === 'KeyG' && !flag) {
+      //     blocker.style.display = 'block';
+      //     instructions.style.display = '';
+      //     flag = 1;
+      //   } else if (event.code === 'KeyG' && flag) {
+      //     blocker.style.display = 'none';
+      //     instructions.style.display = 'none';
+      //     flag = 0;
+      //   } else if (event.code === 'KeyF')
       //     window.location.href = 'sell_your_mind_research#/d4';
       // };
-      // document.addEventListener('keydown', onKeyDown);
-      document.addEventListener('keypress', onKeyPress);
+
+      // document.addEventListener('keypress', onKeyPress);
       window.addEventListener('resize', onWindowResize);
     }
 
@@ -271,13 +264,15 @@ const Detail__23 = () => {
   }, []);
   return (
     <div className="detail-body" id="container">
-      <div className="blocker" id="blocker">
-        <div className="instructions" id="instructions">
-          <div className="text">
-            <img src={l23} alt="letter" />
+      {letter === true ? (
+        <div className="blocker" id="blocker">
+          <div className="instructions" id="instructions">
+            <div className="text">
+              <img src={l23} alt="letter" />
+            </div>
           </div>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 };
