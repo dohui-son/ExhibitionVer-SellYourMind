@@ -156,6 +156,10 @@ const Detail__18 = () => {
       document.addEventListener('keypress', onKeyPress);
       document.addEventListener('keydown', onKeyDown);
       document.addEventListener('keyup', onKeyUp);
+      // document.body.style.cursor = 'none';
+      document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+      });
 
       raycaster = new THREE.Raycaster(
         new THREE.Vector3(),
@@ -333,11 +337,11 @@ const Detail__18 = () => {
       ) : null}
       <div className="b" id="b">
         <div className="i" id="i">
-          {/* <div className="blocker" id="blocker">
+          <div className="blocker" id="blocker">
             <div className="instructions" id="instructions">
               <img src={l18} alt="letter" />
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>

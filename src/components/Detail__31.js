@@ -130,6 +130,10 @@ const Detail__31 = () => {
       document.addEventListener('click', onClick);
       window.addEventListener('keydown', onKeyDown);
       window.addEventListener('keyup', onKeyUp);
+      document.body.style.cursor = 'none';
+      document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+      });
 
       render();
     }

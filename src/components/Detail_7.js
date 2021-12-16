@@ -47,6 +47,9 @@ const Detail_7 = () => {
 
       scene.background = new THREE.TextureLoader().load(img);
       document.body.style.cursor = 'none';
+      document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+      });
       // const blocker = document.getElementById('blocker');
       // const instructions = document.getElementById('instructions');
       // instructions.style.display = 'none';

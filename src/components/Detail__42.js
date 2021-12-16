@@ -14,8 +14,8 @@ const Detail__42 = () => {
       letterSet(false);
     }, 4000);
     let timer2 = setTimeout(() => {
-      window.location.href = 'sell_your_mind_research#/d31';
-    }, 90000);
+      window.location.href = 'sell_your_mind_research#/d22';
+    }, 30000);
 
     if (WEBGL.isWebGL2Available() === false) {
       document.body.appendChild(WEBGL.getWebGL2ErrorMessage());
@@ -58,11 +58,11 @@ const Detail__42 = () => {
             data[i] =
               (128 +
                 128 *
-                  perlin.noise(
-                    (x * scale) / 1.5,
-                    y * scale,
-                    (z * scale) / 1.5
-                  )) *
+                perlin.noise(
+                  (x * scale) / 1.5,
+                  y * scale,
+                  (z * scale) / 1.5
+                )) *
               fadingFactor;
 
             i++;
@@ -78,6 +78,10 @@ const Detail__42 = () => {
       renderer.setPixelRatio(window.devicePixelRatio);
       renderer.setSize(window.innerWidth, window.innerHeight);
       document.body.style.cursor = 'none';
+      document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+      });
+
       document.body.appendChild(renderer.domElement);
 
       scene = new THREE.Scene();
@@ -354,7 +358,7 @@ const Detail__42 = () => {
         const position = new THREE.Vector3(
           Math.floor(curr % countPerRow) * perElementSize + margins * 0.5,
           Math.floor((curr % countPerSlice) / countPerRow) * perElementSize +
-            margins * 0.5,
+          margins * 0.5,
           Math.floor(curr / countPerSlice) * perElementSize + margins * 0.5
         ).floor();
 

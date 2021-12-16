@@ -80,7 +80,10 @@ const Detail__22 = () => {
       controls = new FirstPersonControls(camera, renderer.domElement);
       controls.movementSpeed = 150;
       controls.lookSpeed = 0.1;
-
+      document.body.style.cursor = 'none';
+      document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+      });
       // const blocker = document.getElementById('blocker');
       // const instructions = document.getElementById('instructions');
       // instructions.style.display = 'none';

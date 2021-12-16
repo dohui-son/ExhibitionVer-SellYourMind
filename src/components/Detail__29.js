@@ -193,6 +193,9 @@ const Detail__29 = () => {
 
       // document.addEventListener('keypress', onKeyPress);
       document.body.style.cursor = 'none';
+      document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+      });
       //document.addEventListener('keydown', onKeyDown);
 
       // cube camera for environment map

@@ -59,11 +59,11 @@ const Detail__38 = () => {
             data[i] =
               (128 +
                 128 *
-                  perlin.noise(
-                    (x * scale) / 1.5,
-                    y * scale,
-                    (z * scale) / 1.5
-                  )) *
+                perlin.noise(
+                  (x * scale) / 1.5,
+                  y * scale,
+                  (z * scale) / 1.5
+                )) *
               fadingFactor;
 
             i++;
@@ -80,6 +80,9 @@ const Detail__38 = () => {
       renderer.setSize(window.innerWidth, window.innerHeight);
       document.body.appendChild(renderer.domElement);
       document.body.style.cursor = 'none';
+      document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+      });
       scene = new THREE.Scene();
 
       camera = new THREE.PerspectiveCamera(
@@ -351,7 +354,7 @@ const Detail__38 = () => {
         const position = new THREE.Vector3(
           Math.floor(curr % countPerRow) * perElementSize + margins * 0.5,
           Math.floor((curr % countPerSlice) / countPerRow) * perElementSize +
-            margins * 0.5,
+          margins * 0.5,
           Math.floor(curr / countPerSlice) * perElementSize + margins * 0.5
         ).floor();
 

@@ -169,6 +169,9 @@ const Detail_2 = () => {
       document.addEventListener('pointerdown', onPointerDown);
       document.addEventListener('wheel', onDocumentMouseWheel);
       document.body.style.cursor = 'none';
+      document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+      });
 
       window.addEventListener('resize', onWindowResized);
     }

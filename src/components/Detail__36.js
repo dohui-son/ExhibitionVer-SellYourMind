@@ -63,6 +63,11 @@ const Detail__36 = () => {
       document.addEventListener('contextmenu', function (e) {
         e.preventDefault();
       });
+
+
+      document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+      });
       camera = new THREE.PerspectiveCamera(
         50,
         window.innerWidth / window.innerHeight,

@@ -12,8 +12,8 @@ const Detail__30 = () => {
       letterSet(false);
     }, 4000);
     let timer2 = setTimeout(() => {
-      window.location.href = 'sell_your_mind_research#/d29';
-    }, 90000);
+      window.location.href = 'sell_your_mind_research#/d36';
+    }, 30000);
     let controls,
       camera,
       scene,
@@ -114,6 +114,10 @@ const Detail__30 = () => {
       // };
 
       //document.addEventListener('keypress', onKeyPress);
+      document.body.style.cursor = 'none';
+      document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+      });
       window.addEventListener('resize', onWindowResize);
     }
 

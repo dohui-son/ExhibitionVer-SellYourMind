@@ -170,6 +170,9 @@ const Detail__34 = () => {
       }
     });
     document.body.style.cursor = 'none';
+    document.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+    });
     document.addEventListener('pointerup', function (event) {
       selectionBox.endPoint.set(
         (event.clientX / window.innerWidth) * 2 - 1,

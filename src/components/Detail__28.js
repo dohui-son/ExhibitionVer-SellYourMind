@@ -58,11 +58,11 @@ const Detail__28 = () => {
             data[i] =
               (128 +
                 128 *
-                  perlin.noise(
-                    (x * scale) / 1.5,
-                    y * scale,
-                    (z * scale) / 1.5
-                  )) *
+                perlin.noise(
+                  (x * scale) / 1.5,
+                  y * scale,
+                  (z * scale) / 1.5
+                )) *
               fadingFactor;
 
             i++;
@@ -364,7 +364,7 @@ const Detail__28 = () => {
         const position = new THREE.Vector3(
           Math.floor(curr % countPerRow) * perElementSize + margins * 0.5,
           Math.floor((curr % countPerSlice) / countPerRow) * perElementSize +
-            margins * 0.5,
+          margins * 0.5,
           Math.floor(curr / countPerSlice) * perElementSize + margins * 0.5
         ).floor();
 
