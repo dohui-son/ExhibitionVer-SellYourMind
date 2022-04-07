@@ -2,10 +2,8 @@ import React from 'react';
 
 import './stylesheet/global.scss';
 import { Route, HashRouter } from 'react-router-dom';
-import Market from './components/Detail__32'; //'./page/Market';
-
+import CityMeta from './components/CityMetaverse.js';
 import DetailQuote from './components/DetailQuote';
-
 import Detail_1 from './components/Detail_1';
 import Detail_2 from './components/Detail_2';
 import Detail_3 from './components/Detail_3';
@@ -34,10 +32,9 @@ import Detail__25 from './components/Detail__25';
 import Detail__26 from './components/Detail__26';
 import Detail__27 from './components/Detail__27';
 import Detail__28 from './components/Detail__28';
-import Detail__29 from './components/Detail__29';
 import Detail__30 from './components/Detail__30';
 import Detail__31 from './components/Detail__31';
-import Detail__32 from './components/Detail__32';
+import CityMetaverse from './components/CityMetaverse';
 import Detail__33 from './components/Detail__33';
 import Detail__34 from './components/Detail__34';
 import Detail__35 from './components/Detail__35';
@@ -48,60 +45,13 @@ import Detail__40 from './components/Detail__40';
 import Detail__41 from './components/Detail__41';
 import Detail__42 from './components/Detail__42';
 import Detail__43 from './components/Detail__43';
-// import D0 from './components/Detail0';
-// import Write0 from './components/Write0';
-// import Write1 from './components/Write1';
-// import Write2 from './components/Write2';
-// import Write3 from './components/Write3';
-// import Write4 from './components/Write4';
-// import Write5 from './components/Write5';
-// import Write6 from './components/Write6';
-// import Write7 from './components/Write7';
-// import Write8 from './components/Write8';
-// import Write9 from './components/Write9';
-// import Write10 from './components/Write10';
-// import Write11 from './components/Write11';
-// import Write12 from './components/Write12';
-// import Write13 from './components/Write13';
-// import Write14 from './components/Write14';
-// import Write15 from './components/Write15';
-// import Write16 from './components/Write16';
-// import Write17 from './components/Write17';
-// import Write18 from './components/Write18';
-// import Write19 from './components/Write19';
-// import Write20 from './components/Write20';
-// import Write21 from './components/Write21';
-// import Write22 from './components/Write22';
 
 const App = () => {
   return (
     <div classname="global">
       <HashRouter>
-        <Route exact path="/sell_your_mind_research" component={Market} />
-        <Route exact path="/" component={Market} />
-        {/* <Route path="/w0" component={Write0} exact={true} />
-        <Route path="/w1" component={Write1} exact={true} />
-        <Route path="/w2" component={Write2} exact={true} />
-        <Route path="/w3" component={Write3} exact={true} />
-        <Route path="/w4" component={Write4} exact={true} />
-        <Route path="/w5" component={Write5} exact={true} />
-        <Route path="/w6" component={Write6} exact={true} />
-        <Route path="/w7" component={Write7} exact={true} />
-        <Route path="/w8" component={Write8} exact={true} />
-        <Route path="/w9" component={Write9} exact={true} />
-        <Route path="/w10" component={Write10} exact={true} />
-        <Route path="/w11" component={Write11} exact={true} />
-        <Route path="/w12" component={Write12} exact={true} />
-        <Route path="/w13" component={Write13} exact={true} />
-        <Route path="/w14" component={Write14} exact={true} />
-        <Route path="/w15" component={Write15} exact={true} />
-        <Route path="/w16" component={Write16} exact={true} />
-        <Route path="/w17" component={Write17} exact={true} />
-        <Route path="/w18" component={Write18} exact={true} />
-        <Route path="/w19" component={Write19} exact={true} />
-        <Route path="/w20" component={Write20} exact={true} />
-        <Route path="/w21" component={Write21} exact={true} />
-        <Route path="/w22" component={Write22} exact={true} /> */}
+        <Route exact path="/OfflineExhibitionMode" component={CityMeta} />
+        <Route exact path="/" component={CityMeta} />
         <Route path="/d43" component={Detail__43} exact={true} />
         <Route path="/d42" component={Detail__42} exact={true} />
         <Route path="/d41" component={Detail__41} exact={true} />
@@ -112,10 +62,9 @@ const App = () => {
         <Route path="/d35" component={Detail__35} exact={true} />
         <Route path="/d34" component={Detail__34} exact={true} />
         <Route path="/d33" component={Detail__33} exact={true} />
-        <Route path="/d32" component={Detail__32} exact={true} />
+        <Route path="/d32" component={CityMetaverse} exact={true} />
         <Route path="/d31" component={Detail__31} exact={true} />
         <Route path="/d30" component={Detail__30} exact={true} />
-        {/* <Route path="/d29" component={Detail__29} exact={true} /> */}
         <Route path="/d28" component={Detail__28} exact={true} />
         <Route path="/d27" component={Detail__27} exact={true} />
         <Route path="/d26" component={Detail__26} exact={true} />
@@ -144,7 +93,6 @@ const App = () => {
         <Route path="/d3" component={Detail_3} exact={true} />
         <Route path="/d2" component={Detail_2} exact={true} />
         <Route path="/d1" component={Detail_1} exact={true} />
-        {/* <Route path="/d0" component={D0} exact={true} /> */}
         <Route path="/detailquote" component={DetailQuote} exact={true} />{' '}
       </HashRouter>
     </div>

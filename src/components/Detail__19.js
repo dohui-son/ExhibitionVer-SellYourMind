@@ -34,9 +34,7 @@ const Detail__19 = () => {
     let cloudTexture = null;
     const texture_img = new THREE.TextureLoader().load(img);
 
-    //background
     let sphere, clock;
-
     init();
     animate();
 
@@ -60,11 +58,11 @@ const Detail__19 = () => {
             data[i] =
               (128 +
                 128 *
-                perlin.noise(
-                  (x * scale) / 1.5,
-                  y * scale,
-                  (z * scale) / 1.5
-                )) *
+                  perlin.noise(
+                    (x * scale) / 1.5,
+                    y * scale,
+                    (z * scale) / 1.5
+                  )) *
               fadingFactor;
 
             i++;
@@ -98,12 +96,6 @@ const Detail__19 = () => {
       new OrbitControls(camera, renderer.domElement);
 
       scene.fog = new THREE.Fog(0xffffff, 0, 750);
-      // const blocker = document.getElementById('blocker');
-      // const instructions = document.getElementById('instructions');
-      // blocker.style.display = 'none';
-      // instructions.style.display = 'none';
-
-      // Sky
       const canvas = document.createElement('canvas');
       canvas.width = 1;
       canvas.height = 32;
@@ -116,38 +108,16 @@ const Detail__19 = () => {
       context.fillStyle = gradient;
       context.fillRect(0, 0, 1, 32);
 
-      //background
-
       clock = new THREE.Clock();
       scene.background = new THREE.Color(0x101010);
       const light = new THREE.AmbientLight(0xffffff, 0.9);
       scene.add(light);
-      // Create the panoramic sphere geometery
       const panoSphereGeo = new THREE.SphereGeometry(6, 256, 256);
-
-      // Create the panoramic sphere material
       const panoSphereMat = new THREE.MeshStandardMaterial({
         side: THREE.BackSide,
         displacementScale: -4.0,
       });
-      // const onKeyDown = function (event) {
-      //   if (event.code === 'KeyF')
-      //     window.location.href = 'sell_your_mind_research#/d7';
-      // };
-      // const onKeyPress = function (event) {
-      //   if (event.code === 'KeyG' && !flag) {
-      //     blocker.style.display = 'block';
-      //     instructions.style.display = '';
-      //     flag = 1;
-      //   } else if (event.code === 'KeyG' && flag) {
-      //     blocker.style.display = 'none';
-      //     instructions.style.display = 'none';
-      //     flag = 0;
-      //   } else if (event.code === 'KeyF')
-      //     window.location.href = 'sell_your_mind_research#/d7';
-      // };
 
-      // Create the panoramic sphere mesh
       sphere = new THREE.Mesh(panoSphereGeo, panoSphereMat);
 
       // Load and assign the texture and depth map
@@ -351,7 +321,7 @@ const Detail__19 = () => {
         const position = new THREE.Vector3(
           Math.floor(curr % countPerRow) * perElementSize + margins * 0.5,
           Math.floor((curr % countPerSlice) / countPerRow) * perElementSize +
-          margins * 0.5,
+            margins * 0.5,
           Math.floor(curr / countPerSlice) * perElementSize + margins * 0.5
         ).floor();
 

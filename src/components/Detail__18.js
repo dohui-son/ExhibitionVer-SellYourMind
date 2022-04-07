@@ -8,13 +8,13 @@ import { PointerLockControls } from 'three/examples/jsm/controls/PointerLockCont
 const Detail__18 = () => {
   let [letter, letterSet] = useState(true);
   useEffect(() => {
-    let timer = setTimeout(() => {
-      letterSet(false);
-      controls.lock();
-    }, 4000);
-    let timer2 = setTimeout(() => {
-      window.location.href = 'sell_your_mind_research#/d23';
-    }, 90000);
+    // let timer = setTimeout(() => {
+    //   letterSet(false);
+    //   controls.lock();
+    // }, 4000);
+    // let timer2 = setTimeout(() => {
+    //   window.location.href = 'sell_your_mind_research#/d23';
+    // }, 90000);
     let camera,
       scene,
       renderer,
